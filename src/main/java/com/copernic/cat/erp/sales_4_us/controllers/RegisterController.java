@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author lucas
  */
 @Controller
-public class ControladorInici {
+public class RegisterController {
 
-    @GetMapping("/loginTemplate")
+    @GetMapping("/register")
     public String inici() {
-        return ("inici");
+        return "register";
     }
 }
