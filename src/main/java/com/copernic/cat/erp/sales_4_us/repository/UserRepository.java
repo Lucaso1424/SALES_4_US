@@ -1,13 +1,11 @@
 package com.copernic.cat.erp.sales_4_us.repository;
 
-import org.h2.engine.User;
+import com.copernic.cat.erp.sales_4_us.models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
-    Optional<User> findUserByEmail(String email);
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findUserByEmail(String email);
 
 }
