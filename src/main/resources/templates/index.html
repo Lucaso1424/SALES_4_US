@@ -19,7 +19,7 @@
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <form th:action="@{/process_login}" method="POST" class="needs-validation" novalidate="" autocomplete="off">
+                                <form method="POST" th:action="@{/login}" class="needs-validation" novalidate="" autocomplete="off">
                                     <div class="mb-3">
                                         <label class="mb-2 text-muted" for="email">E-Mail Address</label>
                                         <input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-5 text-muted">
-                            Copyright &copy; 2022 &mdash; Sales 4 Us 
+                            Copyright &copy; 2022 &mdash; Sales 4 Us
                         </div>
                     </div>
                 </div>

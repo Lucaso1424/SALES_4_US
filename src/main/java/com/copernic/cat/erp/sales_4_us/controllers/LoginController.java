@@ -18,5 +18,6 @@ public class LoginController {
     public String inici() {
         return "index";
     }
+
    
 }
