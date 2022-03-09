@@ -1,12 +1,19 @@
 package com.copernic.cat.erp.sales_4_us.service;
 
 import com.copernic.cat.erp.sales_4_us.models.Rol;
+import com.copernic.cat.erp.sales_4_us.models.UserLogin;
+import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+import java.util.ArrayList;
 
 @Service ("userDetailsService")
 @Slf4j
@@ -17,7 +24,7 @@ public class UserService implements UserDetailsService{
      *els quals ens permeten interactuar amb les taules de la BBDD pels usuaris i rols
      */
     @Autowired
-    private UsuariDAO usuariDAO;
+    private UserRepository usuariDAO;
 
     /*Únic mètode de la interface UserDetailsService que retornarà un usuari a partir del nom d'usuari.
      *L'usuari que retorna es de tipus UserDetails que és una interface de Spring Security que defineix
@@ -25,19 +32,18 @@ public class UserService implements UserDetailsService{
      */
     @Override
     @Transactional(readOnly=true) //Consulta només de lectura
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
         /*Implementem el mètode definits en UsuariDao. Hem de pensar que aquest és un mètode predefinit
          *de Spring Security i, per tant, no hem de desnvolupar cap codi, ja ve donat per Spring Security.
          *Aquest mètode ens retornarà l'usuari a partir de nom d'usuari passat per paràmetre.
          */
-        Usuari usuari= usuariDAO.findByUsername(username);
+        UserLogin usuari= usuariDAO.findUserByEmail(email);
 
         //Comprovem que existeix l'usuari
         if(usuari==null){ //Si no existeix l'usuari...
-
             //Llancem una excepció de tipus UsernameNotFoundException
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(email);
 
         }
 
@@ -64,7 +70,7 @@ public class UserService implements UserDetailsService{
          *Com a paràmetres passem el nom d'usuari, la contrasenya i els rols del l'usuari alqual
          *li correspon el nom d'usuari passat com a paràmetre.
          */
-        return new User(usuari.getUsername(), usuari.getPassword(), rols);
+        return new User(usuari.getEmail(), usuari.getPassword(), rols);
     }
 
 }
