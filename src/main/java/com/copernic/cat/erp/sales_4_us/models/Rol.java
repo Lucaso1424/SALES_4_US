@@ -15,8 +15,8 @@ public class Rol implements Serializable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private long idRol;
+    private long id;
 
     @NotEmpty
-    private String nom;
+    private String name;
 }

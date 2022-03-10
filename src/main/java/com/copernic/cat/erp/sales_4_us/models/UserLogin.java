@@ -17,16 +17,16 @@ public class UserLogin implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userId;
+    private long ID;
 
     @NotEmpty
-    private String email;
+    private String EMAIL;
 
     @NotEmpty
-    private String password;
+    private String PASSWORD;
 
     @OneToMany
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "ID")
     private List<Rol> rols;
 }
 
