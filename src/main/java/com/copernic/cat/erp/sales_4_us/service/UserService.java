@@ -25,12 +25,10 @@ public class UserService implements UserDetailsService{
     @Override
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-
         UserLogin usuari= userRepository.findUserByEmail(email);
 
         if(usuari==null){
             throw new UsernameNotFoundException(email);
-
         }
 
         var rols= new ArrayList<GrantedAuthority>();

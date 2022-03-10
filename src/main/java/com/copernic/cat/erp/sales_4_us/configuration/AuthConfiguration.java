@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AuthConfiguration extends WebSecurityConfigurerAdapter{
     
     @Autowired
-    private UserService userDetailsService; //Objecte per recuperar l'usuari
+    private UserDetailsService userDetailsService; //Objecte per recuperar l'usuari
 
     @Autowired
     public void authentication(AuthenticationManagerBuilder auth) throws Exception{
@@ -34,6 +34,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
                 .and()
                 .formLogin() //Objecte que representa el formulari de login personalitzat que utilitzarem
                 .loginPage("/login") //Pàgina on es troba el formulari per fer login personalitzat
+                .usernameParameter("email")
                 .and()
                 .exceptionHandling().accessDeniedPage("/errors/error403"); //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 
     }
