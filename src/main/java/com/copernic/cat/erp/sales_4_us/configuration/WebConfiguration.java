@@ -6,7 +6,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration //Indica al sistema que és una classe de configuració
 public class WebConfiguration implements WebMvcConfigurer {
-
     @Override
     public void addViewControllers(ViewControllerRegistry registre) {
         registre.addViewController("/").setViewName("index"); //Mostrem la pàgina incial que reanomenen com a index, quan encara no ens hem autenticat

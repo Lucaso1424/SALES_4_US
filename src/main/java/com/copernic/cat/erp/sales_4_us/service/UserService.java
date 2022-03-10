@@ -20,13 +20,13 @@ import java.util.ArrayList;
 public class UserService implements UserDetailsService{
 
     @Autowired
-    private UserRepository usuariDAO;
+    private UserRepository userRepository;
 
     @Override
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        UserLogin usuari= usuariDAO.findUserByEmail(email);
+        UserLogin usuari= userRepository.findUserByEmail(email);
 
         if(usuari==null){
             throw new UsernameNotFoundException(email);

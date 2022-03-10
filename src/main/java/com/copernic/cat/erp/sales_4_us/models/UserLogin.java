@@ -10,14 +10,14 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "usuari")
+@Table(name = "USER")
 public class UserLogin implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idUsuari;
+    private long userId;
 
     @NotEmpty
     private String email;
@@ -26,7 +26,7 @@ public class UserLogin implements Serializable {
     private String password;
 
     @OneToMany
-    @JoinColumn(name = "idUsuari")
+    @JoinColumn(name = "userId")
     private List<Rol> rols;
 }
 

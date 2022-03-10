@@ -1,5 +1,6 @@
 package com.copernic.cat.erp.sales_4_us.configuration;
 
+import com.copernic.cat.erp.sales_4_us.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AuthConfiguration extends WebSecurityConfigurerAdapter{
     
     @Autowired
-    private UserDetailsService userDetailsService; //Objecte per recuperar l'usuari
+    private UserService userDetailsService; //Objecte per recuperar l'usuari
 
     @Autowired
     public void authentication(AuthenticationManagerBuilder auth) throws Exception{
@@ -28,7 +29,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests()
                 .antMatchers("/admin") //URL i subURLS (**) on pot accedir...
                 .hasAuthority("admin") //...l'usuari amb rol veterinari
-                .antMatchers("/dashboard") //URL inici on poden accedir...
+                .antMatchers("/") //URL inici on poden accedir...
                 .hasAnyAuthority("admin", "client") //...els usuaris amb rol veterinari i pacient
                 .and()
                 .formLogin() //Objecte que representa el formulari de login personalitzat que utilitzarem
