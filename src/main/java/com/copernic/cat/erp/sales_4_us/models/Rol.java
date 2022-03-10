@@ -13,10 +13,10 @@ public class Rol implements Serializable {
 
     private static final long serialVersionUID=1L;
 
-    @Id //L'atribut idRol és la clau primària de la BBDD
-    @GeneratedValue(strategy= GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long idRol;
 
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom
+    @NotEmpty
     private String nom;
 }

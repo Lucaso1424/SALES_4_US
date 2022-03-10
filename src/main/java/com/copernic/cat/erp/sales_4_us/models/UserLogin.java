@@ -15,22 +15,18 @@ public class UserLogin implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id //L'atribut idUsuari és la clau primària de la BBDD
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Generació autonumèrica de l'id
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUsuari;
 
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp nom d'usuari
+    @NotEmpty
     private String email;
 
-    @NotEmpty//Validació perquè l'usuari afegeixi contingut al camp contrasenya
+    @NotEmpty
     private String password;
 
-    /*Implementem l'atribut que relacionarà l'usuari amb el rol, tenint en compte que un
-     *usuari pot tenir més d'un rol, per tant serà una col.lecció de tipus list, on guardarem
-     *tots els rols de l'usuari.
-     */
-    @OneToMany //Indica al sistema que la relació entre les taules usuari i rol en aquest cas és d'un a molts.
-    @JoinColumn(name = "idUsuari") //Columna de la base de dades que farà de clau forana relacionant les dues taules.
+    @OneToMany
+    @JoinColumn(name = "idUsuari")
     private List<Rol> rols;
 }
 

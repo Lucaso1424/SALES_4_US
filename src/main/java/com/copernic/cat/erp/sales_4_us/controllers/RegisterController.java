@@ -7,10 +7,6 @@ package com.copernic.cat.erp.sales_4_us.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-/**
- *
- * @author lucas
- */
 @Controller
 public class RegisterController {
 
