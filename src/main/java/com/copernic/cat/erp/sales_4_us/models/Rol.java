@@ -11,12 +11,12 @@ import java.io.Serializable;
 @Table(name="ROLE")
 public class Rol implements Serializable {
 
-    private static final long serialVersionUID=1L;
+//    private static final long serialVersionUID=1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long idRol;
 
     @NotEmpty
-    private String nom;
+    private String name;
 }
