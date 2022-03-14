@@ -18,13 +18,12 @@
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <form method="POST" th:action="@{/dashboard}" class="needs-validation" novalidate="" autocomplete="off">
+                                <br>
+                                <p th:if="${loginError}" class="alert alert-danger">Wrong user or password</p>
+                                <form th:action="@{/dashboard}" method="POST">
                                     <div class="mb-3">
                                         <label class="mb-2 text-muted" for="email">E-Mail Address</label>
                                         <input id="email" type="email" class="form-control" name="email" placeholder="Email" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Email is invalid
-                                        </div>
                                     </div>
 
                                     <div class="mb-3">
@@ -39,9 +38,9 @@
                                             Password is required
                                         </div>
                                     </div>
-                                        <button type="submit" value="Login" class="btn btn-primary ms-auto">
-                                            Login
-                                        </button>
+                                    <button type="submit" value="Login" class="btn btn-primary ms-auto">
+                                        Login
+                                    </button>
                                 </form>
                             </div>
                             <div class="card-footer py-3 border-0">
