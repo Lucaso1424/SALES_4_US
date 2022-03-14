@@ -10,6 +10,16 @@
             This content is only shown to authenticated users.
         </div>
 
+        <div th:if="${param.error}">
+            <div class="alert alert-danger">Invalid username or
+                password.</div>
+        </div>
+
+        <div th:if="${param.success}">
+            <div class="alert alert-info">You've successfully registered
+                to our awesome app!</div>
+        </div>
+
         <p>Logged user: <b><span sec:authentication="name"></span></b></p>
 
     </body>
