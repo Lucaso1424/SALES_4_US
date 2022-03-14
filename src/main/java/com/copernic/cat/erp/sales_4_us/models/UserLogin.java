@@ -11,6 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "USER")
 public class UserLogin implements Serializable {
+    
+    public UserLogin() {
+        super();
+    }
 
     private static final long serialVersionUID = 1L;
 
@@ -33,10 +37,9 @@ public class UserLogin implements Serializable {
     @OneToMany
     @JoinColumn(name = "userId")
     private List<Rol> rols;
-    
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
-    
-    
+
 }

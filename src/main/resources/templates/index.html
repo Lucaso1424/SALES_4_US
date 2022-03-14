@@ -19,7 +19,7 @@
                             <div class="card-body p-5">
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                                 <br>
-                                <p th:if="${loginError}" class="alert alert-danger">Wrong user or password</p>
+                                <p th:if="${loginError}" th:object="${loginForm}" class="alert alert-danger">Wrong user or password</p>
                                 <form th:action="@{/dashboard}" method="POST">
                                     <div class="mb-3">
                                         <label class="mb-2 text-muted" for="email">E-Mail Address</label>

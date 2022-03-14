@@ -10,18 +10,7 @@
             This content is only shown to authenticated users.
         </div>
 
-        Logged user: <span sec:authentication="name"></span>
-
-        <table border="1">
-            <tr>
-                <th>Nom</th>
-                <th>Email</th>
-            </tr>
-            <tr th:each="user : ${usuaris}"> 
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-            </tr>
-        </table>
+        <p>Logged user: <b><span sec:authentication="name"></span></b></p>
 
     </body>
 </html>
