@@ -68,5 +68,7 @@ CREATE TABLE rol (
 
 
 INSERT INTO user(user_name, password, email) VALUES ("jose", "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local");
+INSERT INTO user(user_name, password, email) VALUES ("client", "$2a$10$Sul1phyB7QsHOmDafAeZP.fCFi/sAQLEoJyGG3nRdx0IV/uuPLn36", "client@client.local");
 Select * FROM user;
 INSERT INTO rol(name, user_id) VALUES ('admin', 1);
+INSERT INTO rol(name, user_id) VALUES ('client', 2);

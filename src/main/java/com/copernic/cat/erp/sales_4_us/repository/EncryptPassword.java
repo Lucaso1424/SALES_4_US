@@ -6,7 +6,7 @@ public class EncryptPassword {
 
     public static void main(String[] args) {
 
-        String password = "jose";
+        String password = "client";
         System.out.println("Contrasenya: " + password);
         System.out.println("Contrasenya encriptada:" + encriptarContrasenya(password));
     }
