@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header th:fragment="header">
+        <nav class="navbar navbar-expand-sm navbar-light p-0" style="background-color: #e6e6e6;" > <!--bg-light-->
+            <div class="container-fluid">
+                <a th:href="@{/dashboard}" class="navbar-brand"><img src="../static/images/logo.png" width="50" th:src="@{images/logo.png}"/></a>
+                <button class="navbar-toggler" data-toggle="collapse" data-targer="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar-Collapse">
+                    <ul class="navbar-nav ms-1">
+                        <form class="d-flex">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <button class="mySearchButton" type="submit">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
+                    </ul>
+                    <ul class="navbar-nav ms-auto"> <!--sec:authorize="isAdmin()"-->
+                        <li class="nav-item px-2">
+                            <a th:href="@{/dashboard}" class="nav-link " th:text="#{barra.home}">Home</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a th:href="@{/purchase}" class="nav-link" th:text="#{barra.purchase}">Purchases</a>
+                        </li>
+                        <li class="nav-item px-2">
+                            <a th:href="@{/manage}" class="nav-link ">
+                                <span th:text="#{barra.manage}">Manage</span>
+                                <!--     <span sec:authentication="name">Usuario:</span>-->
+                            </a>
+
+                        </li>
+                        <li class="nav-item px-2">
+                            <button class="myButton">
+                                <a th:href="@{/cart}" class="nav-link ">
+                                    <i class="fa-solid fa-cart-shopping white-letter"></i>
+                                    <span class="white-letter" th:text="#{barra.cart}">Carrito</span>
+                                </a>
+                            </button>
+                        </li>
+                        <li class="nav-item mr-3">
+                            <a th:href="@{/profile}" class="nav-link">
+                                <i class="fas  fa-user"></i>
+                                <span th:text="#{barra.profile}">Profile</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="POST" th:action="@{/logout}">
+                                <a href="#" onclick="this.parentNode.submit();" class="nav-link">
+                                    <i class="fa-solid fa-power-off"></i>
+                                </a>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

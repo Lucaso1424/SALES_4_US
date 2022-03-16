@@ -1,8 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Dashboard</title>
-    </head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <h1>Main Dashboard</h1>
 
@@ -22,5 +20,6 @@
 
         <p>Logged user: <b><span sec:authentication="name"></span></b></p>
 
+        <header th:replace="layout/plantilla_navbar :: header"></header>
     </body>
 </html>
