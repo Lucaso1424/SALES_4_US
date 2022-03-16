@@ -1,36 +1,78 @@
-/*
-    Created on : Mar 14, 2022, 8:56:42 AM
-    Author     : jose
-*/
-.myButton {
-	background-color:#460e56;
-	border-radius:3px;
-	border:1px solid #000000;
-	display:inline-block;
-	cursor:pointer;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:1px 15px;
-	text-decoration:none;
+h1 {
+    margin-top: 50px;
+    font-family: Arial;
 }
+
+.myButton {
+    background-color:#460e56;
+    border-radius:3px;
+    border:1px solid #000000;
+    display:inline-block;
+    cursor: pointer;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:1px 15px;
+    text-decoration:none;
+}
+
 .myButton:hover {
-	background-color:#4f0e56;
+    background-color:#4f0e56;
 }
 
 .mySearchButton {
-	background-color:#460e56;
-	border-radius:8px;
-	/*border:1px solid #460e56;*/
-	border:1px solid #000000;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:8px 10px;
-	text-decoration:none;
+    background-color:#460e56;
+    border-radius:8px;
+    border:1px solid #000000;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 10px;
+    text-decoration:none;
 }
 
-.white-letter{
-	color:#ffffff;
+.white-letter {
+    color: #ffffff;
+}
+
+.manage-buttons {
+    display: block;
+}
+
+.manage-buttons button  {
+    width: 150px;
+    margin-top: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    border: 2px solid #000000;
+    font-family: Arial;
+    background-color: #460e56;
+    color: white;
+}
+
+.products {
+    display: inline-block;
+}
+
+.products.large_product {
+    margin-left: 120px;
+    width: 15%;
+    height: 300px;
+    border: 1px solid #7a7a7a;
+}
+
+.products.small_product {
+    margin-left: 120px;
+    width: 15%;
+    height: 120px;
+    border: 1px solid #7a7a7a;
+}
+
+.content {
+
+}
+
+.group {
+    margin-top: 50px;
 }

@@ -3,11 +3,60 @@
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
+        <h1 align="center" class="title">Dashboard</h1>
 
-        <p>Logged user: <b><span sec:authentication="name"></span></b></p>
+        <hr>
 
+        <!-- <div class="products large_product group">
+        </div>  -->
 
-        <div sec:authorize="isAuthenticated()">
+        <div class="content">
+
+            <div class="group">
+                <div class="products small_product">    
+                </div>
+
+                <div class="products small_product">
+                </div>
+
+                <div class="products small_product">
+                </div>
+
+                <div class="products small_product">
+                </div>
+            </div>
+
+            <div class="group">
+                <div class="products small_product">
+                </div>
+
+                <div class="products small_product">
+                </div>
+
+                <div class="products small_product">
+                </div>
+
+                <div class="products small_product">
+                </div>
+            </div>
+
+            <div class="products large_product group">
+            </div>
+
+            <div class="products large_product group">
+            </div>
+
+            <div class="products large_product group">
+            </div>
+            
+            <div class="products large_product group">
+            </div>
+
+        </div>
+
+        <!--<p>Logged user: <b><span sec:authentication="name"></span></b></p>-->
+
+        <!-- <div sec:authorize="isAuthenticated()">
             This content is only shown to authenticated users.
         </div>
 
@@ -19,6 +68,6 @@
         <div th:if="${param.success}">
             <div class="alert alert-info">You've successfully registered
                 to our awesome app!</div>
-        </div>
+        </div> -->
     </body>
 </html>
