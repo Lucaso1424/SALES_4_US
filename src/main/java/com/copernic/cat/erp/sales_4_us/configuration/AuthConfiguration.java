@@ -9,12 +9,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration extends WebSecurityConfigurerAdapter {
-
+    
+    @Autowired
+    private UserService userService;
+    
     @Autowired
     private UserDetailsService userDetailsService; //Objecte per recuperar l'usuari
 
@@ -26,14 +28,13 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin") //URL i subURLS (**) on pot accedir...
-                .hasAuthority("admin") //...l'usuari amb rol veterinari
-                .antMatchers("/") //URL inici on poden accedir...
-                .hasAnyAuthority("admin", "client") //...els usuaris amb rol veterinari i pacient
+                .antMatchers("/admin") 
+                .hasAuthority("admin") 
+                .antMatchers("/") 
+                .hasAnyAuthority("admin", "client") 
                 .and()
-                .formLogin() //Objecte que representa el formulari de login personalitzat que utilitzarem
-                .loginPage("/login") //Pàgina on es troba el formulari per fer login personalitzat
-                .failureForwardUrl("/login")
+                .formLogin()
+                .loginPage("/login") 
                 .usernameParameter("email")
                 .and()
                 .exceptionHandling().accessDeniedPage("/errors/error403"); //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 

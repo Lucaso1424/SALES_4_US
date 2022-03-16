@@ -6,7 +6,7 @@ public class EncryptPassword {
 
     public static void main(String[] args) {
 
-        var password = "jose";
+        String password = "jose";
         System.out.println("Contrasenya: " + password);
         System.out.println("Contrasenya encriptada:" + encriptarContrasenya(password));
     }
@@ -15,4 +15,4 @@ public class EncryptPassword {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
-}
+}   

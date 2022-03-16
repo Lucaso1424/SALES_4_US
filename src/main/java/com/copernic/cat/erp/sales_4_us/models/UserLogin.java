@@ -34,9 +34,4 @@ public class UserLogin implements Serializable {
     @JoinColumn(name = "userId")
     private List<Rol> rols;
     
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-    
-    
 }
