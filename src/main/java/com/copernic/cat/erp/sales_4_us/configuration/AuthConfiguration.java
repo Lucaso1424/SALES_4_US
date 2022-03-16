@@ -36,6 +36,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login") 
                 .usernameParameter("email")
+                .defaultSuccessUrl("/dashboard", true)
                 .and()
                 .exceptionHandling().accessDeniedPage("/errors/error403"); //Mostrarem la pàgina error403 si l'usuari no té accés a una àgina o acció 
     }

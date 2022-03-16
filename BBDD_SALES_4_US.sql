@@ -55,18 +55,6 @@ FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT (ID),
 FOREIGN KEY (USER_ID) REFERENCES user (user_id)
 );
 
-/*CREATE TABLE ROLE (
-idRol INT NOT NULL auto_increment,
-name ENUM ('admin', 'client'),
-userid INT NOT Null,
-primary key (idRol),
-INDEX fkRolUsuari_idx (userId ASC) VISIBLE,
-CONSTRAINT fkRolUsuer
-Foreign key (userid)
-REFERENCES SALES_4_US.user (user_id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-); */
 
 CREATE TABLE rol (
   `id_rol` int NOT NULL AUTO_INCREMENT,
@@ -81,4 +69,4 @@ CREATE TABLE rol (
 
 INSERT INTO user(user_name, password, email) VALUES ("jose", "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local");
 Select * FROM user;
-#INSERT INTO ROLE(name, userid) VALUES ('admin', 1);
+INSERT INTO rol(name, user_id) VALUES ('admin', 1);

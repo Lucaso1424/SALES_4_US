@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -28,10 +29,9 @@
                         <li class="nav-item px-2">
                             <a th:href="@{/purchase}" class="nav-link" th:text="#{barra.purchase}">Purchases</a>
                         </li>
-                        <li class="nav-item px-2">
+                        <li class="nav-item px-2" sec:authorize="hasAuthority('admin')" >
                             <a th:href="@{/manage}" class="nav-link ">
                                 <span th:text="#{barra.manage}">Manage</span>
-                                <!--     <span sec:authentication="name">Usuario:</span>-->
                             </a>
 
                         </li>
