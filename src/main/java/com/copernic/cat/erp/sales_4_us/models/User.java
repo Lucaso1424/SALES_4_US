@@ -9,18 +9,19 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "USER")
-public class UserLogin implements Serializable {
+@Table(name = "user")
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name="user_Id")
     private long userId;
 
-    @Column(nullable = false, length = 20)
-    private String userName;
+/*    @Column(nullable = false, length = 20)
+    private String userName;*/
 
     @NotEmpty
     @Column(nullable = false, length = 20)
@@ -31,7 +32,7 @@ public class UserLogin implements Serializable {
     private String password;
 
     @OneToMany
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_Id")
     private List<Rol> rols;
     
 }

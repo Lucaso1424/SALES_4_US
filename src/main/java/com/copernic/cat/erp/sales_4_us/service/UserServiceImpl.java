@@ -5,15 +5,18 @@
 package com.copernic.cat.erp.sales_4_us.service;
 
 import com.copernic.cat.erp.sales_4_us.models.Rol;
-import com.copernic.cat.erp.sales_4_us.models.UserLogin;
+import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
-import java.util.Collection;
-import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -31,12 +34,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserLogin user = userRepository.findUserByEmail(username);
+        User user = userRepository.findUserByEmail(username);
         
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        
+        List<Rol> rols = new ArrayList<>();
+        Rol rol = new Rol();
+        rol.setName("admin");
+        rol.setIdRol(1);
+        rols.add(rol);
+        user.setRols(rols);
+        user.setEmail("jose@jose.local");
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRols()));
     }
 

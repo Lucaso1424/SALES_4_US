@@ -2,9 +2,9 @@ DROP DATABASE IF EXISTS SALES_4_US;
 CREATE DATABASE SALES_4_US;
 USE SALES_4_US;
 
-CREATE TABLE USER (
-userId INT NOT NULL auto_increment PRIMARY KEY,
-NAME VARCHAR (20) NOT NULL,
+CREATE TABLE user (
+user_id INT NOT NULL auto_increment PRIMARY KEY,
+user_name VARCHAR (20) NOT NULL,
 password VARCHAR (200) NOT NULL,
 email VARCHAR (20) NOT NULL
 );
@@ -14,7 +14,7 @@ ID INT NOT NULL auto_increment PRIMARY KEY,
 DATE DATETIME NOT NULL,
 TOTAL_PRIZE DECIMAL NOT NULL,
 USER_ID INT NOT NULL,
-FOREIGN KEY (USER_ID) REFERENCES USER(userId)
+FOREIGN KEY (USER_ID) REFERENCES user(user_id)
 );
 
 CREATE TABLE PROVIDER (
@@ -52,10 +52,10 @@ DESCRIPTION VARCHAR (400) NOT NULL,
 STARS INT,
 PRODUCT_ID INT NOT NULL,
 FOREIGN KEY (PRODUCT_ID) REFERENCES PRODUCT (ID),
-FOREIGN KEY (USER_ID) REFERENCES USER (userId)
+FOREIGN KEY (USER_ID) REFERENCES user (user_id)
 );
 
-CREATE TABLE ROLE (
+/*CREATE TABLE ROLE (
 idRol INT NOT NULL auto_increment,
 name ENUM ('admin', 'client'),
 userid INT NOT Null,
@@ -63,12 +63,22 @@ primary key (idRol),
 INDEX fkRolUsuari_idx (userId ASC) VISIBLE,
 CONSTRAINT fkRolUsuer
 Foreign key (userid)
-REFERENCES SALES_4_US.USER (userId)
+REFERENCES SALES_4_US.user (user_id)
 ON DELETE NO ACTION
 ON UPDATE NO ACTION
+); */
+
+CREATE TABLE rol (
+  `id_rol` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(45) DEFAULT NULL,
+  `user_id` int DEFAULT NULL,
+  PRIMARY KEY (`id_rol`),
+  KEY `fkRolUsuari_idx` (`user_id`),
+  CONSTRAINT `fkRolUsuari` FOREIGN KEY (`user_id`) REFERENCES user (`user_id`)
 );
 
 
-INSERT INTO USER(name, password, email) VALUES ("jose", "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local");
-Select * FROM USER;
-INSERT INTO ROLE(name, userid) VALUES ('admin', 1);
+
+INSERT INTO user(user_name, password, email) VALUES ("jose", "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local");
+Select * FROM user;
+#INSERT INTO ROLE(name, userid) VALUES ('admin', 1);
