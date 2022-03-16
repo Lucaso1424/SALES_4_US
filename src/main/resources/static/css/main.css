@@ -32,6 +32,18 @@ h1 {
     text-decoration:none;
 }
 
+.myLoginButton {
+   background-color:#460e56;
+   border-radius:8px;
+   border:1px solid #000000;
+   color:#ffffff;
+   font-family:Arial;
+   font-size:15px;
+   font-weight:bold;
+   padding:8px 10px;
+   text-decoration:none;
+}
+
 .white-letter {
     color: #ffffff;
 }
@@ -71,6 +83,10 @@ h1 {
 
 .content {
 
+}
+
+.margin-login-buttons {
+    margin-top: 15px;
 }
 
 .group {

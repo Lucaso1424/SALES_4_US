@@ -9,11 +9,11 @@ public class DashboardController {
 
     @PostMapping("/dashboard")
     public String inici() {
-        return "main";
+        return "home";
     }
 
     @GetMapping("/dashboard")
     public String iniciGet() {
-        return "main";
+        return "home";
     }
 }

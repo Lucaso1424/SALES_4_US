@@ -12,8 +12,7 @@
                         </div>
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
-                                <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
-                                <br>
+                                <h1 class="fs-4  fw-bold mb-4">Login</h1>
                                 <form th:action="@{/login}" method="POST">
 
                                     <div th:if="${param.error}">
@@ -32,26 +31,27 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="mb-2 w-100">
-                                            <label class="text-muted" for="password">Password</label>
-                                            <a th:href="@{/forgot/}" class="float-end">
-                                                Forgot Password?
-                                            </a>
-                                        </div>
                                         <input  id="password" type="password" class="form-control" name="password" required>
                                         <div class="invalid-feedback">
                                             Password is required
                                         </div>
                                     </div>
-                                    <button type="submit" value="Login" class="btn btn-primary ms-auto">
-                                        Login
-                                    </button>
+                                    <center>
+                                        <button type="submit" value="Login" class="myLoginButton container ">
+                                            Login
+                                        </button>
+                                    </center>
                                 </form>
-                            </div>
-                            <div class="card-footer py-3 border-0">
-                                <div class="text-center">
-                                    <a th:href="@{/register/}"  class="text-dark">Register</a>
-                                </div>
+                                    <center>
+                                        <a th:href="@{/register/}">
+                                            <button type="submit" class="myLoginButton container margin-login-buttons">Register</button>
+                                        </a>
+                                        <a th:href="@{/forgot/}">
+                                            <button type="submit" class="myLoginButton container margin-login-buttons">Forgot Password?</button>
+                                        </a>
+                                    </center>
+
+
                             </div>
                         </div>
                         <div class="text-center mt-5 text-muted">
