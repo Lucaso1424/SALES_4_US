@@ -34,5 +34,10 @@ public class User implements Serializable {
     @OneToMany
     @JoinColumn(name = "user_Id")
     private List<Rol> rols;
+
+    @Override
+    public String toString(){
+        return userId + " " + email +" " + password;
+    }
     
 }

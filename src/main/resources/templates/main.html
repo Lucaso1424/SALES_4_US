@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center" class="title">Dashboard</h1>
 
         <hr>
+        <span sec:authentication="email"> </span>
 
         <!-- <div class="products large_product group">
         </div>  -->

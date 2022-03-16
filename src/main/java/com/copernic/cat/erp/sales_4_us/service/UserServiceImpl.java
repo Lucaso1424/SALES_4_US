@@ -22,9 +22,9 @@ import java.util.stream.Collectors;
  *
  * @author lucas
  */
-@Service
-public class UserServiceImpl implements UserService {
-
+//@Service
+public class UserServiceImpl {
+/*
     private UserRepository userRepository;
 
     public UserServiceImpl(UserRepository userRepository) {
@@ -46,11 +46,12 @@ public class UserServiceImpl implements UserService {
         rols.add(rol);
         user.setRols(rols);
         user.setEmail("jose@jose.local");
+        System.out.println(user.toString());
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), mapRolesToAuthorities(user.getRols()));
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Rol> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-    }
+    }*/
 
 }

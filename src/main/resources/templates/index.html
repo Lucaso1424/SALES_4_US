@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <section class="h-100">
@@ -14,12 +15,12 @@
                                 <h1 class="fs-4 card-title fw-bold mb-4">Login</h1>
                                 <br>
                                 <form th:action="@{/login}" method="POST">
-                                    
+
                                     <div th:if="${param.error}">
                                         <div class="alert alert-danger">Invalid username or
                                             password.</div>
                                     </div>
-                                    
+
                                     <div th:if="${param.success}">
                                         <div class="alert alert-info">You've successfully registered
                                             to our awesome app!</div>

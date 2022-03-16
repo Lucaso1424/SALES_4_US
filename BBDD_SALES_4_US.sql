@@ -70,7 +70,7 @@ ON UPDATE NO ACTION
 
 CREATE TABLE rol (
   `id_rol` int NOT NULL AUTO_INCREMENT,
-  `nom` varchar(45) DEFAULT NULL,
+  `name` varchar(45) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id_rol`),
   KEY `fkRolUsuari_idx` (`user_id`),
