@@ -4,14 +4,8 @@
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
-        <h1 align="center" class="title">Dashboard</h1>
-
+        <h1 align="center" class="title titol">Dashboard</h1>
         <hr>
-<!--        <span sec:authentication="email"> </span>-->
-
-        <!-- <div class="products large_product group">
-        </div>  -->
-
         <div class="content">
 
             <div class="group">
@@ -55,21 +49,5 @@
             </div>
 
         </div>
-
-        <!--<p>Logged user: <b><span sec:authentication="name"></span></b></p>-->
-
-        <!-- <div sec:authorize="isAuthenticated()">
-            This content is only shown to authenticated users.
-        </div>
-
-        <div th:if="${param.error}">
-            <div class="alert alert-danger">Invalid username or
-                password.</div>
-        </div>
-
-        <div th:if="${param.success}">
-            <div class="alert alert-info">You've successfully registered
-                to our awesome app!</div>
-        </div> -->
     </body>
 </html>

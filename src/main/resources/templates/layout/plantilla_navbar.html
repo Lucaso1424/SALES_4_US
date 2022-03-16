@@ -7,7 +7,7 @@
 </head>
 <body>
     <header th:fragment="header">
-        <nav class="navbar navbar-expand-sm navbar-light p-0" style="background-color: #e6e6e6;" > <!--bg-light-->
+        <nav class="navbar navbar-expand-sm navbar-light p-0" style="background-color: #e6e6e6;" > <!--fixed-top (creo que la buena es sticky) sticky-top-->
             <div class="container-fluid">
                 <a th:href="@{/dashboard}" class="navbar-brand"><img src="../static/images/logo.png" width="50" th:src="@{images/logo.png}"/></a>
                 <button class="navbar-toggler" data-toggle="collapse" data-targer="#navbarCollapse">

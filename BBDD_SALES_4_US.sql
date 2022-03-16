@@ -5,8 +5,12 @@ USE SALES_4_US;
 CREATE TABLE user (
 user_id INT NOT NULL auto_increment PRIMARY KEY,
 user_name VARCHAR (20) NOT NULL,
+user_surname VARCHAR (50) NOT NULL,
+user_dni VARCHAR (9) NOT NULL,
+email VARCHAR (20) NOT NULL,
+user_phone INT NOT NULL,
 password VARCHAR (200) NOT NULL,
-email VARCHAR (20) NOT NULL
+user_address VARCHAR (60) NOT NULL
 );
 
 CREATE TABLE purchase (

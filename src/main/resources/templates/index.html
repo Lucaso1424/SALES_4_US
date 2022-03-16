@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
-    <body>
+    <body class="background-login">
         <section class="h-100">
             <div class="container h-100">
                 <div class="row justify-content-sm-center h-100">
@@ -12,7 +12,7 @@
                         </div>
                         <div class="card shadow-lg">
                             <div class="card-body p-5">
-                                <h1 class="fs-4  fw-bold mb-4">Login</h1>
+                                <h1 class="fs-4 fw-bold mb-4">Login</h1>
                                 <form th:action="@{/login}" method="POST">
 
                                     <div th:if="${param.error}">
@@ -43,24 +43,21 @@
                                     </center>
                                 </form>
                                     <center>
-                                        <a th:href="@{/register/}">
+                                        <a th:href="@{/register}">
                                             <button type="submit" class="myLoginButton container margin-login-buttons">Register</button>
                                         </a>
-                                        <a th:href="@{/forgot/}">
+                                        <a th:href="@{/forgot}">
                                             <button type="submit" class="myLoginButton container margin-login-buttons">Forgot Password?</button>
                                         </a>
                                     </center>
-
-
                             </div>
                         </div>
-                        <div class="text-center mt-5 text-muted">
+                        <div class="text-center mt-5 white-letter">
                             Copyright &copy; 2022 &mdash; Sales 4 Us
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </body>
 </html>

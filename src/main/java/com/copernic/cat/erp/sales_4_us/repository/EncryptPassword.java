@@ -15,4 +15,4 @@ public class EncryptPassword {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
-}   
+}
