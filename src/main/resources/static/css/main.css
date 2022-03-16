@@ -3,34 +3,45 @@
     Author     : jose
 */
 .myButton {
-	background-color:#460e56;
-	border-radius:3px;
-	border:1px solid #000000;
-	display:inline-block;
-	cursor:pointer;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:1px 15px;
-	text-decoration:none;
+    background-color:#460e56;
+    border-radius:3px;
+    border:1px solid #000000;
+    display:inline-block;
+    cursor:pointer;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:1px 15px;
+    text-decoration:none;
 }
 .myButton:hover {
-	background-color:#4f0e56;
+    background-color:#4f0e56;
 }
 
 .mySearchButton {
-	background-color:#460e56;
-	border-radius:8px;
-	/*border:1px solid #460e56;*/
-	border:1px solid #000000;
-	color:#ffffff;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:8px 10px;
-	text-decoration:none;
+    background-color:#460e56;
+    border-radius:8px;
+    /*border:1px solid #460e56;*/
+    border:1px solid #000000;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 10px;
+    text-decoration:none;
 }
 
 .white-letter{
-	color:#ffffff;
+    color:#ffffff;
+}
+
+.manage-buttons {
+    display: block;
+}
+
+.manage-buttons button  {
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 150px;
+    border:1px solid #000000;
 }
