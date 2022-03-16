@@ -2,7 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
-        <h1>Main Dashboard</h1>
+        <header th:replace="layout/plantilla_navbar :: header"></header>
+
+        <p>Logged user: <b><span sec:authentication="name"></span></b></p>
+
 
         <div sec:authorize="isAuthenticated()">
             This content is only shown to authenticated users.
@@ -17,9 +20,5 @@
             <div class="alert alert-info">You've successfully registered
                 to our awesome app!</div>
         </div>
-
-        <p>Logged user: <b><span sec:authentication="name"></span></b></p>
-
-        <header th:replace="layout/plantilla_navbar :: header"></header>
     </body>
 </html>

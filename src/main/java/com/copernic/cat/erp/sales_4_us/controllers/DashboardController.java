@@ -7,10 +7,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class DashboardController {
 
-
-//    @PostMapping("/dashboard")
-    @GetMapping("/dashboard")
+    @PostMapping("/dashboard")
     public String inici() {
+        return "main";
+    }
+
+    @GetMapping("/dashboard")
+    public String iniciGet() {
         return "main";
     }
 }
