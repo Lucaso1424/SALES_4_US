@@ -66,13 +66,14 @@ CREATE TABLE rol (
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id_rol`),
   KEY `fkRolUsuari_idx` (`user_id`),
-  CONSTRAINT `fkRolUsuari` FOREIGN KEY (`user_id`) REFERENCES user (`user_id`)
+FOREIGN KEY (`user_id`) REFERENCES user (`user_id`)
 );
 
 
 
-INSERT INTO user(user_name, password, email) VALUES ("jose", "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local");
-INSERT INTO user(user_name, password, email) VALUES ("client", "$2a$10$Sul1phyB7QsHOmDafAeZP.fCFi/sAQLEoJyGG3nRdx0IV/uuPLn36", "client@client.local");
+INSERT INTO user(user_name, user_surname, user_dni, user_phone, password, email,user_address)
+ VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer");
+#INSERT INTO user(user_name, password, email) VALUES ("client", "$2a$10$Sul1phyB7QsHOmDafAeZP.fCFi/sAQLEoJyGG3nRdx0IV/uuPLn36", "client@client.local");
 Select * FROM user;
 INSERT INTO rol(name, user_id) VALUES ('admin', 1);
 INSERT INTO rol(name, user_id) VALUES ('client', 2);
