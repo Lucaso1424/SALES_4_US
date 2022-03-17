@@ -20,16 +20,30 @@ public class User implements Serializable {
     @Column(name="user_Id")
     private long userId;
 
-/*    @Column(nullable = false, length = 20)
-    private String userName;*/
+
+    @NotEmpty
+    @Column(nullable = false, length = 50)
+    private String surname;
+
+    @NotEmpty
+    @Column(nullable = false, length = 9)
+    private String dni;
 
     @NotEmpty
     @Column(nullable = false, length = 20)
     private String email;
 
     @NotEmpty
+    @Column(nullable = false, length = 9)
+    private int phone;
+
+    @NotEmpty
     @Column(nullable = false, length = 200)
     private String password;
+
+    @NotEmpty
+    @Column(nullable = false, length = 60)
+    private String address;
 
     @OneToMany
     @JoinColumn(name = "user_Id")

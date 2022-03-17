@@ -2,6 +2,8 @@ DROP DATABASE IF EXISTS SALES_4_US;
 CREATE DATABASE SALES_4_US;
 USE SALES_4_US;
 
+CREATE USER IF NOT EXISTS jose@'%' IDENTIFIED BY 'jose';
+
 CREATE TABLE user (
 user_id INT NOT NULL auto_increment PRIMARY KEY,
 user_name VARCHAR (20) NOT NULL,
@@ -62,7 +64,7 @@ FOREIGN KEY (user_id) REFERENCES user (user_id)
 
 CREATE TABLE rol (
   `id_rol` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(10) DEFAULT NULL,
   `user_id` int DEFAULT NULL,
   PRIMARY KEY (`id_rol`),
   KEY `fkRolUsuari_idx` (`user_id`),
@@ -72,8 +74,9 @@ FOREIGN KEY (`user_id`) REFERENCES user (`user_id`)
 
 
 INSERT INTO user(user_name, user_surname, user_dni, user_phone, password, email,user_address)
- VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer");
-#INSERT INTO user(user_name, password, email) VALUES ("client", "$2a$10$Sul1phyB7QsHOmDafAeZP.fCFi/sAQLEoJyGG3nRdx0IV/uuPLn36", "client@client.local");
+ VALUES ("jose", "miranda", "12345678Z", 6045278009, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer");
+INSERT INTO user(user_name, user_surname, user_dni, user_phone, password, email,user_address) 
+ VALUES ("client", "miranda", "12345678Z", 628232680, "$2a$10$Sul1phyB7QsHOmDafAeZP.fCFi/sAQLEoJyGG3nRdx0IV/uuPLn36", "client@client.local", "Al carrer");
 Select * FROM user;
 INSERT INTO rol(name, user_id) VALUES ('admin', 1);
 INSERT INTO rol(name, user_id) VALUES ('client', 2);
