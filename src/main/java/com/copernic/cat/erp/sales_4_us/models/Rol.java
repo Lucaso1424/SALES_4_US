@@ -8,15 +8,28 @@ import java.io.Serializable;
 
 @Data
 @Entity
-@Table(name="rol")
+@Table(name = "rol")
 public class Rol implements Serializable {
 
-    private static final long serialVersionUID=1L;
+    private final String ROL_CLIENT = "client";
+    private final String ROL_ADMIN = "admin";
+    private final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idRol;
 
-    @NotEmpty
     private String name;
+
+    public Rol findByName(String rolName) {
+        Rol generatedRol = new Rol();
+        if (rolName.equals(ROL_CLIENT)){
+            generatedRol.setName(ROL_CLIENT);
+        }
+        if (rolName.equals(ROL_ADMIN)){
+            generatedRol.setName(ROL_ADMIN);
+        }
+        return generatedRol;
+    }
+
 }

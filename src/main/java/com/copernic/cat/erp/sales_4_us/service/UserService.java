@@ -5,6 +5,8 @@ import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import java.util.ArrayList;
+import java.util.List;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +37,17 @@ public class UserService implements UserDetailsService{
             rols.add(new SimpleGrantedAuthority(rol.getName()));
         }
         return new org.springframework.security.core.userdetails.User(usuari.getEmail(), usuari.getPassword(), rols);
+    }
+
+    @Transactional
+    public void saveUser(User user) {
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public List<User> listUsers(){
+        List<User> users = new ArrayList<>();
+        return users;
     }
 
 }

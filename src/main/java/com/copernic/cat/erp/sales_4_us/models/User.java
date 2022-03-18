@@ -53,5 +53,9 @@ public class User implements Serializable {
     public String toString(){
         return userId + " " + email +" " + password;
     }
+
+    public void addRol(Rol rol){
+        this.rols.add(rol);
+    }
     
 }
