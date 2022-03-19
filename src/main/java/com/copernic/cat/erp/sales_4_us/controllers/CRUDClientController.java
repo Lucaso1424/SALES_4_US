@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CRUDClientController {
 
-    @GetMapping
+    @GetMapping("/crud_client")
     public String inici() {
         return ("crud_client");
     }
