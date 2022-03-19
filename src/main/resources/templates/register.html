@@ -12,10 +12,10 @@
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                        <form method="POST" th:action="@{/proces_register}" th:object="${user}">
+                        <form method="POST" th:action="@{/process_register}" th:object="${user}">
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="name">Name</label>
-                                <input id="name" type="text" class="form-control" th:field="*{name}" name="name" required autofocus>
+                                <input id="name" type="text" class="form-control" th:field="*{firstName}" name="name" required autofocus>
                                 <div class="invalid-feedback">
                                     Name is required
                                 </div>
@@ -23,7 +23,7 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="surname">Surname</label>
-                                <input id="surname" type="text" class="form-control" th:field="*{surname}" name="surname" value="" required
+                                <input id="surname" type="text" class="form-control" th:field="*{lastName}" name="surname" value="" required
                                        autofocus>
                                 <div class="invalid-feedback">
                                     Surname is required

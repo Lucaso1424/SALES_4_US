@@ -17,23 +17,26 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="user_Id")
+    @Column(name="id")
     private long userId;
 
+    @NotEmpty
+    @Column(nullable = false, length = 20)
+    private String firstName;
 
     @NotEmpty
     @Column(nullable = false, length = 50)
-    private String surname;
+    private String lastName;
 
     @NotEmpty
     @Column(nullable = false, length = 9)
     private String dni;
 
     @NotEmpty
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 45, unique = true)
     private String email;
 
-    @NotEmpty
+
     @Column(nullable = false, length = 9)
     private int phone;
 
@@ -46,7 +49,7 @@ public class User implements Serializable {
     private String address;
 
     @OneToMany
-    @JoinColumn(name = "user_Id")
+    @JoinColumn(name = "user_id")
     private List<Rol> rols;
 
     @Override
