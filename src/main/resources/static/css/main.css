@@ -3,6 +3,10 @@ h1.titol {
     font-family: Arial;
 }
 
+a {
+    text-decoration: none;
+}
+
 .myButton {
     background-color:#460e56;
     border-radius:3px;
@@ -23,6 +27,18 @@ h1.titol {
     /*background-color:#4f0e56;*/
 }
 
+/*Login css*/
+.margin-login-buttons {
+    margin-top: 15px;
+}
+
+.group {
+    margin-top: 50px;
+}
+
+.manage-buttons {
+    display: block;
+}
 
 .myButton:hover {
     background-color:#4f0e56;
@@ -41,15 +57,15 @@ h1.titol {
 }
 
 .myLoginButton {
-   background-color:#460e56;
-   border-radius:8px;
-   border:1px solid #000000;
-   color:#ffffff;
-   font-family:Arial;
-   font-size:15px;
-   font-weight:bold;
-   padding:8px 10px;
-   text-decoration:none;
+    background-color:#460e56;
+    border-radius:8px;
+    border:1px solid #000000;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 10px;
+    text-decoration:none;
 }
 
 .myLoginButton:hover {
@@ -60,10 +76,7 @@ h1.titol {
     color: #ffffff;
 }
 
-.manage-buttons {
-    display: block;
-}
-
+/*Manage css*/
 .manage-buttons button  {
     width: 150px;
     margin-top: 20px;
@@ -75,6 +88,7 @@ h1.titol {
     color: white;
 }
 
+/*Products Home*/
 .products {
     display: inline-block;
 }
@@ -93,14 +107,61 @@ h1.titol {
     border: 1px solid #7a7a7a;
 }
 
-.content {
-
-}
-
-.margin-login-buttons {
-    margin-top: 15px;
-}
-
-.group {
+/*Product info*/
+.content_product {
+    width: 100%;
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.content_product div {
+    display: inline-block;
+}
+
+.div_product {
+    width: 30%;
+    height: 450px;
+    border: 1px solid #606060;
+}
+
+.div_product h3 {
+    text-align: center;
+}
+
+hr {
+    margin-top: 50px;
+}
+
+/*Reviews css*/
+.content_reviews {
+
+}
+
+.content_reviews div {
+    display: inline-block;
+}
+
+.content_reviews h1 {
+    margin-top: 40px;
+    margin-left: 120px;
+}
+
+.opinion {
+    width: 75%;
+    height: 120px;
+    margin-top: 45px;
+    margin-left: 120px;
+    border: 1px solid #606060;
+}
+
+.user_opinion {
+    width: 15%;
+    height: 119px;
+    border: 1px solid #606060;
+}
+
+/*CRUD css*/
+.content_crud {
+    
 }
