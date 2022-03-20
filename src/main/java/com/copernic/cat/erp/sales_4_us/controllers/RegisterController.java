@@ -5,7 +5,6 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 
-import com.copernic.cat.erp.sales_4_us.models.Rol;
 import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
@@ -18,13 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class RegisterController {
-    @Autowired
-    private Rol rol;
 
     @Autowired
     private UserRepository repo;
@@ -41,9 +37,10 @@ public class RegisterController {
 
     //Register process controller
     @PostMapping("process_register")
-    public String processRegistration(@Valid User user, Errors errors, RedirectAttributes msg){
+    public String processRegistration(User user, Errors errors, RedirectAttributes msg){
         if (errors.hasErrors()) {
-            return "register";
+            System.out.println(errors.getAllErrors());
+            return "error";
         }
 
         Utilities u = new Utilities();
@@ -60,11 +57,7 @@ public class RegisterController {
 
         // Ecrypt password
         user.setPassword(u.encryptPass(user.getPassword()));
-
-        // Save on DB
-        Rol defaultRole = rol.findByName("client");
-        System.out.println(defaultRole.getName());
-        user.addRol(defaultRole);
+        user.setRol("admin");
         repo.save(user);
         return "register_success";
     }

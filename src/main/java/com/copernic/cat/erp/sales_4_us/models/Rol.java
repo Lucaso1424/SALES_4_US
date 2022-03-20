@@ -1,16 +1,14 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
 import lombok.Data;
-import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "rol")
-@Repository
+//@Repository
 public class Rol implements Serializable {
 
     private final String ROL_CLIENT = "client";

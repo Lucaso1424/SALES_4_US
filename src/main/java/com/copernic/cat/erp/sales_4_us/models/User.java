@@ -5,7 +5,6 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-import java.util.List;
 
 @Data
 @Entity
@@ -48,17 +47,17 @@ public class User implements Serializable {
     @Column(nullable = false, length = 60)
     private String address;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Rol> rols;
+    @NotEmpty
+    @Column(nullable = false, length = 10)
+    String rol;
 
     @Override
     public String toString(){
         return userId + " " + email +" " + password;
     }
 
-    public void addRol(Rol rol){
+    /*public void addRol(Rol rol){
         this.rols.add(rol);
-    }
+    }*/
     
 }
