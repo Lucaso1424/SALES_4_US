@@ -5,6 +5,7 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 
+import com.copernic.cat.erp.sales_4_us.models.Rol;
 import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
@@ -22,8 +23,8 @@ import java.util.List;
 
 @Controller
 public class RegisterController {
-    /*@Autowired
-    private Rol rol;*/
+    @Autowired
+    private Rol rol;
 
     @Autowired
     private UserRepository repo;
@@ -61,9 +62,9 @@ public class RegisterController {
         user.setPassword(u.encryptPass(user.getPassword()));
 
         // Save on DB
-        /*Rol defaultRole = rol.findByName("client");
+        Rol defaultRole = rol.findByName("client");
         System.out.println(defaultRole.getName());
-        user.addRol(defaultRole);*/
+        user.addRol(defaultRole);
         repo.save(user);
         return "register_success";
     }
