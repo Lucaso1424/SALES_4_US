@@ -80,15 +80,15 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="fileImage">Image Profile</label>
-                                <input type="file" id="fileImage" class="form-control" name="fileImage" th:field="*{image}"
-                                       accept="image/png, image/jpeg">
+                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{fileImage}"
+                                       accept="image/*">
                             </div>
                             <div class="mb-3">
                                 <p>
                                     <img id="thumbnail" alt="Logo Preview"/>
                                 </p>
                             </div>
-
+                            <!--ARREGLAR SCRIPT DE PREVIEW-->
                             <script type="text/javascript">
                                 $(document).ready(function(){
                                     $('#fileImage').change(function(){
@@ -103,7 +103,7 @@
                                       $('#thumbnail').attr('scr', e.target.result);
                                     };
                                     reader.readAsDataURL(file);
-                                };
+                                }
                             </script>
                             <p class="form-text text-muted mb-3">
                                 By registering you agree with our terms and condition.
