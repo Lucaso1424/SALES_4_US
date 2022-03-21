@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -47,7 +49,7 @@ public class RegisterController {
     //Register process controller
     @PostMapping("process_register")
     public String processRegistration(
-            User user,
+            @ModelAttribute User user,
             Errors errors,
             RedirectAttributes msg,
             @RequestParam("fileImage") MultipartFile multipartFile
@@ -69,33 +71,39 @@ public class RegisterController {
             return "redirect:/register";
         }
 
-        String fileName;
+        byte[] imageBytes = multipartFile.getBytes();
+        /*String fileName;
         if (multipartFile.getOriginalFilename() == null) {
             fileName = "hello";
             System.out.println("Se queda aqui");
         } else {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            user.setFileImage(fileName);
-        }
 
+        }*/
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(multipartFile.getOriginalFilename());
+            fileInputStream.read(imageBytes);
+            fileInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        user.setImage(imageBytes);
         // Ecrypt password
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("admin");
         User userSave = repo.save(user);
         String uploadDir = "./user-logos/" + userSave.getUserId();
         Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)){
+        /*if (!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);
-        }
-        try (InputStream inputStream = multipartFile.getInputStream()){
+        }*/
+       /* try (InputStream inputStream = multipartFile.getInputStream()){
             Path filePath = uploadPath.resolve(fileName);
             Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             throw new IOException("Could not save uploaded file:" + fileName);
-        }
-
-
-
+        }*/
 
         return "register_success";
     }

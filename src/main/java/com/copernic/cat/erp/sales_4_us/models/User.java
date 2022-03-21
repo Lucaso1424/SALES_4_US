@@ -52,7 +52,7 @@ public class User implements Serializable {
     String rol;
 
     @Column(length = 64)
-    private String fileImage;
+    private byte[] image;
 
     @Override
     public String toString(){

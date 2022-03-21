@@ -12,7 +12,7 @@
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                        <form method="POST" th:action="@{/process_register}" th:object="${user}" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data" th:action="@{/process_register}" th:object="${user}" >
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="name">Name</label>
                                 <input id="name" type="text" class="form-control" th:field="*{firstName}" name="name"
@@ -80,7 +80,7 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="fileImage">Image Profile</label>
-                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{fileImage}"
+                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{image}"
                                        accept="image/*">
                             </div>
                             <div class="mb-3">
