@@ -88,12 +88,12 @@
                                 </p>
                             </div>
                             <!--ARREGLAR SCRIPT DE PREVIEW-->
-                            <script src="js/jquery-latest.min.js"></script>
                             <script>
                                 $(function(){
-                                    $("#fileupload").change(function(event) {
+                                    $("#fileImage").change(function(event) {
                                         var x = URL.createObjectURL(event.target.files[0]);
-                                        $("#upload-img").attr("src",x);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",250);
                                         console.log(event);
                                     });
                                 })
