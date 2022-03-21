@@ -50,11 +50,11 @@
                     </div>
                     <div class="price">26.00</div>
                     <div class="quantity">
-                        <input type="number" value="4" min="1" class="quantity-field">
+                        <input type="number" value="4" min="1" class="quantity-field" onchange="updateQuantity(this)">
                     </div>
                     <div class="subtotal">104.00</div>
                     <div class="remove">
-                        <button>Remove</button>
+                        <button onclick="removeItem(this)">Remove</button>
                     </div>
                 </div>
                 <div class="basket-product">
@@ -70,11 +70,11 @@
                     </div>
                     <div class="price">26.00</div>
                     <div class="quantity">
-                        <input type="number" value="1" min="1" class="quantity-field">
+                        <input type="number" value="1" min="1" class="quantity-field" onchange="updateQuantity(this)">
                     </div>
                     <div class="subtotal">26.00</div>
                     <div class="remove">
-                        <button>Remove</button>
+                        <button onclick="removeItem(this)">Remove</button>
                     </div>
                 </div>
             </div>
