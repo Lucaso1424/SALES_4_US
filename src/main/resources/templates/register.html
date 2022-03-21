@@ -88,21 +88,15 @@
                                 </p>
                             </div>
                             <!--ARREGLAR SCRIPT DE PREVIEW-->
-                            <script type="text/javascript">
-                                $(document).ready(function(){
-                                    $('#fileImage').change(function(){
-                                        showImageThumbnail(this);
+                            <script src="js/jquery-latest.min.js"></script>
+                            <script>
+                                $(function(){
+                                    $("#fileupload").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#upload-img").attr("src",x);
+                                        console.log(event);
                                     });
                                 })
-
-                                function showImageThumbnail(fileInput) {
-                                    file = fileInput.files[0];
-                                    reader = new FileReader();
-                                    reader.onload = function(e) {
-                                      $('#thumbnail').attr('scr', e.target.result);
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
                             </script>
                             <p class="form-text text-muted mb-3">
                                 By registering you agree with our terms and condition.
