@@ -51,13 +51,12 @@ public class User implements Serializable {
     @Column(nullable = false, length = 10)
     String rol;
 
+    @Column(length = 45)
+    private String image;
+
     @Override
     public String toString(){
         return userId + " " + email +" " + password;
     }
 
-    /*public void addRol(Rol rol){
-        this.rols.add(rol);
-    }*/
-    
 }

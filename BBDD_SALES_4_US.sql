@@ -11,7 +11,8 @@ email VARCHAR (45) NOT NULL,
 phone INT NOT NULL,
 password VARCHAR (200) NOT NULL,
 address VARCHAR (60) NOT NULL,
-rol VARCHAR (10) NOT NULL
+rol VARCHAR (10) NOT NULL,
+image VARCHAR (45)
 );
 
 CREATE TABLE purchase (

@@ -12,10 +12,11 @@
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                        <form method="POST" th:action="@{/process_register}" th:object="${user}">
+                        <form method="POST" th:action="@{/process_register}" th:object="${user}" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="name">Name</label>
-                                <input id="name" type="text" class="form-control" th:field="*{firstName}" name="name" required autofocus>
+                                <input id="name" type="text" class="form-control" th:field="*{firstName}" name="name"
+                                       required autofocus>
                                 <div class="invalid-feedback">
                                     Name is required
                                 </div>
@@ -23,7 +24,8 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="surname">Surname</label>
-                                <input id="surname" type="text" class="form-control" th:field="*{lastName}" name="surname" value="" required
+                                <input id="surname" type="text" class="form-control" th:field="*{lastName}"
+                                       name="surname" value="" required
                                        autofocus>
                                 <div class="invalid-feedback">
                                     Surname is required
@@ -32,7 +34,8 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="dni">DNI/NIF/NIE</label>
-                                <input id="dni" type="text" class="form-control" th:field="*{dni}" name="dni" maxlength="9" value="" required
+                                <input id="dni" type="text" class="form-control" th:field="*{dni}" name="dni"
+                                       maxlength="9" value="" required
                                        autofocus>
                                 <div class="invalid-feedback">
                                     DNI/NIF/NIE is required
@@ -41,7 +44,8 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="email">E-Mail Address</label>
-                                <input id="email" type="email" class="form-control" name="email" th:field="*{email}" value="" required>
+                                <input id="email" type="email" class="form-control" name="email" th:field="*{email}"
+                                       value="" required>
                                 <div class="invalid-feedback">
                                     Email is invalid
                                 </div>
@@ -49,7 +53,8 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="phone">Phone</label>
-                                <input id="phone" type="tel" class="form-control" th:field="*{phone}" maxlength="9" name="phone" required>
+                                <input id="phone" type="tel" class="form-control" th:field="*{phone}" maxlength="9"
+                                       name="phone" required>
                                 <div class="invalid-feedback">
                                     Phone is required
                                 </div>
@@ -57,7 +62,8 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="password">Password</label>
-                                <input id="password" type="password" class="form-control" th:field="*{password}" name="password" required>
+                                <input id="password" type="password" class="form-control" th:field="*{password}"
+                                       name="password" required>
                                 <div class="invalid-feedback">
                                     Password is required
                                 </div>
@@ -65,12 +71,40 @@
 
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="address">Address</label>
-                                <input id="address" class="form-control" name="address" th:field="*{address}" value="" required>
+                                <input id="address" class="form-control" name="address" th:field="*{address}" value=""
+                                       required>
                                 <div class="invalid-feedback">
                                     Address is requires
                                 </div>
                             </div>
 
+                            <div class="mb-3">
+                                <label class="mb-2 text-muted" for="fileImage">Image Profile</label>
+                                <input type="file" id="fileImage" class="form-control" name="fileImage" th:field="*{image}"
+                                       accept="image/png, image/jpeg">
+                            </div>
+                            <div class="mb-3">
+                                <p>
+                                    <img id="thumbnail" alt="Logo Preview"/>
+                                </p>
+                            </div>
+
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $('#fileImage').change(function(){
+                                        showImageThumbnail(this);
+                                    });
+                                })
+
+                                function showImageThumbnail(fileInput) {
+                                    file = fileInput.files[0];
+                                    reader = new FileReader();
+                                    reader.onload = function(e) {
+                                      $('#thumbnail').attr('scr', e.target.result);
+                                    };
+                                    reader.readAsDataURL(file);
+                                };
+                            </script>
                             <p class="form-text text-muted mb-3">
                                 By registering you agree with our terms and condition.
                             </p>
