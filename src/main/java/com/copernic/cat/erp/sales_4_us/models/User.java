@@ -47,12 +47,13 @@ public class User implements Serializable {
     @Column(nullable = false, length = 60)
     private String address;
 
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
+
     @NotEmpty
     @Column(nullable = false, length = 10)
     String rol;
 
-    @Column(columnDefinition = "MEDIUMBLOB")
-    private String image;
 
     @Override
     public String toString(){

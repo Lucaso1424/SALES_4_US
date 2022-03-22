@@ -28,6 +28,9 @@ import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+
 @Controller
 public class RegisterController {
 
@@ -45,10 +48,10 @@ public class RegisterController {
     }
 
     //Register process controller
-    @RequestMapping("fileName")
+    @RequestMapping(value = "/process_register", params = "fileImage", method = POST)
     @PostMapping("process_register")
     public String processRegistration(
-            @RequestParam("fileName") MultipartFile multipartFile,
+            @RequestParam("fileImage") MultipartFile multipartFile,
             @ModelAttribute User user,
             Errors errors,
             RedirectAttributes msg
