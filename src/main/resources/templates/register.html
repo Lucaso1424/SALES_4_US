@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{image}"
+                                <input type="file" id="fileImage" class="form-control" name="fileName"  th:field="*{image}"
                                        accept="image/*">
                             </div>
                             <div class="mb-3">
@@ -93,7 +93,8 @@
                                     $("#fileImage").change(function(event) {
                                         var x = URL.createObjectURL(event.target.files[0]);
                                         $("#thumbnail").attr("src",x);
-                                        $("#thumbnail").attr("width",250);
+                                        $("#thumbnail").attr("width",100);
+                                        $("#thumbnail").attr("height",100);
                                         console.log(event);
                                     });
                                 })

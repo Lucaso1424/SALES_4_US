@@ -14,10 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +26,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class RegisterController {
@@ -47,16 +45,17 @@ public class RegisterController {
     }
 
     //Register process controller
+    @RequestMapping("fileName")
     @PostMapping("process_register")
     public String processRegistration(
+            @RequestParam("fileName") MultipartFile multipartFile,
             @ModelAttribute User user,
             Errors errors,
-            RedirectAttributes msg,
-            @RequestParam("fileImage") MultipartFile multipartFile
-    ) throws IOException {
+            RedirectAttributes msg
+    ) {
         if (errors.hasErrors()) {
             System.out.println(errors.getAllErrors());
-            return "error";
+            return "error_test";
         }
 
         Utilities u = new Utilities();
@@ -66,53 +65,32 @@ public class RegisterController {
             return "redirect:/register";
         }
         // If mail exists in DB
-        if (checkIfUserExist(user.getEmail())) {
+        /*if (checkIfUserExist(user.getEmail())) {
             msg.addFlashAttribute("error", u.message("profile.error.emailAlreadyTaken"));
             return "redirect:/register";
-        }
-//        byte[] imageBytes = multipartFile.getBytes();
-       /* try {
-            FileInputStream fileInputStream = new FileInputStream(multipartFile.getOriginalFilename());
-            fileInputStream.read(imageBytes);
-            fileInputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
         }*/
-//        user.setImage(imageBytes);
-        // Ecrypt password
 
-        String fileName;
-        if (multipartFile.getOriginalFilename() == null) {
-            fileName = "hello";
-            System.out.println("Se queda aqui");
-        } else {
-            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+        if (fileName.contains("..")){
+            System.out.println("Not a valid file name");
+        }
+        try {
+            user.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-//        AÑADIR EN EL USER SERVICE EL MULTIPARTFILE
-
+        // Ecrypt password
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("admin");
-        User userSave = repo.save(user);
-        userSave.setImage(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
-        String uploadDir = "./user-logos/" + userSave.getUserId();
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        try (InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new IOException("Could not save uploaded file:" + fileName);
-        }
+        repo.save(user);
+//        userService.saveUser(multipartFile, user);
 
         return "register_success";
     }
 
     // Checks if email exists in DB
-    private boolean checkIfUserExist(String email) {
+    /*private boolean checkIfUserExist(String email) {
         List<User> userList = userService.listUsers();
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
@@ -120,5 +98,5 @@ public class RegisterController {
             }
         }
         return false;
-    }
+    }*/
 }

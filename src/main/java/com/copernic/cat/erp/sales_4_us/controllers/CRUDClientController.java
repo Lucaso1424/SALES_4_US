@@ -16,7 +16,7 @@ public class CRUDClientController {
 
     @GetMapping("/crud_client")
     public String inici() {
-        return ("crud_client");
+        return "crud_client";
     }
 
 }
