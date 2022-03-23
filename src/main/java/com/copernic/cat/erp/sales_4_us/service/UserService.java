@@ -18,7 +18,7 @@ import java.util.List;
 
 @Service ("userDetailsService")
 @Slf4j
-public class UserService implements UserDetailsService{
+public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
