@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="layout/plantilla_bootstrap :: head">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link href="../static/css/main.css" type="type/css" rel="stylesheet">
 </head>
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <h1 align="center">Management</h1>
 <div align="center">
     <div style="max-width: 400px;" class="manage-buttons">
-        <button type="button" class="btn btn-default btn-lg">PRODUCTS</button>
-        <button type="button" class="btn btn-default btn-lg"><a th:href="@{/crud_client}">USERS</a></button>
+        <a th:href="@{/crud_product}"><button type="button" class="mySearchButton">PRODUCTS</button></a>
+        <a th:href="@{/crud_client}"><button type="button" class="mySearchButton">USERS</button></a>
     </div>
     <div style="max-width: 400px;" class="manage-buttons">
-        <button class="btn btn-default btn-lg btn-block">ADMINS</button>
-        <button class="btn btn-default btn-lg btn-block">PROVIDERS</button>
+        <a th:href="@{/crud_admin}"><button class="mySearchButton">ADMINS</button></a>
+        <a th:href="@{/crud_provider}"><button class="mySearchButton">PROVIDERS</button></a>
     </div>
 </div>
 </body>
