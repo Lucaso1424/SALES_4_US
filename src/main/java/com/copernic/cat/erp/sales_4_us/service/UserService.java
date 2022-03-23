@@ -53,4 +53,15 @@ public class UserService implements UserDetailsService {
         userRepository.delete(user);
     }
 
+    @Transactional
+    public void addUser (User user){
+
+    }
+
+    @Transactional
+    public User searchUser (User user) {
+
+        return user;
+    }
+
 }

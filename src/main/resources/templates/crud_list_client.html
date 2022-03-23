@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head th:replace="layout/plantilla_bootstrap :: head">
-        <link rel="stylesheet" href="../static/css/main.css" type="text/css"/>
-    </head>
+    <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center" class="title titol">Client</h1>
@@ -43,9 +41,11 @@
                     </td>
                     <td th:text="${user.rol}" ></td>
                     <td>
-                        <button type="button" class="editCRUDButton">
-                            Edit
-                        </button>
+                        <a th:href="@{/edit/{userId} (userId=${user.userId})}">
+                            <button type="button" class="editCRUDButton">
+                                Edit
+                            </button>
+                        </a>
                         <a th:href="@{/delete/{userId} (userId=${user.userId})}">
                             <button type="button" class="deleteCRUDButton">
                                 Delete
