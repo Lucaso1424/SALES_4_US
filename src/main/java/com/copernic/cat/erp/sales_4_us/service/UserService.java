@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Service("userDetailsService")
@@ -40,10 +41,11 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }*/
 
-    /*@Transactional
+    @Transactional
     public List<User> listUsers() {
         List<User> users = new ArrayList<>();
+        users = userRepository.findAll();
         return users;
-    }*/
+    }
 
 }
