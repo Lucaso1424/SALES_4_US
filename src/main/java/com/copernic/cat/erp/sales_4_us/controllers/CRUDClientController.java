@@ -4,8 +4,13 @@
  */
 package com.copernic.cat.erp.sales_4_us.controllers;
 
+import com.copernic.cat.erp.sales_4_us.models.User;
+import com.copernic.cat.erp.sales_4_us.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
 /**
  *
@@ -14,8 +19,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class CRUDClientController {
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/crud_client")
-    public String inici() {
+    public String generateUserList(Model model) {
+        List<User> listUsers = userService.listUsers();
+        model.addAttribute("listUsers", listUsers);
         return "crud_client";
     }
 
