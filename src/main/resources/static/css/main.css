@@ -163,5 +163,18 @@ hr {
 
 /*CRUD css*/
 .content_crud {
-    
+
+}
+
+/*Home css*/
+
+.table-erp {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.table-erp th, td {
+    border: 1px solid #000;
+    border-spacing: 0;
 }
