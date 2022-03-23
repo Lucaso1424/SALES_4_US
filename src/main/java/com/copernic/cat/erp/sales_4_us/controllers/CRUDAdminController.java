@@ -8,6 +8,6 @@ public class CRUDAdminController {
 
     @GetMapping("/crud_admin")
     public String inici(){
-        return ("crud_admin");
+        return ("crud_list_admin");
     }
 }

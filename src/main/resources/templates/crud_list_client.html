@@ -43,12 +43,14 @@
                     </td>
                     <td th:text="${user.rol}" ></td>
                     <td>
-                        <button type="button" class="myLoginButton">
+                        <button type="button" class="editCRUDButton">
                             Edit
                         </button>
-                        <button type="button" class="myLoginButton">
-                            Delete
-                        </button>
+                        <a th:href="@{/delete/{userId} (userId=${user.userId})}">
+                            <button type="button" class="deleteCRUDButton">
+                                Delete
+                            </button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>
