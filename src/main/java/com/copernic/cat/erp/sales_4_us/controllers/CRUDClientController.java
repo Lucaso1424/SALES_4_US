@@ -5,7 +5,6 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.User;
-import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,15 +39,14 @@ public class CRUDClientController {
         return "redirect:/crud_client";
     }
 
+
     @GetMapping("/formClient")
     public String createClientForm(User user) {
-
         return "formClient";
     }
 
     @PostMapping("/saveClient") //action = saveClient
     public String saveClient(@Valid User user, Errors errors) {
-
         if (errors.hasErrors()) {
             System.out.println(errors);
             return "formClient";

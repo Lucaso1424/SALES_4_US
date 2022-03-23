@@ -434,3 +434,34 @@ background:#eee
 .btn.disabled,
 .btn:disabled {
   pointer-events: none; }
+
+  .btn-cancel {
+      background-color:#460e56;
+      border-radius:8px;
+      border:1px solid #000000;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:8px 10px;
+      text-decoration:none;
+  }
+
+  .btn-cancel:hover {
+      background-color:#611078;
+  }
+  .btn-update {
+      background-color:#8B78EA;
+      border-radius:8px;
+      border:1px solid #000000;
+      color:#ffffff;
+      font-family:Arial;
+      font-size:15px;
+      font-weight:bold;
+      padding:8px 10px;
+      text-decoration:none;
+  }
+
+      background-color:#8B78EA8;
+  .btn-update:hover {
+  }

@@ -4,39 +4,63 @@
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <div class="container">
-            <form action="#">
+            <form th:action="@{/saveClient}" method="POST" enctype="multipart/form-data" th:object="${user}" >
                 <div class="row justify-content-md-center">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="login-screen">
                             <div class="login-box">
-                                <a href="#" class="login-logo">
-                                    <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
-                                </a>
+                                <center>
+                                    <a class="login-logo">
+                                        <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
+                                    </a>
+                                </center>
                                 <div class="row gutters">
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="First Name">
+                                            <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}"/>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Last Name">
+                                            <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}">
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                         <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Email ID">
+                                            <input type="email" class="form-control" placeholder="Email ID" th:field="*{email}">
                                         </div>
                                     </div>
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                         <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password">
+                                            <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row gutters">
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Dni" th:field="*{dni}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Role" th:field="*{rol}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Address" th:field="*{address}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                        <div class="form-group">
+                                            <input type="tel" class="form-control" placeholder="Phone" th:field="*{phone}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="actions clearfix mt-2">
-                                    <button type="submit" class="btn btn-primary btn-block">Update</button>
-                                    <button type="submit" class="btn btn-primary btn-block">Cancel</button>
+                                    <button type="submit" class="btn-update">Save</button>
+                                    <button class="btn-cancel">Cancel</button>
                                 </div>
                             </div>
                         </div>

@@ -6,7 +6,20 @@
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center" class="title titol">Client</h1>
         <hr/>
-        <div class="container">
+        <center class="p-2">
+            <a th:href="@{/formClient}">
+                <button class="editCRUDButton">
+                    Create
+                </button>
+            </a>
+            <button class="editCRUDButton">
+                Update
+            </button>
+            <button class="deleteCRUDButton">
+                Delete
+            </button>
+        </center>
+        <div class="container mt-4">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                 <tr>
