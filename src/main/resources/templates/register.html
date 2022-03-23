@@ -12,7 +12,7 @@
                 <div class="card shadow-lg">
                     <div class="card-body p-5">
                         <h1 class="fs-4 card-title fw-bold mb-4">Register</h1>
-                        <form method="POST" th:action="@{/process_register}" th:object="${user}" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data" th:action="@{/process_register}" th:object="${user}" >
                             <div class="mb-3">
                                 <label class="mb-2 text-muted" for="name">Name</label>
                                 <input id="name" type="text" class="form-control" th:field="*{firstName}" name="name"
@@ -79,9 +79,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <label class="mb-2 text-muted" for="fileImage">Image Profile</label>
-                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{fileImage}"
-                                       accept="image/*">
+                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{image}"
+                                       accept="image/*" required>
                             </div>
                             <div class="mb-3">
                                 <p>
@@ -89,21 +88,16 @@
                                 </p>
                             </div>
                             <!--ARREGLAR SCRIPT DE PREVIEW-->
-                            <script type="text/javascript">
-                                $(document).ready(function(){
-                                    $('#fileImage').change(function(){
-                                        showImageThumbnail(this);
+                            <script>
+                                $(function(){
+                                    $("#fileImage").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",100);
+                                        $("#thumbnail").attr("height",100);
+                                        console.log(event);
                                     });
                                 })
-
-                                function showImageThumbnail(fileInput) {
-                                    file = fileInput.files[0];
-                                    reader = new FileReader();
-                                    reader.onload = function(e) {
-                                      $('#thumbnail').attr('scr', e.target.result);
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
                             </script>
                             <p class="form-text text-muted mb-3">
                                 By registering you agree with our terms and condition.
@@ -121,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-5 white-letter">
+                <div class="text-center white-letter mt-5 mb-3">
                     Copyright &copy; 2022 &mdash; Sales 4 Us
                 </div>
             </div>

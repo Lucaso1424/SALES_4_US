@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,7 +27,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
 public class RegisterController {
@@ -45,16 +51,17 @@ public class RegisterController {
     }
 
     //Register process controller
+    @RequestMapping(value = "/process_register", params = "fileImage", method = POST)
     @PostMapping("process_register")
     public String processRegistration(
-            User user,
+            @RequestParam("fileImage") MultipartFile multipartFile,
+            @ModelAttribute User user,
             Errors errors,
-            RedirectAttributes msg,
-            @RequestParam("fileImage") MultipartFile multipartFile
-    ) throws IOException {
+            RedirectAttributes msg
+    ) {
         if (errors.hasErrors()) {
             System.out.println(errors.getAllErrors());
-            return "error";
+            return "error_test";
         }
 
         Utilities u = new Utilities();
@@ -64,10 +71,10 @@ public class RegisterController {
             return "redirect:/register";
         }
         // If mail exists in DB
-        if (checkIfUserExist(user.getEmail())) {
+        /*if (checkIfUserExist(user.getEmail())) {
             msg.addFlashAttribute("error", u.message("profile.error.emailAlreadyTaken"));
             return "redirect:/register";
-        }
+        }*/
 
         String fileName;
         if (multipartFile.getOriginalFilename() == null) {
@@ -81,27 +88,14 @@ public class RegisterController {
         // Ecrypt password
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("admin");
-        User userSave = repo.save(user);
-        String uploadDir = "./user-logos/" + userSave.getUserId();
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        try (InputStream inputStream = multipartFile.getInputStream()){
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            throw new IOException("Could not save uploaded file:" + fileName);
-        }
-
-
-
+        repo.save(user);
+//        userService.saveUser(multipartFile, user);
 
         return "register_success";
     }
 
     // Checks if email exists in DB
-    private boolean checkIfUserExist(String email) {
+    /*private boolean checkIfUserExist(String email) {
         List<User> userList = userService.listUsers();
         for (User u : userList) {
             if (u.getEmail().equals(email)) {
@@ -109,5 +103,5 @@ public class RegisterController {
             }
         }
         return false;
-    }
+    }*/
 }
