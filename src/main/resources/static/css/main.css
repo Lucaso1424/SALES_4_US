@@ -177,4 +177,36 @@ hr {
 .table-erp th, td {
     border: 1px solid #000;
     border-spacing: 0;
+    
+}
+
+.editCRUDButton {
+    background-color:#460e56;
+    border-radius:8px;
+    border:1px solid #000000;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 10px;
+    text-decoration:none;
+}
+
+.editCRUDButton:hover {
+    background-color:#611078;
+}
+.deleteCRUDButton {
+    background-color:#8B78EA;
+    border-radius:8px;
+    border:1px solid #000000;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 10px;
+    text-decoration:none;
+}
+
+.deleteCRUDButton:hover {
+    background-color:#8B78EA;
 }

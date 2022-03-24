@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class CRUDProductController {
     @GetMapping("/crud_product")
     public String inici(){
-        return "crud_product";
+        return "crud_list_product";
     }
 }

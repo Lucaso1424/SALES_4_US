@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-    <head th:replace="layout/plantilla_bootstrap :: head">
-        <link rel="stylesheet" href="../static/css/main.css" type="text/css"/>
-    </head>
+    <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center" class="title titol">Client</h1>
         <hr/>
-        <div class="container">
+        <center class="p-2">
+            <a th:href="@{/formClient}">
+                <button class="editCRUDButton">
+                    Create
+                </button>
+            </a>
+            <button class="editCRUDButton">
+                Update
+            </button>
+            <button class="deleteCRUDButton">
+                Delete
+            </button>
+        </center>
+        <div class="container mt-4">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
                 <tr>
@@ -43,12 +54,16 @@
                     </td>
                     <td th:text="${user.rol}" ></td>
                     <td>
-                        <button type="button" class="myLoginButton">
-                            Edit
-                        </button>
-                        <button type="button" class="myLoginButton">
-                            Delete
-                        </button>
+                        <a th:href="@{/edit/{userId} (userId=${user.userId})}">
+                            <button type="button" class="editCRUDButton">
+                                Edit
+                            </button>
+                        </a>
+                        <a th:href="@{/delete/{userId} (userId=${user.userId})}">
+                            <button type="button" class="deleteCRUDButton">
+                                Delete
+                            </button>
+                        </a>
                     </td>
                 </tr>
                 </tbody>

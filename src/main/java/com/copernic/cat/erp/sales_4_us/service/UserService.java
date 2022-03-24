@@ -48,4 +48,20 @@ public class UserService implements UserDetailsService {
         return users;
     }
 
+    @Transactional //Igual que en el mètode afegirGos, modifiquem la informació de la BBDD
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+
+    @Transactional
+    public void addUser (User user){
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public User searchUser (User user) {
+
+        return user;
+    }
+
 }
