@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Data
@@ -36,6 +37,7 @@ public class User implements Serializable {
     private String email;
 
 
+    @NotNull
     @Column(nullable = false, length = 9)
     private int phone;
 

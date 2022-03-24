@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }*/
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<User> listUsers() {
         List<User> users = new ArrayList<>();
         users = userRepository.findAll();
@@ -54,14 +54,12 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void addUser (User user){
-        userRepository.save(user);
-    }
+    public void addUser (User user){userRepository.save(user);}
 
-    @Transactional
+    @Transactional(readOnly=true)
     public User searchUser (User user) {
-
-        return user;
+        userRepository.findById(user.getUserId());
+        return (User) userRepository.findById(user.getUserId()).orElse(null);
     }
 
 }

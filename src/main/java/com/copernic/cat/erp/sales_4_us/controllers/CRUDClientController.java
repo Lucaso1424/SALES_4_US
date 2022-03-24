@@ -60,11 +60,9 @@ public class CRUDClientController {
 
     @GetMapping("/edit/{userId}")
     public String editClient(User user, Model model) {
-        /*Cerquem el gos passat per paràmetre amb l'idgos de @GetMapping mitjançant
-         *el mètode cercarGos de la capa de servei.*/
-        user = userService.searchUser(user);
-        model.addAttribute("user", user);
-
+        User u = userService.searchUser(user);
+        System.out.println(u);
+        model.addAttribute("user", u);
         return "redirect:/formClient";
     }
 
