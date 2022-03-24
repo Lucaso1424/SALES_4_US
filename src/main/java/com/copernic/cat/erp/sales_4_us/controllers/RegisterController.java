@@ -12,26 +12,11 @@ import com.copernic.cat.erp.sales_4_us.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.Base64;
-import java.util.List;
-import java.util.Objects;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @Controller
@@ -76,14 +61,14 @@ public class RegisterController {
             return "redirect:/register";
         }*/
 
-        String fileName;
-        if (multipartFile.getOriginalFilename() == null) {
-            fileName = "hello";
-            System.out.println("Se queda aqui");
-        } else {
-            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            user.setImage(fileName);
-        }
+//        String fileName;
+//        if (multipartFile.getOriginalFilename() == null) {
+//            fileName = "hello";
+//            System.out.println("Se queda aqui");
+//        } else {
+//            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//            user.setImage(fileName);
+//        }
 
         // Ecrypt password
         user.setPassword(u.encryptPass(user.getPassword()));
