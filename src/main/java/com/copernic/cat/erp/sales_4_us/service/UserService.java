@@ -43,6 +43,30 @@ public class UserService implements UserDetailsService {
         return users;
     }
 
+    public List<User> listAdmins(){
+        List<User> users = new ArrayList<>();
+        users = userRepository.findAll();
+        List<User> admins = new ArrayList<>();
+        for (User u : users) {
+            if (u.getRol().equals("admin")){
+                admins.add(u);
+            }
+        }
+        return admins;
+    }
+
+    public List<User> listClients(){
+        List<User> users = new ArrayList<>();
+        users = userRepository.findAll();
+        List<User> client = new ArrayList<>();
+        for (User u : users) {
+            if (u.getRol().equals("client")){
+                client.add(u);
+            }
+        }
+        return client;
+    }
+
     @Transactional
     public void deleteUser(User user) {
         userRepository.delete(user);

@@ -3,6 +3,74 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="layout/plantilla_bootstrap :: head"></head>
 <body>
+<header th:replace="layout/plantilla_navbar :: header"></header>
+<h1 align="center" class="title titol">Admin</h1>
+<hr/>
 
+<center>
+    <a th:href="@{/formAdmin}">
+        <button class="editCRUDButton">
+            Create
+        </button>
+    </a>
+    <button class="editCRUDButton">
+        Update
+    </button>
+    <button class="deleteCRUDButton">
+        Delete
+    </button>
+</center>
+
+
+<div class="container mt-4">
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr>
+            <th>User</th>
+            <th>Phone</th>
+            <th>Dni</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${listUsers}">
+            <td>
+                <div class="d-flex align-items-center">
+                    <img
+                            src="../static/images/default_profile.png" th:src="@{images/default_profile.png}"
+                            alt=""
+                            style="width: 45px; height: 45px"
+                            class="rounded-circle"
+                    />
+                    <div class="ms-3">
+                        <p class="fw-bold mb-1" th:text="${user.firstName}"></p>
+                        <p class="text-muted mb-0" th:text="${user.email}"></p>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <p class="fw-normal mb-1" th:text="${user.phone}"></p>
+            </td>
+            <td>
+                <span class="rounded-pill d-inline" th:text="${user.dni}"></span>
+            </td>
+            <td th:text="${user.rol}"></td>
+            <td>
+                <a th:href="@{/edit/admin/{userId} (userId=${user.userId})}">
+                    <button type="button" class="editCRUDButton">
+                        Edit
+                    </button>
+                </a>
+                <a th:href="@{/delete/admin/{userId} (userId=${user.userId})}">
+                    <button type="button" class="deleteCRUDButton">
+                        Delete
+                    </button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

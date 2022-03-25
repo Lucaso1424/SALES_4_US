@@ -32,7 +32,7 @@ public class CRUDClientController {
 
     @GetMapping("/crud_client")
     public String generateClientList(Model model) {
-        List<User> listUsers = userService.listUsers();
+        List<User> listUsers = userService.listClients();
         model.addAttribute("listUsers", listUsers);
         return "crud_list_client";
     }
