@@ -1,100 +1,44 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@Data
 @Entity
 @Table(name = "product")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
+    @Basic(optional = false)
+    @Column(name="id")
     private Integer id;
 
-    @Column(name = "PROVIDER_ID", nullable = false)
+    @NotNull
+    @Column(nullable = false)
     private Integer providerId;
 
-    @Column(name = "NAME", nullable = false, length = 20)
+    @NotEmpty
+    @Column(nullable = false, length = 20)
     private String name;
 
-    @Column(name = "PRIZE", nullable = false, precision = 10)
-    private BigDecimal prize;
+    @NotNull
+    @Column(nullable = false)
+    private double prize;
 
-    @Column(name = "CATEGORY", nullable = false, length = 40)
+    @NotEmpty
+    @Column(nullable = false, length = 20)
     private String category;
 
-    @Column(name = "DESCRIPTION", nullable = false, length = 500)
+
+    @Column(nullable = false, length = 500)
     private String description;
 
-    @OneToMany(mappedBy = "product")
-    private Set<LiniaPurchase> liniaPurchases = new LinkedHashSet<>();
+    /*private List<LiniaPurchase> liniaPurchases;
 
-    @OneToMany(mappedBy = "product")
-    private Set<Opinion> opinions = new LinkedHashSet<>();
+    private List<Opinion> opinions; */
 
-    public Set<Opinion> getOpinions() {
-        return opinions;
-    }
 
-    public void setOpinions(Set<Opinion> opinions) {
-        this.opinions = opinions;
-    }
-
-    public Set<LiniaPurchase> getLiniaPurchases() {
-        return liniaPurchases;
-    }
-
-    public void setLiniaPurchases(Set<LiniaPurchase> liniaPurchases) {
-        this.liniaPurchases = liniaPurchases;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public BigDecimal getPrize() {
-        return prize;
-    }
-
-    public void setPrize(BigDecimal prize) {
-        this.prize = prize;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getProviderId() {
-        return providerId;
-    }
-
-    public void setProviderId(Integer providerId) {
-        this.providerId = providerId;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

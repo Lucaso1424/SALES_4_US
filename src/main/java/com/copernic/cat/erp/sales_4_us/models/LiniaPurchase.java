@@ -1,44 +1,26 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
-@Table(name = "linia_purchase")
+@Table
 public class LiniaPurchase {
-    @EmbeddedId
-    private LiniaPurchaseId id;
-    @MapsId("purchaseId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PURCHASE_ID")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name="id")
+    private int id;
+
+    /*@ManyToOne
+    @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
-    @MapsId("productId")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID")
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Purchase getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
-    }
-
-    public LiniaPurchaseId getId() {
-        return id;
-    }
-
-    public void setId(LiniaPurchaseId id) {
-        this.id = id;
-    }
-
+*/
 }
