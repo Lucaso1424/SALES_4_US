@@ -6,19 +6,22 @@
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center" class="title titol">Client</h1>
         <hr/>
-        <center class="p-2">
-            <a th:href="@{/formClient}">
-                <button class="editCRUDButton">
-                    Create
-                </button>
-            </a>
-            <button class="editCRUDButton">
-                Update
-            </button>
-            <button class="deleteCRUDButton">
-                Delete
-            </button>
-        </center>
+
+                <center>
+                    <a th:href="@{/formClient}">
+                        <button class="editCRUDButton">
+                            Create
+                        </button>
+                    </a>
+                    <button class="editCRUDButton">
+                        Update
+                    </button>
+                    <button class="deleteCRUDButton">
+                        Delete
+                    </button>
+                </center>
+
+
         <div class="container mt-4">
             <table class="table align-middle mb-0 bg-white">
                 <thead class="bg-light">
@@ -42,17 +45,17 @@
                             />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1" th:text="${user.firstName}"></p>
-                                <p class="text-muted mb-0" th:text="${user.email}" ></p>
+                                <p class="text-muted mb-0" th:text="${user.email}"></p>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <p class="fw-normal mb-1" th:text="${user.phone}" ></p>
+                        <p class="fw-normal mb-1" th:text="${user.phone}"></p>
                     </td>
                     <td>
-                        <span class="rounded-pill d-inline" th:text="${user.dni}" ></span>
+                        <span class="rounded-pill d-inline" th:text="${user.dni}"></span>
                     </td>
-                    <td th:text="${user.rol}" ></td>
+                    <td th:text="${user.rol}"></td>
                     <td>
                         <a th:href="@{/edit/{userId} (userId=${user.userId})}">
                             <button type="button" class="editCRUDButton">

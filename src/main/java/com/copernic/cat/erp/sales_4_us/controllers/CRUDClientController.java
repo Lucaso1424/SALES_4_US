@@ -61,9 +61,8 @@ public class CRUDClientController {
     @GetMapping("/edit/{userId}")
     public String editClient(User user, Model model) {
         User u = userService.searchUser(user);
-        System.out.println(u);
         model.addAttribute("user", u);
-        return "redirect:/formClient";
+        return "formClient";
     }
 
 }

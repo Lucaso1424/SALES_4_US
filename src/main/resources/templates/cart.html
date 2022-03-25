@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Sales 4 Us</title>
-        <meta charset="UTF-8"/>
-
-        <!--Enllaç als estils de Bootstrap-->
-        <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
-        <link rel="stylesheet" th:href="@{css/main.css}"/>
-        <script th:src="@{js/jquery-3.6.0.min.js}"></script>
-        <!--Enllaç de js-->
-        <!--<script th:href="@{js/utils.js}" type="text/javascript"></script>-->
-        <!--Enllaç als estils de Font Awesome-->
-        <link rel="stylesheet" th:href="@{/webjars/font-awesome/css/all.css}"/>
-        <!--Llibreries jquery, popper i Java Script de bootstrap pels elements dinamics que utilitzarem-->
-        <!--        <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
-        <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
-        <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-        <!--Cart-->
-        <script th:src="@{js/cart.js}"></script>
-        <link rel="stylesheet" th:href="@{css/cart.css}"/>
-    </head>
+<head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <main>
             <div class="basket">
-                <div class="basket-module">
-                    <label for="promo-code">Enter a promotional code</label>
-                    <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
-                    <button class="promo-code-cta">Apply</button>
-                </div>
                 <div class="basket-labels">
                     <ul>
                         <li class="item item-heading">Item</li>
