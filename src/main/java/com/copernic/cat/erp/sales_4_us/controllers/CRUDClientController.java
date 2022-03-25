@@ -5,6 +5,7 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.User;
+import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
 import com.copernic.cat.erp.sales_4_us.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class CRUDClientController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/crud_client")
     public String generateClientList(Model model) {
@@ -55,6 +59,7 @@ public class CRUDClientController {
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
         userService.addUser(user);
+        userRepository.save(user);
         return "redirect:/crud_client";
     }
 
