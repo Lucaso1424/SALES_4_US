@@ -1,69 +1,37 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.Instant;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import java.util.Date;
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "purchase")
 public class Purchase {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Basic(optional = false)
+    @Column(name="id")
+    private int id;
 
-    @Column(name = "DATE", nullable = false)
-    private Instant date;
 
-    @Column(name = "TOTAL_PRIZE", nullable = false, precision = 10)
-    private BigDecimal totalPrize;
+    @Column(nullable = false)
+    private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @NotEmpty
+    @Column(nullable = false)
+    private int totalPrize;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "purchase")
-    private Set<LiniaPurchase> liniaPurchases = new LinkedHashSet<>();
+    @OneToMany
+    @JoinColumn(name = "purchaseId", nullable = false)
+    private List<LiniaPurchase> liniaPurchases;
 
-    public Set<LiniaPurchase> getLiniaPurchases() {
-        return liniaPurchases;
-    }
-
-    public void setLiniaPurchases(Set<LiniaPurchase> liniaPurchases) {
-        this.liniaPurchases = liniaPurchases;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public BigDecimal getTotalPrize() {
-        return totalPrize;
-    }
-
-    public void setTotalPrize(BigDecimal totalPrize) {
-        this.totalPrize = totalPrize;
-    }
-
-    public Instant getDate() {
-        return date;
-    }
-
-    public void setDate(Instant date) {
-        this.date = date;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }

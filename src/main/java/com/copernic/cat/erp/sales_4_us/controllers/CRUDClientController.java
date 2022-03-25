@@ -5,6 +5,7 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.User;
+import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
 import com.copernic.cat.erp.sales_4_us.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,12 @@ public class CRUDClientController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @GetMapping("/crud_client")
     public String generateClientList(Model model) {
-        List<User> listUsers = userService.listUsers();
+        List<User> listUsers = userService.listClients();
         model.addAttribute("listUsers", listUsers);
         return "crud_list_client";
     }
@@ -55,17 +59,15 @@ public class CRUDClientController {
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
         userService.addUser(user);
+        userRepository.save(user);
         return "redirect:/crud_client";
     }
 
     @GetMapping("/edit/{userId}")
     public String editClient(User user, Model model) {
-        /*Cerquem el gos passat per paràmetre amb l'idgos de @GetMapping mitjançant
-         *el mètode cercarGos de la capa de servei.*/
-        user = userService.searchUser(user);
-        model.addAttribute("user", user);
-
-        return "redirect:/formClient";
+        User u = userService.searchUser(user);
+        model.addAttribute("user", u);
+        return "formClient";
     }
 
 }

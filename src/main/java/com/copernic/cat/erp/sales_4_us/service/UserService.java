@@ -36,32 +36,50 @@ public class UserService implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(usuari.getEmail(), usuari.getPassword(), rols);
     }
 
-    /*@Transactional
-    public void saveUser(User user) {
-        userRepository.save(user);
-    }*/
-
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> listUsers() {
         List<User> users = new ArrayList<>();
         users = userRepository.findAll();
         return users;
     }
 
-    @Transactional //Igual que en el mètode afegirGos, modifiquem la informació de la BBDD
+    public List<User> listAdmins(){
+        List<User> users = new ArrayList<>();
+        users = userRepository.findAll();
+        List<User> admins = new ArrayList<>();
+        for (User u : users) {
+            if (u.getRol().equals("admin")){
+                admins.add(u);
+            }
+        }
+        return admins;
+    }
+
+    public List<User> listClients(){
+        List<User> users = new ArrayList<>();
+        users = userRepository.findAll();
+        List<User> client = new ArrayList<>();
+        for (User u : users) {
+            if (u.getRol().equals("client")){
+                client.add(u);
+            }
+        }
+        return client;
+    }
+
+    @Transactional
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
 
     @Transactional
-    public void addUser (User user){
+    public void addUser(User user) {
         userRepository.save(user);
     }
 
-    @Transactional
-    public User searchUser (User user) {
-
-        return user;
+    @Transactional(readOnly = true)
+    public User searchUser(User user) {
+        return userRepository.findById(user.getUserId()).orElse(null);
     }
 
 }

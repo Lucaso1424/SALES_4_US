@@ -1,36 +1,44 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import lombok.Data;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
 @Table(name = "product")
 public class Product {
-    
-    private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
-    private long id;
+    @Column(name="id")
+    private Integer id;
+
+    @NotNull
+    @Column(nullable = false)
+    private Integer providerId;
 
     @NotEmpty
     @Column(nullable = false, length = 20)
     private String name;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
     private double prize;
 
     @NotEmpty
-    @Column(nullable = false, length = 40)
+    @Column(nullable = false, length = 20)
     private String category;
 
-    @NotEmpty
+
     @Column(nullable = false, length = 500)
     private String description;
+
+    /*private List<LiniaPurchase> liniaPurchases;
+
+    private List<Opinion> opinions; */
+
 
 }
