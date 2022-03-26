@@ -35,7 +35,7 @@ public class ProductService implements ProductServiceInterface {
 
     @Override
     public void deleteProduct(Product pro) {
-
+        productRepository.delete(pro);
     }
 
     @Override

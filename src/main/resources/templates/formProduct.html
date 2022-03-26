@@ -17,45 +17,34 @@
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="hidden" name="userId" th:field="*{userId}"/>
-                                    <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}"/>
+                                    <input type="hidden" name="id" th:field="*{id}"/>
+                                    <input type="text" class="form-control" placeholder="Name" th:field="*{name}"/>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}">
+                                    <input type="number" class="form-control" placeholder="Last Name" th:field="*{prize}">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email ID" th:field="*{email}">
+                                    <input type="email" class="form-control" placeholder="Email ID" th:field="*{description}">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                                    <select name="provider" id="provider" th:each="provider: ${listProviders}">
+                                        <option th:text="${provider.name}" ></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Dni" th:field="*{dni}">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Role" th:field="*{rol}">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Address" th:field="*{address}">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Phone" th:field="*{phone}">
+                                    <select name="category" id="category" th:each="category: ${listCategories}">
+                                        <option th:text="${category.name}" ></option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
