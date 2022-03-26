@@ -14,7 +14,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="id")
+    @Column(name = "id")
     private long id;
 
     @NotEmpty
@@ -25,16 +25,27 @@ public class Product {
     @Column(nullable = false)
     private double prize;
 
-    @OneToMany
-    @JoinColumn(name="id_category")
+    @NotNull
+    @ManyToMany
+    @JoinTable(
+            name = "product_categories",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     private List<Category> categories;
 
     @Column(nullable = false, length = 500)
     private String description;
 
-    /*@ManyToOne
-    @JoinColumn(name="providerId")
-    private List<Provider> providerId; */
+
+    @NotNull
+    @ManyToMany
+    @JoinTable(
+            name = "product_provider",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "provider_id")
+    )
+    private List<Provider> providers;
 
     /*private List<LiniaPurchase> liniaPurchases;
 

@@ -1,8 +1,12 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
-import javax.persistence.*;
-import java.util.List;
+import lombok.Data;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+@Data
 @Entity
 @Table(name = "provider")
 public class Provider {
@@ -11,22 +15,24 @@ public class Provider {
     @Column(nullable = false)
     private Integer id;
 
+    @NotEmpty
     @Column(nullable = false, length = 40)
     private String name;
 
+    @NotEmpty
     @Column(nullable = false, length = 120)
     private String direction;
 
+    @NotNull
     @Column( nullable = false)
-    private Integer phone;
+    private int phone;
 
+    @NotEmpty
     @Column(nullable = false, length = 40)
     private String website;
 
+    @NotEmpty
     @Column(nullable = false, length = 40)
     private String email;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Product> products;
 
 }
