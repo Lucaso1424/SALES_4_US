@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
@@ -14,11 +15,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name="id")
-    private Integer id;
-
-    @NotNull
-    @Column(nullable = false)
-    private Integer providerId;
+    private long id;
 
     @NotEmpty
     @Column(nullable = false, length = 20)
@@ -28,17 +25,19 @@ public class Product {
     @Column(nullable = false)
     private double prize;
 
-    @NotEmpty
-    @Column(nullable = false, length = 20)
-    private String category;
-
+    @OneToMany
+    @JoinColumn(name="id_category")
+    private List<Category> categories;
 
     @Column(nullable = false, length = 500)
     private String description;
 
+    /*@ManyToOne
+    @JoinColumn(name="providerId")
+    private List<Provider> providerId; */
+
     /*private List<LiniaPurchase> liniaPurchases;
 
     private List<Opinion> opinions; */
-
 
 }

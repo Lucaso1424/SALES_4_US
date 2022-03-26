@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla_bootstrap :: head"></head>
+<body>
+<header th:replace="layout/plantilla_navbar :: header"></header>
+<div class="container">
+    <form th:action="@{/saveProduct}" method="POST" th:object="${product}" >
+        <div class="row justify-content-md-center">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                <div class="login-screen">
+                    <div class="login-box">
+                        <center>
+                            <a class="login-logo">
+                                <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
+                            </a>
+                        </center>
+                        <div class="row gutters">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="hidden" name="userId" th:field="*{userId}"/>
+                                    <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}"/>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Last Name" th:field="*{lastName}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Email ID" th:field="*{email}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Password" th:field="*{password}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Dni" th:field="*{dni}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Role" th:field="*{rol}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Address" th:field="*{address}">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" placeholder="Phone" th:field="*{phone}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="actions clearfix mt-2">
+                            <button type="submit" class="btn-update">Save</button>
+                            <button class="btn-cancel">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

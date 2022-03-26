@@ -13,11 +13,11 @@ import java.util.List;
  */
 public interface ProductServiceInterface {
 
-    public List<Product> llistarProduct(); 
+    public List<Product> listProduct();
 
-    /*public void afegirProduct(Product pro); 
+    public void addProduct(Product pro);
 
-    public void eliminarProduct(Product pro); 
+    public void deleteProduct(Product pro);
 
-    public Product cercarProduct(Product pro);*/
+    public Product findProduct(Product pro);
 }
