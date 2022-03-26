@@ -25,8 +25,7 @@ public class Product {
     @Column(nullable = false)
     private double prize;
 
-    /*@OneToMany
-    @JoinColumn(name="id_category")*/
+    @NotNull
     @ManyToMany
     @JoinTable(
             name = "product_categories",
@@ -39,6 +38,7 @@ public class Product {
     private String description;
 
 
+    @NotNull
     @ManyToMany
     @JoinTable(
             name = "product_provider",
