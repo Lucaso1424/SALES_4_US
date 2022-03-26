@@ -47,11 +47,11 @@
                     </div>
                 </div>
             </td>
-            <td>
-                <p class="fw-normal mb-1" ></p> <!-- th:text="${product.providerId}"-->
+            <td> <!-- th:each="provider: ${product.providers}" -->
+                <p class="fw-normal mb-1" th:text="${product.providers}" ></p> <!-- th:text="${provider.name}"-->
             </td>
-            <td>
-                <span class="rounded-pill d-inline"  th:text="${product.categories}"></span> <!-- th:text="${product.categories}" -->
+            <td th:each="category: ${product.categories}">
+                <span class="rounded-pill d-inline"  th:text="${category.name}"></span> <!-- th:text="${product.categories}" -->
             </td>
             <td th:text="${product.description}"></td>
         </tr>

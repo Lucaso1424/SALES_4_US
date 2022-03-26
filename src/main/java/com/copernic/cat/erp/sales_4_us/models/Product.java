@@ -27,7 +27,7 @@ public class Product {
 
     /*@OneToMany
     @JoinColumn(name="id_category")*/
-    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "product_categories",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -38,9 +38,14 @@ public class Product {
     @Column(nullable = false, length = 500)
     private String description;
 
-    /*@ManyToOne
-    @JoinColumn(name="providerId")
-    private List<Provider> providerId; */
+
+    @ManyToMany
+    @JoinTable(
+            name = "product_provider",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "provider_id")
+    )
+    private List<Provider> providers;
 
     /*private List<LiniaPurchase> liniaPurchases;
 
