@@ -26,9 +26,10 @@
         <thead class="bg-light">
         <tr>
             <th>Name</th>
-            <th>Id-Provider</th>
+            <th>Providers</th>
             <th>Categories</th>
             <th>Description</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -48,12 +49,24 @@
                 </div>
             </td>
             <td th:each="provider: ${product.providers}" > <!-- th:each="provider: ${product.providers}" -->
-                <p class="fw-normal mb-1" th:text="${provider.name}"   ></p> <!-- th:text="${provider.name}"   th:text="${product.providers}" -->
+                <p class="fw-normal mb-1" th:text="${provider.name}"   ></p>
             </td>
             <td th:each="category: ${product.categories}">
-                <span class="rounded-pill d-inline"  th:text="${category.name}"></span> <!-- th:text="${product.categories}" -->
+                <span class="rounded-pill d-inline"  th:text="${category.name}"></span>
             </td>
             <td th:text="${product.description}"></td>
+            <td>
+                <a  th:href="@{/edit/product/{id} (id=${product.id})}">
+                    <button type="button" class="editCRUDButton mb-3">
+                        Edit
+                    </button>
+                </a>
+                <a th:href="@{/delete/product/{id} (id=${product.id})}">
+                    <button type="button" class="deleteCRUDButton">
+                        Delete
+                    </button>
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>
