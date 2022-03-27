@@ -63,7 +63,7 @@ public class CRUDProductController {
     }
 
     @GetMapping("/edit/product/{id}")
-    public String editClient(Product product, Model model) {
+    public String editProduct(Product product, Model model) {
         Product p = productService.findProduct(product);
         model.addAttribute("product", p);
         return "formEditProduct";

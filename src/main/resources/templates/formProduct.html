@@ -23,12 +23,12 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Last Name" th:field="*{prize}">
+                                    <input type="number" class="form-control" placeholder="Prize" th:field="*{prize}">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Email ID" th:field="*{description}">
+                                    <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
@@ -43,7 +43,7 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
                                     <select name="category" id="category" th:each="category: ${listCategories}">
-                                        <option th:text="${category.name}" ></option>
+                                        <option th:text="${category.name}"></option>
                                     </select>
                                 </div>
                             </div>

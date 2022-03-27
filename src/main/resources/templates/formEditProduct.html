@@ -28,19 +28,19 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                 <div class="form-group">
-                  <input type="email" class="form-control" placeholder="Email ID" th:field="*{description}">
+                  <input type="text" class="form-control" placeholder="Email ID" th:field="*{description}">
                 </div>
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                 <div class="form-group" th:each="provider: ${product.providers}" >
-                  <input type="email" class="form-control" placeholder="Email ID" th:field="*{provider.name}">
+                  <input type="text" class="form-control" placeholder="Provider" th:field="${product.providers}">
                 </div>
               </div>
             </div>
             <div class="row gutters">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                 <div class="form-group" th:each="category: ${product.categories}" >
-                  <input type="email" class="form-control" placeholder="Email ID" th:field="*{category.name}">
+                  <input type="text" class="form-control" placeholder="Category" th:field="${product.categories}">
                 </div>
               </div>
             </div>
