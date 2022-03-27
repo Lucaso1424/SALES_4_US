@@ -4,11 +4,11 @@
 <head th:replace="layout/plantilla_bootstrap :: head"></head>
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
-<h1 align="center" class="title titol">Provider</h1>
+<h1 align="center" class="title titol">Category</h1>
 <hr/>
 
 <center>
-    <a th:href="@{/formProvider}">
+    <a th:href="@{/formCategory}">
         <button class="editCRUDButton">
             Create
         </button>
@@ -26,14 +26,13 @@
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
         <tr>
-            <th>Name & Email</th>
-            <th>Phone</th>
-            <th>Website</th>
-            <th>Direction</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="provider: ${listProviders}">
+        <tr th:each="category: ${listCategories}">
             <td>
                 <div class="d-flex align-items-center">
                     <img
@@ -43,23 +42,20 @@
                             class="rounded-circle"
                     />
                     <div class="ms-3">
-                        <p class="fw-bold mb-1" th:text="${provider.name}"></p>
-                        <p class="text-muted mb-0" th:text="${provider.email}"></p>
+                        <p class="fw-bold mb-1" th:text="${category.name}"></p>
                     </div>
                 </div>
             </td>
             <td>
-                <span class="rounded-pill d-inline" th:text="${provider.phone}"></span>
+                <p class="fw-normal mb-1" th:text="${category.description}"></p>
             </td>
-            <td th:text="${provider.website}"></td>
-            <td th:text="${provider.direction}"></td>
             <td>
-                <a th:href="@{/edit/provider{id} (id=${provider.id})}">
+                <a th:href="@{/edit/category{id} (id=${category.id})}">
                     <button type="button" class="editCRUDButton">
                         Edit
                     </button>
                 </a>
-                <a th:href="@{/delete/provider{id} (id=${provider.id})}">
+                <a th:href="@{/delete/category{id} (id=${category.id})}">
                     <button type="button" class="deleteCRUDButton">
                         Delete
                     </button>
