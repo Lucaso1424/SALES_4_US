@@ -45,10 +45,6 @@ public class ProductService implements ProductServiceInterface {
     public Product findProduct(Product pro) {
         return productRepository.findById(pro.getId()).orElse(null);
     }
-    
-    @Transactional(readOnly = true)
-    public Product searchProduct(Product product) {
-        return productRepository.findById(product.getId()).orElse(null);
-    }
+
 
 }

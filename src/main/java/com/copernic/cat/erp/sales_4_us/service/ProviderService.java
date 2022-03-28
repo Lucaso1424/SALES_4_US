@@ -15,9 +15,9 @@ public class ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Provider> listProviders(){
-        return (List<Provider>) providerRepository.findAll();
+        return providerRepository.findAll();
     }
 
     @Transactional

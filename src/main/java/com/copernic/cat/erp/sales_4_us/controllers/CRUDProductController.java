@@ -52,11 +52,25 @@ public class CRUDProductController {
         return "formProduct";
     }
 
-    @PostMapping("/saveProduct") //action = saveClient
-    public String saveAdmin(Product product, Errors errors) {
+    @PostMapping("/saveProduct")
+    public String saveProduct(Product product, Errors errors) {
         if (errors.hasErrors()) {
             System.out.println(errors);
             return "formProduct";
+        }
+        Provider providerToAdd;
+        Category categoryToAdd;
+        for (Provider provider: product.getProviders()){
+            providerToAdd = providerService.findProvider(provider);
+            if (!product.getProviders().contains(providerToAdd)){
+                product.getProviders().add(providerToAdd);
+            }
+        }
+        for (Category category: product.getCategories()){
+            categoryToAdd = categoryService.findCategory(category);
+            if (!product.getCategories().contains(categoryToAdd)){
+                product.getCategories().add(categoryToAdd);
+            }
         }
         productService.addProduct(product);
         return "redirect:/crud_product";
@@ -65,7 +79,11 @@ public class CRUDProductController {
     @GetMapping("/edit/product/{id}")
     public String editProduct(Product product, Model model) {
         Product p = productService.findProduct(product);
+        List<Category> categories = categoryService.listCategories();
+        List<Provider> providers = providerService.listProviders();
         model.addAttribute("product", p);
+        model.addAttribute("listCategories", categories);
+        model.addAttribute("listProviders", providers);
         return "formEditProduct";
     }
 

@@ -33,14 +33,20 @@
               </div>
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                 <div class="form-group" th:each="provider: ${product.providers}" >
-                  <input type="text" class="form-control" placeholder="Provider" th:field="${product.providers}">
+                  <select name="provider" id="provider" th:field="*{providers}" >
+                    <option th:each="provider: ${product.providers}"  th:text="${provider.name}" value="0"></option> <!-- th:value="${category.id}" -->
+                    <option th:each="providerList: ${listProviders}" th:value="${providerList.id}" th:text="${providerList.name}"></option>
+                  </select>
                 </div>
               </div>
             </div>
             <div class="row gutters">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                <div class="form-group" th:each="category: ${product.categories}" >
-                  <input type="text" class="form-control" placeholder="Category" th:field="${product.categories}">
+                <div class="form-group">
+                  <select name="category" id="category" th:field="*{categories}" >
+                    <option th:each="category: ${product.categories}"  th:text="${category.name}" value="0"></option> <!-- th:value="${category.id}" -->
+                    <option th:each="categorList: ${listCategories}" th:value="${categorList.id}" th:text="${categorList.name}"></option>
+                  </select>
                 </div>
               </div>
             </div>

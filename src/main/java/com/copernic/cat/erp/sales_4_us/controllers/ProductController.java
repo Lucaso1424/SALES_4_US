@@ -29,7 +29,7 @@ public class ProductController {
 
     @GetMapping("/product/{id}")
     public String showProduct(Product product, Model model) {
-        Product p = productService.searchProduct(product);
+        Product p = productService.findProduct(product);
         model.addAttribute("product", p);
         return "product";
     }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class CRUDCategory {
+public class CRUDCategoryController {
 
     @Autowired
     CategoryService categoryService;

@@ -43,11 +43,7 @@ CREATE TABLE product(
 id INT NOT NULL auto_increment PRIMARY KEY,
 name VARCHAR (20) NOT NULL,
 prize INTEGER NOT NULL,
-description VARCHAR (500) NOT NULL,
-category INT NOT NULL,
-providerId INT,
-FOREIGN KEY (category) REFERENCES category (id),
-FOREIGN KEY (providerId) REFERENCES provider (id)
+description VARCHAR (500) NOT NULL
 );
 
 CREATE TABLE product_categories (
@@ -93,14 +89,12 @@ INSERT INTO provider (id, name, direction,phone,website,email) VALUES (1, "provi
 INSERT INTO category (id, name, description) VALUES (2, "Shirts", "A few description for the category");
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "second_provider", "two direction", 698267535, "www.provider2.com", "provider2@provider2.local");
 
-INSERT INTO product (id, name, prize, description, category, providerId) VALUES (
+INSERT INTO product (id, name, prize, description) VALUES (
 1, 
 "Nike Air Force", 
 89.90,
 "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, 
-bold colors and the perfect amount of reflective.",
-1,
-1
+bold colors and the perfect amount of reflective."
    );
    
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
