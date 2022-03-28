@@ -5,7 +5,6 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.Product;
-import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -32,18 +32,18 @@ public class ProductService implements ProductServiceInterface {
 
     @Override
     public void addProduct(Product pro) {
-
+        productRepository.save(pro);
     }
 
     @Override
     public void deleteProduct(Product pro) {
-
+        productRepository.delete(pro);
     }
 
     @Override
     @Transactional(readOnly = true)
     public Product findProduct(Product pro) {
-        return null;
+        return productRepository.findById(pro.getId()).orElse(null);
     }
     
     @Transactional(readOnly = true)

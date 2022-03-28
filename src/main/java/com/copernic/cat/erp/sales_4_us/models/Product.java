@@ -19,7 +19,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
-    private long id;
+    private int id;
 
     @NotEmpty
     @Column(nullable = false, length = 20)
@@ -29,7 +29,6 @@ public class Product implements Serializable {
     @Column(nullable = false)
     private double prize;
 
-    @NotNull
     @ManyToMany
     @JoinTable(
             name = "product_categories",
@@ -41,7 +40,6 @@ public class Product implements Serializable {
     @Column(nullable = false, length = 500)
     private String description;
 
-    @NotNull
     @ManyToMany
     @JoinTable(
             name = "product_provider",

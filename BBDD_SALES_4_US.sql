@@ -90,6 +90,8 @@ INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol
 
 INSERT INTO category (id, name, description) VALUES (1, "Footwear", "A few description for the category");
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (1, "provider_test", "one direction", 678264536, "www.provider.com", "provider@provider.local");
+INSERT INTO category (id, name, description) VALUES (2, "Shirts", "A few description for the category");
+INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "second_provider", "two direction", 698267535, "www.provider2.com", "provider2@provider2.local");
 
 INSERT INTO product (id, name, prize, description, category, providerId) VALUES (
 1, 

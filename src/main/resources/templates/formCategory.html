@@ -4,7 +4,7 @@
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <div class="container">
-    <form th:action="@{/saveProduct}" method="POST" th:object="${product}" >
+    <form th:action="@{/saveCategory}" method="POST" th:object="${category}" >
         <div class="row justify-content-md-center">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="login-screen">
@@ -23,28 +23,7 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Prize" th:field="*{prize}">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Description" th:field="*{description}">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
-                                    <select name="provider" id="provider" th:each="provider: ${listProviders}">
-                                        <option th:text="${provider.name}" ></option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row gutters">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
-                                <div class="form-group">
-                                    <select name="category" id="category" th:each="category: ${listCategories}">
-                                        <option th:text="${category.name}"></option>
-                                    </select>
                                 </div>
                             </div>
                         </div>
