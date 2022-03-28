@@ -14,9 +14,13 @@
             </div>
 
             <div class="div_product">
-                <h3 th:text="${product.name}"></h3>
+                <h2 th:text="${product.name}"></h2>
+                <hr>
                 <h4 th:text="${product.prize} + '$'"></h4>
+                <hr>
                 <p th:text="${product.description}"></p>
+                <hr>
+                <a th:href="@{/cart}"><button type="button" class="mySearchButton">Add to cart</button></a>
             </div>
 
         </div>

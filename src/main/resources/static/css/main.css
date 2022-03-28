@@ -132,6 +132,11 @@ a {
     border: 1px solid #606060;
 }
 
+.div_product h2 {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
 .div_product h3 {
     margin-top: 20px;
     text-align: center;
@@ -139,11 +144,18 @@ a {
 
 .div_product h4 {
     margin-top: 30px;
+    margin-left: 20px;
 }
 
 .div_product p {
     margin-top: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
     text-align: justify;
+}
+
+.div_product button {
+    margin-left: 20px;
 }
 
 hr {
