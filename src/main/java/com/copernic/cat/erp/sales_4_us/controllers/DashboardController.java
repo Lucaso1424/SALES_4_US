@@ -16,7 +16,7 @@ public class DashboardController {
     @PostMapping("/dashboard")
     public String inici(Model model) {
 
-        var products = productServiceInterface.llistarProduct();
+        var products = productServiceInterface.listProduct();
         model.addAttribute("products", products);
 
         return "home";
@@ -25,7 +25,7 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String iniciGet(Model model) {
 
-        var products = productServiceInterface.llistarProduct();
+        var products = productServiceInterface.listProduct();
         model.addAttribute("products", products);
 
         return "home";

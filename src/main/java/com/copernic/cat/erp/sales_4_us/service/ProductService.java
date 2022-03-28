@@ -25,8 +25,10 @@ public class ProductService implements ProductServiceInterface {
     private ProductRepository productRepository;
 
     @Override
-    @Transactional(readOnly=true)
-    public List<Product> listProduct() {return productRepository.findAll(); }
+    @Transactional(readOnly = true)
+    public List<Product> listProduct() {
+        return productRepository.findAll();
+    }
 
     @Override
     public void addProduct(Product pro) {
@@ -39,9 +41,14 @@ public class ProductService implements ProductServiceInterface {
     }
 
     @Override
-    @Transactional(readOnly=true)
+    @Transactional(readOnly = true)
     public Product findProduct(Product pro) {
         return null;
+    }
+    
+    @Transactional(readOnly = true)
+    public Product searchProduct(Product product) {
+        return productRepository.findById(product.getId()).orElse(null);
     }
 
 }

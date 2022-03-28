@@ -1,5 +1,6 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
+import java.io.Serializable;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,7 +11,10 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -37,7 +41,6 @@ public class Product {
     @Column(nullable = false, length = 500)
     private String description;
 
-
     @NotNull
     @ManyToMany
     @JoinTable(
@@ -50,5 +53,4 @@ public class Product {
     /*private List<LiniaPurchase> liniaPurchases;
 
     private List<Opinion> opinions; */
-
 }

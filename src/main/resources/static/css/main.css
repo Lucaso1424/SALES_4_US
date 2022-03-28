@@ -108,6 +108,8 @@ a {
 }
 
 /*Product info*/
+
+
 .content_product {
     width: 100%;
     margin-top: 50px;
@@ -126,7 +128,17 @@ a {
 }
 
 .div_product h3 {
+    margin-top: 20px;
     text-align: center;
+}
+
+.div_product h4 {
+    margin-top: 30px;
+}
+
+.div_product p {
+    margin-top: 30px;
+    text-align: justify;
 }
 
 hr {
@@ -177,7 +189,7 @@ hr {
 .table-erp th, td {
     border: 1px solid #000;
     border-spacing: 0;
-    
+
 }
 
 .editCRUDButton {

@@ -4,9 +4,12 @@
  */
 package com.copernic.cat.erp.sales_4_us.controllers;
 
-import com.copernic.cat.erp.sales_4_us.service.ProductServiceInterface;
+import com.copernic.cat.erp.sales_4_us.models.Product;
+import com.copernic.cat.erp.sales_4_us.models.User;
+import com.copernic.cat.erp.sales_4_us.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -16,18 +19,20 @@ import org.springframework.web.bind.annotation.PostMapping;
  */
 @Controller
 public class ProductController {
-    
+
+    @Autowired
+    private ProductService productService;
+
     @GetMapping("/product")
     public String iniciGet() {
         return "product";
     }
-    
-    @PostMapping("/product")
-    public String inici() {
+
+    @GetMapping("/product/{id}")
+    public String showProduct(Product product, Model model) {
+        Product p = productService.searchProduct(product);
+        model.addAttribute("product", p);
         return "product";
     }
-    
-    
-    
-    
+
 }
