@@ -19,28 +19,24 @@ import java.util.List;
  */
 @Service("productService")
 @Slf4j
-public class ProductService implements ProductServiceInterface {
+public class ProductService  {
 
     @Autowired
     private ProductRepository productRepository;
 
-    @Override
     @Transactional(readOnly = true)
     public List<Product> listProduct() {
         return productRepository.findAll();
     }
 
-    @Override
     public void addProduct(Product pro) {
         productRepository.save(pro);
     }
 
-    @Override
     public void deleteProduct(Product pro) {
         productRepository.delete(pro);
     }
 
-    @Override
     @Transactional(readOnly = true)
     public Product findProduct(Product pro) {
         return productRepository.findById(pro.getId()).orElse(null);
