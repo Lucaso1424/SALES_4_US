@@ -26,6 +26,9 @@ public class Product implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double prize;
+    
+    @Column(nullable = false, length = 64)
+    private String image;
 
     @ManyToMany
     @JoinTable(

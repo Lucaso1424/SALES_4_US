@@ -13,19 +13,11 @@
                         <tr>
                         <p th:text="${product.name}"></p>
                         <p th:text="${product.prize}+'$'"></p>
+                        <img width="50" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}">
                         <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
-
-                <!--
-
-               <div class="products large_product group">
-                   <a th:href="@{/product}"><p>Link product</p></a>
-                                            <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
-               </div>-->
 
             </div>
         </div>
