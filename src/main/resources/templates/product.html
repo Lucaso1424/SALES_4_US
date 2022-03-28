@@ -20,7 +20,7 @@
                 <hr>
                 <p th:text="${product.description}"></p>
                 <hr>
-                <a th:href="@{/cart}"><button type="button" class="mySearchButton">Add to cart</button></a>
+                <a th:href="@{/cart/{id}(id=${product.id})}"><button type="button" class="mySearchButton">Add to cart</button></a>
             </div>
 
         </div>
