@@ -79,15 +79,14 @@
                             </div>
 
                             <div class="mb-3">
-                                <input type="file" id="fileImage" class="form-control" name="fileImage"  th:field="*{image}"
-                                       accept="image/*" required>
+                                <input type="file" id="fileImage" class="form-control" name="fileImage"
+                                       accept="image/*" >
                             </div>
                             <div class="mb-3">
                                 <p>
                                     <img id="thumbnail" alt="Logo Preview"/>
                                 </p>
                             </div>
-                            <!--ARREGLAR SCRIPT DE PREVIEW-->
                             <script>
                                 $(function(){
                                     $("#fileImage").change(function(event) {

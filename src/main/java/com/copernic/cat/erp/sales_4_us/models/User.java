@@ -53,8 +53,9 @@ public class User implements Serializable {
     @Column(nullable = false, length = 10)
     String rol;
 
-//    @Column(length = 64)
-//    private String image;
+    @NotNull
+    @Column(length = 64)
+    private String image;
 
     @Override
     public String toString(){
