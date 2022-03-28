@@ -9,134 +9,128 @@
         <div class="content">
 
             <div class="group">
-                <div class="products small_product">    
+                <div class="products small_product">
                     <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
+                        <tr th:each="product : ${products[0]}">
+                        <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
 
                 <div class="products small_product">    
                     <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
+                        <tr th:each="product : ${products[1]}">
+                        <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
 
                 <div class="products small_product">    
                     <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
+                        <tr th:each="product : ${products[2]}">
+                        <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
 
                 <div class="products small_product">    
                     <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
+                        <tr th:each="product : ${products[3]}">
+                        <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
 
+                <div class="products small_product">    
+                    <table>
+                        <tr th:each="product : ${products[4]}">
+                        <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+                        </tr>
+                    </table>
+                </div>
+
+                <!--<br>
                 <br>
-                <br>
 
-                <div class="products large_product group">
-                    <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
-                        </tr>
-                    </table>
-                </div>
+                  <div class="products large_product group">
+                       <table>
+                           <tr th:each="product : ${products[4]}">
+                            <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+                           </tr>
+                       </table>
+                   </div>
+   
+                   <div class="products large_product group">
+                       <table>
+                           <tr th:each="product : ${products[4]}">
+                            <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+                           </tr>
+                       </table>
+                   </div>
+   
+                   <div class="products large_product group">                    
+                       <table>
+                           <tr th:each="product : ${products}">
+                                <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                                <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+                           </tr>
+                       </table>
+                   </div>
+   
+                   <div class="products large_product group">                    
+                       <table>
+                           <tr th:each="product : ${products}"> 
+                                <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                                <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p> 
+                           </tr>
+                       </table>
+                   </div>
+               </div>
+   
+               <div class="products large_product group">
+                   <a th:href="@{/product}"><p>Link product</p></a>
+                               <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+               </div>
+   
+               <div class="products large_product group">
+                   <a th:href="@{/product}"><p>Link product</p></a>
+                               <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+               </div>
+   
+               <div class="products large_product group">                    
+                   <a th:href="@{/product}"><p>Link product</p></a>
+                               <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+               </div>
+   
+               <div class="products large_product group">                    
+                   <a th:href="@{/product}"><p>Link product</p></a>
+                                            <p th:text="${product.name}"></p>
+                        <p th:text="${product.prize}+'$'"></p>
+                            <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+               </div>-->
 
-                <div class="products large_product group">
-                    <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="products large_product group">                    
-                    <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="products large_product group">                    
-                    <table>
-                        <tr th:each="product : ${products}"> 
-                            <td th:text="${product.name}"></td>
-                            <td th:text="${product.prize}"></td>
-                            <td><a th:href="@{/product/{id}(id=${product.id})}">Product link</a></td>
-                        </tr>
-                    </table>
-                </div>
             </div>
-
-            <div class="products large_product group">
-                <a th:href="@{/product}"><p>Link product</p></a>
-
-            </div>
-
-            <div class="products large_product group">
-                <a th:href="@{/product}"><p>Link product</p></a>
-
-            </div>
-
-            <div class="products large_product group">                    
-                <a th:href="@{/product}"><p>Link product</p></a>
-
-            </div>
-
-            <div class="products large_product group">                    
-                <a th:href="@{/product}"><p>Link product</p></a>
-            </div>
-
-            <table class="border border-dark">
-                <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Prize</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>
-                <tr th:each="producte : ${productes}"> 
-                    <td>
-                        <input type="checkbox">
-                    </td>
-                    <td th:text="${producte.ID}"></td>
-                    <td th:text="${producte.NAME}"></td>
-                    <td th:text="${producte.PRIZE}"></td>
-                    <td th:text="${producte.CATEGORY}"></td>
-                    <td th:text="${producte.DESCRIPTION}"></td>
-                    <td><a th:text="Edit"/></td>
-                    <td><a th:text="Delete"/></td>
-                </tr>
-            </table>
-
-        </div>
     </body>
 </html>
