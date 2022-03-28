@@ -11,54 +11,13 @@
             <div class="group">
                 <div class="products small_product">
                     <table>
-                        <tr th:each="product : ${products[0]}">
+                        <tr th:each="product : ${products}">
                         <p th:text="${product.name}"></p>
                         <p th:text="${product.prize}+'$'"></p>
                         <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
                 </div>
-
-                <div class="products small_product">    
-                    <table>
-                        <tr th:each="product : ${products[1]}">
-                        <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="products small_product">    
-                    <table>
-                        <tr th:each="product : ${products[2]}">
-                        <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="products small_product">    
-                    <table>
-                        <tr th:each="product : ${products[3]}">
-                        <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="products small_product">    
-                    <table>
-                        <tr th:each="product : ${products[4]}">
-                        <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
-                        </tr>
-                    </table>
-                </div>
-
                 <!--<br>
                 <br>
 
