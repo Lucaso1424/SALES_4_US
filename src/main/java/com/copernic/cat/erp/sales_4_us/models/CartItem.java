@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="cart_items")
+@Table(name="cart_item")
 public class CartItem {
 
     @Id
@@ -20,8 +20,8 @@ public class CartItem {
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private User customer;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column
     private int quantity;

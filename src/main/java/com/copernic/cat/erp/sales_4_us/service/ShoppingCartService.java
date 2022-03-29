@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("shoppingCartService")
@@ -16,8 +17,18 @@ public class ShoppingCartService {
     @Autowired
     private CartItemRepository cartItemRepository;
 
+    @Autowired
+    private UserService userService;
+
+
     public List<CartItem> listCartItems(User user) {
-        return cartItemRepository.findByClient(user);
+        List<CartItem> userCartItems = new ArrayList<>();
+        for (CartItem c : cartItemRepository.findAll()){
+            if (c.getUser().getUserId() == user.getUserId()) {
+                userCartItems.add(c);
+            }
+        }
+        return userCartItems;
     }
 
 }
