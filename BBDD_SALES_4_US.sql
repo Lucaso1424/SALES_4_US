@@ -61,13 +61,13 @@ FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (provider_id) REFERENCES provider (id)
 );
 
-CREATE TABLE linia_purchase (
-purchase_id INT NOT NULL,
-product_id INT NOT NULL,
-unit INT NOT NULL,
-PRIMARY KEY (purchase_id, product_id),
-FOREIGN KEY (purchase_id) REFERENCES purchase (id),
-FOREIGN KEY (product_id) REFERENCES product (ID)
+CREATE TABLE cart_items (
+id INT NOT NULL auto_increment PRIMARY KEY,
+product_id INT,
+customer_id INT,
+quantity INT,
+FOREIGN KEY (product_id) REFERENCES product (id),
+FOREIGN KEY (customer_id) REFERENCES user (id)
 );
 
 CREATE TABLE opinion (
