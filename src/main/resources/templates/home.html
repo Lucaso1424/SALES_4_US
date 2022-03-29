@@ -13,7 +13,7 @@
                         <tr>
                         <p th:text="${product.name}"></p>
                         <p th:text="${product.prize}+'$'"></p>
-                        <img width="50" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}">
+                        <img width="120" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}">
                         <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
                         </tr>
                     </table>
