@@ -21,7 +21,7 @@
                 <div class="basket-product">
                     <div class="item">
                         <div class="product-image">
-                            <img src="" alt="Placholder Image 2" class="product-frame cart-img">
+                            <img width="120" style="text-align: center;" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}">
                         </div>
                         <div class="product-details">
                             <div th:if="${product.name==null || product.name.empty}">
