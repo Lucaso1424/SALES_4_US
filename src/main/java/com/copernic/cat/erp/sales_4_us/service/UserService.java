@@ -82,4 +82,10 @@ public class UserService implements UserDetailsService {
         return userRepository.findById(user.getUserId()).orElse(null);
     }
 
+    @Transactional(readOnly = true)
+    public User findUserByEmail(String email){
+       return userRepository.findUserByEmail(email);
+    }
+
+
 }

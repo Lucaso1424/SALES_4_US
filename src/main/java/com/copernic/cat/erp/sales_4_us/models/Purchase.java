@@ -32,6 +32,6 @@ public class Purchase {
 
     @OneToMany
     @JoinColumn(name = "purchaseId", nullable = false)
-    private List<LiniaPurchase> liniaPurchases;
+    private List<CartItem> cartItems;
 
 }

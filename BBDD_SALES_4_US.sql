@@ -61,13 +61,13 @@ FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (provider_id) REFERENCES provider (id)
 );
 
-CREATE TABLE linia_purchase (
-purchase_id INT NOT NULL,
-product_id INT NOT NULL,
-unit INT NOT NULL,
-PRIMARY KEY (purchase_id, product_id),
-FOREIGN KEY (purchase_id) REFERENCES purchase (id),
-FOREIGN KEY (product_id) REFERENCES product (ID)
+CREATE TABLE cart_item (
+id INT NOT NULL auto_increment PRIMARY KEY,
+product_id INT,
+user_id INT,
+quantity INT,
+FOREIGN KEY (product_id) REFERENCES product (id),
+FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 CREATE TABLE opinion (
@@ -100,6 +100,7 @@ bold colors and the perfect amount of reflective.", "nike.png"
    
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
+INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,1);
 /*   
 INSERT INTO product (id, provider_id, name, prize, description, category) VALUES (2, 2, "Jordan Retro 4", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
 INSERT INTO product (id, provider_id, name, prize, category, description) VALUES (3, 3, "Adidas Superstar", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");

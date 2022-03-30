@@ -46,7 +46,6 @@ public class CRUDCategoryController {
             return "formCategory";
         }
         categoryService.addCategory(category);
-        categoryService.addCategory(category);
         return "redirect:/crud_category";
     }
 
