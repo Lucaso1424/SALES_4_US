@@ -38,6 +38,7 @@ public class ShoppingCartController {
 
     //No funcionara bien, se necesita que al enviar el formulario, compruebe todos los cartItems del usuario para ver si
     //Han sido modificados
+    //Al clicar en la flecha de subir la cantidad, hacer que se guarde directamente el quantity +1 y recargar pagina
     @PostMapping("/updateCart")
     public String updateCart(CartItem cartItem, Errors errors){
         if (errors.hasErrors()) {
