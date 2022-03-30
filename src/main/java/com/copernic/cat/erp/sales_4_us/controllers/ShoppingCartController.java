@@ -10,7 +10,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -25,17 +27,6 @@ public class ShoppingCartController {
     @Autowired
     private ShoppingCartService shoppingCartService;
 
-    /*@GetMapping("/cart") //BY Lucas
-    public String inici() {
-        return "cart";
-    }
-
-    @GetMapping("/cart/{id}") //BY Lucas
-    public String showProduct(Product product, Model model) {
-        Product p = productService.findProduct(product);
-        model.addAttribute("product", p);
-        return "cart";
-    }*/
     @GetMapping("/cart")
     public String showShoppingCart(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -43,6 +34,18 @@ public class ShoppingCartController {
         List<CartItem> cartItems = shoppingCartService.listCartItems(u);
         model.addAttribute("listcartItems", cartItems);
         return "cart";
+    }
+
+    //No funcionara bien, se necesita que al enviar el formulario, compruebe todos los cartItems del usuario para ver si
+    //Han sido modificados
+    @PostMapping("/updateCart")
+    public String updateCart(CartItem cartItem, Errors errors){
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "cart";
+        }
+        shoppingCartService.addCartItem(cartItem);
+        return "redirect:/cart";
     }
 
 

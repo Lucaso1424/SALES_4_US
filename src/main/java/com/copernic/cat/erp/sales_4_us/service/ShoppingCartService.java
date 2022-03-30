@@ -31,4 +31,8 @@ public class ShoppingCartService {
         return userCartItems;
     }
 
+    public void addCartItem(CartItem cartItem){
+        cartItemRepository.save(cartItem);
+    }
+
 }
