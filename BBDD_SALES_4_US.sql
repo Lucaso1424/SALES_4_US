@@ -82,7 +82,7 @@ FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 
-INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer","admin", "default.png");
+INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer","admin", "default.jpg");
 INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("lucas", "padilla", "12345678P", 633568742, "$2a$10$CLOcU1vc/5Oq384KjEooLOCSO2o5xMnc2w4uaCIiKgGqP8PNGWRQW", "lucas@lucas.local", "Arriba", "client","default.png");
 
 INSERT INTO category (id, name, description) VALUES (1, "Footwear", "A few description for the category");
@@ -100,7 +100,7 @@ bold colors and the perfect amount of reflective.", "nike.png"
    
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
-INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,1);
+INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,2);
 /*   
 INSERT INTO product (id, provider_id, name, prize, description, category) VALUES (2, 2, "Jordan Retro 4", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
 INSERT INTO product (id, provider_id, name, prize, category, description) VALUES (3, 3, "Adidas Superstar", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
@@ -110,3 +110,4 @@ INSERT INTO product (id, provider_id, name, prize, category, description) VALUES
 SELECT * FROM user;
 SELECT * FROM product;
 SELECT * FROM product_categories;
+SELECT * FROM cart_item;

@@ -4,11 +4,6 @@
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <main>
-            <!--<div th:if="${product.name!=null && !product.name.empty}">
-            </div>
-            <div th:if="${product.name==null || product.prize==null}">
-                There are no products.
-            </div>-->
             <div class="basket">
                 <div class="basket-labels">
                     <ul>
@@ -18,35 +13,33 @@
                         <li class="subtotal">Subtotal</li>
                     </ul>
                 </div>
-                <form th:action="@{/updateCart}" method="POST" th:object="${item}">
                     <div class="basket-product">
                         <th:block th:each="item : ${listcartItems}">
-                            <div class="item">
-                                <div class="product-image">
-                                   <!-- <img width="120" style="text-align: center;" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}"> -->
-                                </div>
-                                <div class="product-details" th:each="product: ${item.product}">
-                                    <div th:if="${product.name==null || product.name.empty}">
-                                        There are no products.
+                                <div class="item">
+                                    <div class="product-image">
+                                       <!-- <img width="120" style="text-align: center;" th:src="@{${'/images/product-image/' + product.id + '/' + product.image}}"> -->
                                     </div>
-                                    <h1 th:text="${product.name}"><strong><span class="item-quantity" th:text="${item.quantity}"></span></strong></h1>
-                                    <p th:text="'Product code: ' + ${product.id}"></p>
+                                    <div class="product-details" th:each="product: ${item.product}">
+                                        <div th:if="${product.name==null || product.name.empty}">
+                                            There are no products.
+                                        </div>
+                                        <h1 th:text="${product.name}"><strong><span class="item-quantity" th:text="${item.quantity}"></span></strong></h1>
+                                        <p th:text="'Product code: ' + ${product.id}"></p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div th:each="product: ${item.product}" class="price" th:text="${product.prize} + '$'"></div>
-                            <div class="quantity">
-                                <input type="number" value="1" min="1" class="quantity-field" onchange="updateQuantity(this)">
-                            </div>
-                            <div class="subtotal" th:each="product: ${item.product}" th:text="${product.prize} + '$'"></div>
-                            <div class="remove" th:each="item : ${listcartItems}">
-                                <a th:href="@{/delete/cartItem/{id} (id=${item.id})}">
-                                    <button onclick="removeItem(this)">Remove</button>
-                                </a>
-                            </div>
+                                <div th:each="product: ${item.product}" class="price" th:text="${product.prize} + '$'"></div>
+                                    <div class="quantity" th:each="item : ${listcartItems}">
+                                        <input type="number" th:value="${item.quantity}" th:onclick=" |window.location.href='@{/updateCart/{id}/{quantity}} (id=${item.id})(quantity=${item.quantity})'|"  min="1" class="quantity-field" onchange="updateQuantity(this);">
+                                    </div>
+
+                                <div class="subtotal" th:each="product: ${item.product}" th:text="${product.prize} + '$'"></div>
+                                <div class="remove" th:each="item : ${listcartItems}">
+                                    <a th:href="@{/delete/cartItem/{id} (id=${item.id})}">
+                                        <button onclick="removeItem(this)">Remove</button>
+                                    </a>
+                                </div>
                         </th:block>
-                        <button type="submit">Keep Buying</button>
                     </div>
-                </form>
             </div>
             <aside>
                 <div class="summary" th:each="item : ${listcartItems}">
@@ -68,7 +61,6 @@
                     </div>
                 </div>
             </aside>
-
         </main>
     </body>
 </html> 

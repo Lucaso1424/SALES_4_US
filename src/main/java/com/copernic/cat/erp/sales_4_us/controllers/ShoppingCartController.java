@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -36,16 +37,16 @@ public class ShoppingCartController {
         return "cart";
     }
 
-    //No funcionara bien, se necesita que al enviar el formulario, compruebe todos los cartItems del usuario para ver si
-    //Han sido modificados
-    //Al clicar en la flecha de subir la cantidad, hacer que se guarde directamente el quantity +1 y recargar pagina
-    @PostMapping("/updateCart")
+    @GetMapping("/updateCart/{id}/{quantity}")
     public String updateCart(CartItem cartItem, Errors errors){
         if (errors.hasErrors()) {
             System.out.println(errors);
             return "cart";
         }
-        shoppingCartService.addCartItem(cartItem);
+        CartItem savedItem = shoppingCartService.searchCartItem(cartItem);
+        if (savedItem.getQuantity() != cartItem.getQuantity()){
+            shoppingCartService.addCartItem(cartItem);
+        }
         return "redirect:/cart";
     }
 

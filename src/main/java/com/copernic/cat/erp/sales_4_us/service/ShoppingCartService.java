@@ -35,4 +35,8 @@ public class ShoppingCartService {
         cartItemRepository.save(cartItem);
     }
 
+    public CartItem searchCartItem(CartItem cartItem){
+        return cartItemRepository.findById(cartItem.getId()).orElse(null);
+    }
+
 }
