@@ -243,3 +243,28 @@ hr {
 .deleteCRUDButton:hover {
     background-color: #8B78EA8;
 }
+
+.addButton {
+    background-color:#3D306C;
+    border-radius:42px;
+    border:1px solid #000000;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:6px 12px;
+    text-decoration:none;
+}
+.removeButton {
+    background-color:#841E62;
+    border-radius:42px;
+    border:1px solid #000000;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:6px 12px;
+    text-decoration:none;
+}

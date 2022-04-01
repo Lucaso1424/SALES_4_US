@@ -33,7 +33,15 @@ public class ShoppingCartController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User u = userService.findUserByEmail(authentication.getName());
         List<CartItem> cartItems = shoppingCartService.listCartItems(u);
+        int totalQuantity = 0;
+        double totalPrize = 0.0;
+        for(CartItem c: cartItems){
+            totalQuantity += c.getQuantity();
+            totalPrize += (c.getQuantity() * c.getProduct().getPrize());
+        }
         model.addAttribute("listcartItems", cartItems);
+        model.addAttribute("totalQuantity", totalQuantity);
+        model.addAttribute("totalPrize", totalPrize);
         return "cart";
     }
 
