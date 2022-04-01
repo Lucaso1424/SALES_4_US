@@ -27,18 +27,20 @@
 
         <hr>
 
-        <div class="content_reviews">
+        <div class="container content_reviews">
             <h1>Reviews</h1>
+            <center>
+                <div class="login-screen">
+                    <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
+                        <input type="text" class="form-control" placeholder="Title"/>
+                        <input type="text" class="form-control" placeholder="Description">
 
-            <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
-                <input type="text" class="form-control" placeholder="Title"/>
-                <input type="text" class="form-control" placeholder="Description">
-
-                <div class="actions clearfix mt-2">
-                    <button type="submit" class="btn-update">Save</button>
+                        <div class="actions clearfix mt-2">
+                            <button type="submit" class="btn-update">Save</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-
+            </center>
             <div class="opinion">
                 <div class="user_opinion">
                 </div>

@@ -37,8 +37,7 @@
             <td>
                 <div class="d-flex align-items-center">
                     <img
-                            src="../static/images/default_profile.png" th:src="@{images/default_profile.png}"
-                            alt=""
+                            th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}"
                             style="width: 45px; height: 45px"
                             class="rounded-circle"
                     />

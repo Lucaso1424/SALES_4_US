@@ -57,7 +57,7 @@ public class RegisterController {
         }
 
         String fileName = null;
-        if (multipartFile.getOriginalFilename() == null){
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
             fileName = "default_profile.png";
         } else {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
