@@ -59,7 +59,6 @@ public class CRUDClientController {
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
         userService.addUser(user);
-        userRepository.save(user);
         return "redirect:/crud_client";
     }
 

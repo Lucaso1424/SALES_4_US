@@ -53,7 +53,6 @@ public class User implements Serializable {
     @Column(nullable = false, length = 10)
     String rol;
 
-    @NotNull
     @Column(length = 64)
     private String image;
 
