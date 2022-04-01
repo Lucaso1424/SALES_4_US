@@ -1,6 +1,7 @@
 package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.CartItem;
+import com.copernic.cat.erp.sales_4_us.models.Product;
 import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.service.ProductService;
 import com.copernic.cat.erp.sales_4_us.service.ShoppingCartService;
@@ -18,8 +19,6 @@ import java.util.List;
 @Controller
 public class ShoppingCartController {
 
-    @Autowired //BY Lucas
-    private ProductService productService;
     @Autowired
     private UserService userService;
 
@@ -55,6 +54,16 @@ public class ShoppingCartController {
        return "redirect:/cart";
    }
 
-
+   //Necesito pasarle la id de product i recuperar el usuari de la sesion actual
+    @GetMapping("/addItem/{id}")
+    public String addCartItem(Product product){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User u = userService.findUserByEmail(authentication.getName());
+        CartItem itemToAdd = new CartItem();
+        itemToAdd.setUser(u);
+        itemToAdd.setProduct(product);
+        shoppingCartService.addCartItem(itemToAdd);
+        return "redirect:/cart";
+    }
 
 }
