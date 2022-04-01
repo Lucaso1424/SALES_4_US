@@ -49,7 +49,6 @@ public class Product implements Serializable {
     )
     private List<Provider> providers;
 
-    /*private List<LiniaPurchase> liniaPurchases;
-
+/*
     private List<Opinion> opinions; */
 }

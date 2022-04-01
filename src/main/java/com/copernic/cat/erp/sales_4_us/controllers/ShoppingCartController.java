@@ -20,6 +20,9 @@ import java.util.List;
 public class ShoppingCartController {
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
@@ -54,14 +57,16 @@ public class ShoppingCartController {
        return "redirect:/cart";
    }
 
-   //Necesito pasarle la id de product i recuperar el usuari de la sesion actual
     @GetMapping("/addItem/{id}")
     public String addCartItem(Product product){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User u = userService.findUserByEmail(authentication.getName());
         CartItem itemToAdd = new CartItem();
         itemToAdd.setUser(u);
-        itemToAdd.setProduct(product);
+        itemToAdd.setQuantity(1);
+        Product productToAdd = productService.findProduct(product);
+        itemToAdd.setProduct(productToAdd);
+        System.out.println(itemToAdd + "AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         shoppingCartService.addCartItem(itemToAdd);
         return "redirect:/cart";
     }

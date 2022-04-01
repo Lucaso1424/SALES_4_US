@@ -30,8 +30,8 @@ public class Purchase {
     @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @OneToMany
+    /*@OneToMany
     @JoinColumn(name = "purchaseId", nullable = false)
-    private List<CartItem> cartItems;
+    private List<CartItem> cartItems;*/
 
 }
