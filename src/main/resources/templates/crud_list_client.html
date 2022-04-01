@@ -38,10 +38,9 @@
                     <td>
                         <div class="d-flex align-items-center">
                             <img
-                                    src="../static/images/default_profile.png" th:src="@{images/default_profile.png}"
-                                    alt=""
-                                    style="width: 45px; height: 45px"
-                                    class="rounded-circle"
+                                th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}"
+                                style="width: 45px; height: 45px"
+                                class="rounded-circle"
                             />
                             <div class="ms-3">
                                 <p class="fw-bold mb-1" th:text="${user.firstName}"></p>

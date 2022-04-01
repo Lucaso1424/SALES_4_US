@@ -26,8 +26,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
 @Controller
 public class RegisterController {
 
@@ -82,7 +80,7 @@ public class RegisterController {
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("client");
         User savedUser = repo.save(user);
-        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getUserId();
+        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
         Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)){
             Files.createDirectories(uploadPath);

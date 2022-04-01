@@ -44,7 +44,7 @@ public class ShoppingCartController {
             return "cart";
         }
         CartItem savedItem = shoppingCartService.searchCartItem(cartItem);
-        if (savedItem.getQuantity() != cartItem.getQuantity()){
+        if (savedItem.getQuantity() != cartItem.getQuantity() && cartItem.getQuantity() > 0){
             savedItem.setQuantity(cartItem.getQuantity());
             shoppingCartService.addCartItem(savedItem);
         }
@@ -66,7 +66,6 @@ public class ShoppingCartController {
         itemToAdd.setQuantity(1);
         Product productToAdd = productService.findProduct(product);
         itemToAdd.setProduct(productToAdd);
-        System.out.println(itemToAdd + "AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         shoppingCartService.addCartItem(itemToAdd);
         return "redirect:/cart";
     }

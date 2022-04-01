@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                                 <div th:each="product: ${item.product}" class="price" th:text="${product.prize}"></div>
-                                    <div class="quantity" th:each="item : ${listcartItems}">
+                                    <div class="quantity">
                                         <span th:text="${item.quantity}" class="quantity-field"></span>
                                         <br>
                                         <a th:href="@{/updateCart/{id}/{quantity} (id=${item.id}, quantity=${item.quantity} + 1)}">
@@ -39,7 +39,7 @@
                                         </a>
                                     </div>
                                 <div class="subtotal" th:each="product: ${item.product}" th:text="${product.prize}"></div>
-                                <div th:each="item : ${listcartItems}">
+                                <div>
                                     <a th:href="@{/delete/cartItem/{id} (id=${item.id})}">
                                         <button class="mySearchButton" onclick="removeItem(this)">Remove</button>
                                     </a>
