@@ -98,9 +98,12 @@ INSERT INTO product (id, name, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
+INSERT INTO opinion (id, user_id, title, description, stars, product_id) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4, 1);
+
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
 
 SELECT * FROM user;
 SELECT * FROM product;
+SELECT * FROM opinion;
 SELECT * FROM product_categories;

@@ -1,6 +1,7 @@
 package com.copernic.cat.erp.sales_4_us.service;
 
 import com.copernic.cat.erp.sales_4_us.models.Opinion;
+import com.copernic.cat.erp.sales_4_us.models.Product;
 import com.copernic.cat.erp.sales_4_us.repository.OpinionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,11 @@ public class OpinionService {
     @Transactional(readOnly = true)
     public List<Opinion> listOpinion() {
         return opinionRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Opinion findOpinion(Opinion opinion) {
+        return opinionRepository.findById(opinion.getId()).orElse(null);
     }
 
     public void addOpinion(Opinion opinion) {

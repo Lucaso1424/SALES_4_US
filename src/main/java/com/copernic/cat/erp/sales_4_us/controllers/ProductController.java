@@ -34,11 +34,20 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public String showProduct(Product product, Model model) {
+    public String showProduct(Product product, Opinion opinion, Model model) {
         Product p = productService.findProduct(product);
+        var opinions = opinionService.findOpinion(opinion);
+        model.addAttribute("opinions", opinions);
         model.addAttribute("product", p);
         return "product";
     }
+
+    /*@GetMapping("/product/{id}")
+    public String showOpinion(Opinion opinion, Model model) {
+        var opinions = opinionService.findOpinion(opinion);
+        model.addAttribute("opinions", opinions);
+        return "product";
+    }*/
 
     @PostMapping("/saveOpinion")
     public String saveOpinion(Opinion opinion, Errors errors) {
