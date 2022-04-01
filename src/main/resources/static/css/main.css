@@ -104,13 +104,17 @@ a {
     margin-top: 50px;
     margin-left: 120px;
     width: 15%;
-    height: 120px;
+    height: 250px;
     border: 1px solid #7a7a7a;
 }
 
 .products.small_product p {
     font-family: sans-serif;
     font-weight: bold;
+}
+
+.products.small_product img {
+    width: 220px;
 }
 
 /*Product info*/

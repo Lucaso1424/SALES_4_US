@@ -44,7 +44,7 @@ id INT NOT NULL auto_increment PRIMARY KEY,
 name VARCHAR (20) NOT NULL,
 prize INTEGER NOT NULL,
 description VARCHAR (500) NOT NULL,
-image VARCHAR(64)
+image VARCHAR (64) NOT NULL
 );
 
 CREATE TABLE product_categories (
@@ -61,13 +61,13 @@ FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (provider_id) REFERENCES provider (id)
 );
 
-CREATE TABLE cart_item (
-id INT NOT NULL auto_increment PRIMARY KEY,
-product_id INT,
-user_id INT,
-quantity INT,
-FOREIGN KEY (product_id) REFERENCES product (id),
-FOREIGN KEY (user_id) REFERENCES user (id)
+CREATE TABLE linia_purchase (
+purchase_id INT NOT NULL,
+product_id INT NOT NULL,
+unit INT NOT NULL,
+PRIMARY KEY (purchase_id, product_id),
+FOREIGN KEY (purchase_id) REFERENCES purchase (id),
+FOREIGN KEY (product_id) REFERENCES product (ID)
 );
 
 CREATE TABLE opinion (
@@ -82,8 +82,8 @@ FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 
-INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer","admin", "default.jpg");
-INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("lucas", "padilla", "12345678P", 633568742, "$2a$10$CLOcU1vc/5Oq384KjEooLOCSO2o5xMnc2w4uaCIiKgGqP8PNGWRQW", "lucas@lucas.local", "Arriba", "client","default.png");
+INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer", "admin", "default.png");
+INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("lucas", "padilla", "12345678P", 633568742, "$2a$10$CLOcU1vc/5Oq384KjEooLOCSO2o5xMnc2w4uaCIiKgGqP8PNGWRQW", "lucas@lucas.local", "Arriba", "admin","default.png");
 
 INSERT INTO category (id, name, description) VALUES (1, "Footwear", "A few description for the category");
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (1, "provider_test", "one direction", 678264536, "www.provider.com", "provider@provider.local");
@@ -91,23 +91,19 @@ INSERT INTO category (id, name, description) VALUES (2, "Shirts", "A few descrip
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "second_provider", "two direction", 698267535, "www.provider2.com", "provider2@provider2.local");
 
 INSERT INTO product (id, name, prize, description, image) VALUES (
-1, 
-"Nike Air Force", 
+1,
+"Nike Aire Force",
 89.90,
-"The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, 
-bold colors and the perfect amount of reflective.", "nike.png"
-   );
-   
+"Nike Aire Force One Black and Yellow for teenagers and adults.",
+"nike_air_force.jpg"
+);
+
+INSERT INTO opinion (id, user_id, title, description, stars, product_id) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4, 1);
+
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
-INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,2);
-/*   
-INSERT INTO product (id, provider_id, name, prize, description, category) VALUES (2, 2, "Jordan Retro 4", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
-INSERT INTO product (id, provider_id, name, prize, category, description) VALUES (3, 3, "Adidas Superstar", 120.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
-INSERT INTO product (id, provider_id, name, prize, category, description) VALUES (4, 4, "Adidas Stan Smith", 99.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
-INSERT INTO product (id, provider_id, name, prize, category, description) VALUES (5, 5, "Vans U Old SKOOL", 40.90, "Footwear", "The glow lives on in the Nike Air Force 1 '07, a basketball icon that brings a new twist to its already signature flawless leather, bold colors and the perfect amount of reflective.");
-*/
+
 SELECT * FROM user;
 SELECT * FROM product;
+SELECT * FROM opinion;
 SELECT * FROM product_categories;
-SELECT * FROM cart_item;
