@@ -31,31 +31,30 @@
         <div class="content_reviews">
             <h1>Reviews</h1>
 
-            <div class="opinion">            
+            <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
+                <input type="text" class="form-control" placeholder="Title"/>
+                <input type="text" class="form-control" placeholder="Description">
+
+                <div class="actions clearfix mt-2">
+                    <button type="submit" class="btn-update">Save</button>
+                </div>
+            </form>
+
+            <div class="opinion">
                 <div class="user_opinion">
                 </div>
             </div>
 
-            <div class="opinion">            
-                <div class="user_opinion">
-                </div>
+            <div class="opinion" th:each="opinion : ${opinions}">
+                <table>
+                    <tr>
+                        <!-- FALTA USER.NAME, USER.IMAGE -->
+                        <p th:text="${opinion.title}"></p>
+                        <p th:text="${opinion.description}"></p>
+                    </tr>
+                </table>
             </div>
 
-            <div class="opinion">            
-                <div class="user_opinion">
-                </div>
-            </div>
-
-            <div class="opinion">            
-                <div class="user_opinion">
-                </div>
-            </div>
-
-            <div class="opinion">            
-                <div class="user_opinion">
-                </div>
-            </div>
         </div>
-
     </body>
 </html>
