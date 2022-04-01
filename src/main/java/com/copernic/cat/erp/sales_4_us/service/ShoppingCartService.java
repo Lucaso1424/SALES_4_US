@@ -17,9 +17,6 @@ public class ShoppingCartService {
     @Autowired
     private CartItemRepository cartItemRepository;
 
-    @Autowired
-    private UserService userService;
-
 
     public List<CartItem> listCartItems(User user) {
         List<CartItem> userCartItems = new ArrayList<>();
@@ -38,5 +35,10 @@ public class ShoppingCartService {
     public CartItem searchCartItem(CartItem cartItem){
         return cartItemRepository.findById(cartItem.getId()).orElse(null);
     }
+
+    public void deleteCart(CartItem cartItem){
+        cartItemRepository.delete(cartItem);
+    }
+
 
 }

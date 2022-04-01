@@ -27,15 +27,21 @@
                                         <p th:text="'Product code: ' + ${product.id}"></p>
                                     </div>
                                 </div>
-                                <div th:each="product: ${item.product}" class="price" th:text="${product.prize} + '$'"></div>
+                                <div th:each="product: ${item.product}" class="price" th:text="${product.prize}"></div>
                                     <div class="quantity" th:each="item : ${listcartItems}">
-                                        <input type="number" th:value="${item.quantity}" th:onclick=" |window.location.href='@{/updateCart/{id}/{quantity}} (id=${item.id})(quantity=${item.quantity})'|"  min="1" class="quantity-field" onchange="updateQuantity(this);">
+                                        <span th:text="${item.quantity}" class="quantity-field"></span>
+                                        <br>
+                                        <a th:href="@{/updateCart/{id}/{quantity} (id=${item.id}, quantity=${item.quantity} + 1)}">
+                                                <button class="mySearchButton mt-2">+</button>
+                                        </a>
+                                        <a th:href="@{/updateCart/{id}/{quantity} (id=${item.id}, quantity=${item.quantity - 1})}">
+                                            <button class="mySearchButton mt-2">-</button>
+                                        </a>
                                     </div>
-
-                                <div class="subtotal" th:each="product: ${item.product}" th:text="${product.prize} + '$'"></div>
-                                <div class="remove" th:each="item : ${listcartItems}">
+                                <div class="subtotal" th:each="product: ${item.product}" th:text="${product.prize}"></div>
+                                <div th:each="item : ${listcartItems}">
                                     <a th:href="@{/delete/cartItem/{id} (id=${item.id})}">
-                                        <button onclick="removeItem(this)">Remove</button>
+                                        <button class="mySearchButton" onclick="removeItem(this)">Remove</button>
                                     </a>
                                 </div>
                         </th:block>
@@ -43,18 +49,14 @@
             </div>
             <aside>
                 <div class="summary" th:each="item : ${listcartItems}">
-                    <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+                    <div class="summary-total-items"><span class="total-items" th:text="${item.quantity}"></span> Items in your Bag</div>
                     <div class="summary-subtotal">
                         <div class="subtotal-title">Subtotal</div>
-                        <div class="subtotal-value final-value" id="basket-subtotal" th:each="product: ${item.product}" th:text="${product.prize}"></div> 
-                        <div class="summary-promo hide">
-                            <div class="promo-title">Promotion</div>
-                            <div class="promo-value final-value" id="basket-promo"></div>
-                        </div>
+                        <div class="subtotal-value final-value" id="basket-subtotal" th:each="product: ${item.product}" th:text="${product.prize * item.quantity}"></div>
                     </div>
                     <div class="summary-total">
                         <div class="total-title">Total</div>
-                        <div class="total-value final-value" id="basket-total" th:each="product: ${item.product}" th:text="${product.prize}"></div>
+                        <div class="total-value final-value" id="basket-total" th:each="product: ${item.product}" th:text="${product.prize * item.quantity}"></div>
                     </div>
                     <div class="summary-checkout">
                         <button class="checkout-cta">Go to Secure Checkout</button>
