@@ -77,16 +77,20 @@
                                     Address is requires
                                 </div>
                             </div>
-
-                            <div class="mb-3">
-                                <input type="file" id="fileImage" class="form-control" name="fileImage"
-                                       accept="image/*" >
-                            </div>
-                            <div class="mb-3">
-                                <p>
-                                    <img id="thumbnail" alt="Logo Preview"/>
-                                </p>
-                            </div>
+                            <center>
+                                <div class="mb-3">
+                                    <div class="custom-file">
+                                        <label for="fileImage">Upload Profile</label>
+                                        <input type="file" id="fileImage" class="form-control" name="fileImage"
+                                               accept="image/*" >
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <p>
+                                        <img id="thumbnail" alt="Logo Preview"/>
+                                    </p>
+                                </div>
+                            </center>
                             <script>
                                 $(function(){
                                     $("#fileImage").change(function(event) {

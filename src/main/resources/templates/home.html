@@ -11,10 +11,14 @@
                 <div class="products small_product" th:each="product : ${products}">
                     <table>
                         <tr>
-                        <p th:text="${product.name}"></p>
-                        <p th:text="${product.prize}+'$'"></p>
-                        <img th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}">
-                        <p><a th:href="@{/product/{id}(id=${product.id})}">View product</a></p>
+                            <a th:href="@{/product/{id}(id=${product.id})}">
+                                <img th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}" width="400" height="200">
+                                <br>
+                                <span class="black-letter" th:text="${product.name}"></span>
+                                <br>
+                                <span class="black-letter" th:text="${product.prize}+'€'"></span>
+                            </a>
+                            <a th:href="@{/addItem/{id}(id=${product.id})}"><button class="addButton">+</button></a>
                         </tr>
                     </table>
                 </div>

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -73,8 +74,15 @@ public class ShoppingCartController {
         itemToAdd.setUser(u);
         itemToAdd.setQuantity(1);
         Product productToAdd = productService.findProduct(product);
+        List<CartItem> items = shoppingCartService.listCartItems(u);
+        List<Product> addedProducts = new ArrayList<>();
         itemToAdd.setProduct(productToAdd);
-        shoppingCartService.addCartItem(itemToAdd);
+        for (CartItem c : items){
+            addedProducts.add(c.getProduct());
+        }
+        if (!addedProducts.contains(productToAdd)){
+            shoppingCartService.addCartItem(itemToAdd);
+        }
         return "redirect:/cart";
     }
 
