@@ -4,23 +4,21 @@
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <div class="container">
-            <form th:action="@{/saveClient}" enctype="multipart/form-data" method="POST" th:object="${user}" >
+            <form th:action="@{/saveEditClient}" enctype="multipart/form-data" method="POST" th:object="${user}" >
                 <div class="row justify-content-md-center">
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="login-screen">
                             <div class="login-box">
-                                <div th:if="${user != null}">
                                     <center>
                                         <div class="custom-file">
                                             <label for="fileImage">
-                                                <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
+                                                <img id="thumbnail" th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}" width="200" height="200">
                                             </label>
                                             <div class="custom-file">
                                                 <input id="fileImage" type="file" name="fileImage" accept="image/*" />
                                             </div>
                                         </div>
                                     </center>
-                                </div>
                                 <div class="row gutters">
                                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                         <div class="form-group">
@@ -78,15 +76,6 @@
                                       $("#thumbnail").attr("src",x);
                                       $("#thumbnail").attr("width",300);
                                       $("#thumbnail").attr("height",300);
-                                      console.log(event);
-                                  });
-                                },
-                                function(){
-                                  $("#fileImage_").change(function(event) {
-                                      var x = URL.createObjectURL(event.target.files[0]);
-                                      $("#thumbnail_").attr("src",x);
-                                      $("#thumbnail_").attr("width",300);
-                                      $("#thumbnail_").attr("height",300);
                                       console.log(event);
                                   });
                                 })
