@@ -1,11 +1,11 @@
 package com.copernic.cat.erp.sales_4_us.models;
 
-import java.io.Serializable;
 import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Data
@@ -26,7 +26,7 @@ public class Product implements Serializable {
     @NotNull
     @Column(nullable = false)
     private double prize;
-    
+
     @Column(nullable = false, length = 64)
     private String image;
 
@@ -49,6 +49,12 @@ public class Product implements Serializable {
     )
     private List<Provider> providers;
 
-/*
-    private List<Opinion> opinions; */
+    @ManyToMany
+    @JoinTable(
+            name = "product_opinions",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "opinion_id")
+    )
+    private List<Opinion> opinions;
+
 }

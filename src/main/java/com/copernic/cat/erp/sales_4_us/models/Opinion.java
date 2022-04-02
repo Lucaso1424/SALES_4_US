@@ -12,8 +12,12 @@ public class Opinion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", nullable = false)
-    private Integer id;
+    @Column(name = "id", nullable = false)
+    private int id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(nullable = false, length = 40)
     private String title;
@@ -21,24 +25,10 @@ public class Opinion implements Serializable {
     @Column(nullable = false, length = 400)
     private String description;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_ID")
-    private Product product;
+    @Column(nullable = false)
+    private int stars;
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @Transient
+    private int actualProduct;
 
 }

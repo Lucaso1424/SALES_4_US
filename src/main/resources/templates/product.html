@@ -1,61 +1,92 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <head th:replace="layout/plantilla_bootstrap :: head">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <link href="../static/css/main.css" type="type/css" rel="stylesheet">
-    </head>
-    <body>
-        <header th:replace="layout/plantilla_navbar :: header"></header>
-        <div class="content_product">
+<head th:replace="layout/plantilla_bootstrap :: head">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="../static/css/main.css" type="type/css" rel="stylesheet">
+</head>
+<body>
+<header th:replace="layout/plantilla_navbar :: header"></header>
+<div class="content_product">
 
-            <div class="div_product">
-                <img width="440" style="text-align: center;" th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}">
-            </div>
+    <div class="div_product">
+        <img width="440" style="text-align: center;"
+             th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}">
+    </div>
 
-            <div class="div_product">
-                <h2 th:text="${product.name}"></h2>
-                <hr>
-                <h4 th:text="${product.prize} + '$'"></h4>
-                <hr>
-                <p th:text="${product.description}"></p>
-                <hr>
-                <a th:href="@{/addItem/{id}(id=${product.id})}"><button type="button" class="mySearchButton">Add to cart</button></a>
-            </div>
-
-        </div>
-
+    <div class="div_product">
+        <h2 th:text="${product.name}"></h2>
         <hr>
+        <h4 th:text="${product.prize} + '$'"></h4>
+        <hr>
+        <p th:text="${product.description}"></p>
+        <hr>
+        <a th:href="@{/addItem/{id}(id=${product.id})}">
+            <button type="button" class="mySearchButton">Add to cart</button>
+        </a>
+    </div>
 
-        <div class="container content_reviews">
-            <h1>Reviews</h1>
-            <center>
-                <div class="login-screen">
-                    <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
-                        <input type="text" class="form-control" placeholder="Title"/>
-                        <input type="text" class="form-control" placeholder="Description">
+</div>
 
-                        <div class="actions clearfix mt-2">
-                            <button type="submit" class="btn-update">Save</button>
-                        </div>
-                    </form>
+<hr>
+
+<div class="container content_reviews">
+    <h1>Reviews</h1>
+    <center>
+        <div class="login-screen">
+            <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
+
+                <select th:field="*{actualProduct}" class="invisibol">
+                    <option th:value="${product.id}" selected></option>
+                </select>
+
+                <input type="text" class="form-control" placeholder="Title" maxlength="40" th:field="*{title}"/>
+                <input type="text" class="form-control" placeholder="Description" maxlength="400" th:field="*{description}">
+                <input type="number" class="form-control" placeholder="Stars" maxlength="1" th:field="*{stars}">
+
+                <div class="actions clearfix mt-2">
+                    <button type="submit" class="btn-update">Save</button>
                 </div>
-            </center>
-            <div class="opinion">
-                <div class="user_opinion">
-                </div>
-            </div>
-
-            <div class="opinion" th:each="opinion : ${opinions}">
-                <table>
-                    <tr>
-                        <!-- FALTA USER.NAME, USER.IMAGE -->
-                        <p th:text="${opinion.title}"></p>
-                        <p th:text="${opinion.description}"></p>
-                    </tr>
-                </table>
-            </div>
-
+            </form>
         </div>
-    </body>
+    </center>
+
+    <div class="opinion" th:each="opinion : ${opinions}">
+        <table>
+            <tr>
+                <!--User: <b><p th:text="${user.email}"></p></b>-->
+                <h4 th:text="${opinion.title}"></h4>
+                <p th:text="${opinion.description}"></p>
+                <span th:if="${opinion.stars == 0}"></span>
+                <span th:if="${opinion.stars == 1}">
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 2}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 3}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 4}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 5}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
 </html>

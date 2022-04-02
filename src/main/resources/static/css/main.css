@@ -185,10 +185,22 @@ hr {
 
 .opinion {
     width: 75%;
-    height: 120px;
+    height: 160px;
     margin-top: 45px;
     margin-left: 120px;
     border: 1px solid #606060;
+}
+
+.opinion p {
+    margin-bottom: 10px;
+}
+
+.opinion i {
+    margin-bottom: 10px;
+}
+
+.invisibol {
+    display: none;
 }
 
 .user_opinion {
