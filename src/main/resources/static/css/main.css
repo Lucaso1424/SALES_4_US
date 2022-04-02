@@ -195,6 +195,10 @@ hr {
     margin-bottom: 10px;
 }
 
+.opinion i {
+    margin-bottom: 10px;
+}
+
 .user_opinion {
     width: 15%;
     height: 119px;

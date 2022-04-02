@@ -51,13 +51,35 @@
                 User: <b><p th:text="${opinion.email_user}"></p></b>
                 <h4 th:text="${opinion.title}"></h4>
                 <p th:text="${opinion.description}"></p>
-                <p th:text="${opinion.stars}"></p>
-                <!-- Stars: <span th:if="${opinion.stars == 4}"><i class="bi bi-star-fill"></i>
-                        </span>-->
+                <span th:if="${opinion.stars == 0}"></span>
+                <span th:if="${opinion.stars == 1}">
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 2}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 3}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 4}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                <span th:if="${opinion.stars == 5}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
             </tr>
         </table>
     </div>
-
 </div>
 
 </body>
