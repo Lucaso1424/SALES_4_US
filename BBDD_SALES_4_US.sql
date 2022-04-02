@@ -100,6 +100,14 @@ INSERT INTO product (id, name, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
+INSERT INTO product (id, name, prize, description, image) VALUES (
+2,
+"Bobo",
+89.90,
+"Nike Aire Force One Black and Yellow for teenagers and adults.",
+"nike_air_force.jpg"
+);
+
 INSERT INTO opinion (id, user_id, title, description, stars) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4);
 
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
