@@ -41,7 +41,8 @@
                 </select>
 
                 <input type="text" class="form-control" placeholder="Title" maxlength="40" th:field="*{title}"/>
-                <input type="text" class="form-control" placeholder="Description" maxlength="400" th:field="*{description}">
+                <input type="text" class="form-control" placeholder="Description" maxlength="400"
+                       th:field="*{description}">
                 <input type="number" class="form-control" placeholder="Stars" maxlength="1" th:field="*{stars}">
 
                 <div class="actions clearfix mt-2">
@@ -52,39 +53,44 @@
     </center>
 
     <div class="opinion" th:each="opinion : ${opinions}">
-        <table>
-            <tr>
-                <!--User: <b><p th:text="${user.email}"></p></b>-->
-                <h4 th:text="${opinion.title}"></h4>
-                <p th:text="${opinion.description}"></p>
-                <span th:if="${opinion.stars == 0}"></span>
-                <span th:if="${opinion.stars == 1}">
+        <div class="content-opinion">
+            <table>
+                <tr>
+                    <img th:src="@{${'/images/user-image/' + opinion.user.email + '/' + opinion.user.image}}">
+                    <br>
+                    <b>User: </b>
+                    <b><p th:text="${opinion.user.email}"></p></b>
+                    <h4 th:text="${opinion.title}"></h4>
+                    <p th:text="${opinion.description}"></p>
+                    <span th:if="${opinion.stars == 0}"></span>
+                    <span th:if="${opinion.stars == 1}">
                     <i class="fa-solid fa-star"></i>
                 </span>
-                <span th:if="${opinion.stars == 2}">
+                    <span th:if="${opinion.stars == 2}">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </span>
-                <span th:if="${opinion.stars == 3}">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </span>
-                <span th:if="${opinion.stars == 4}">
-                    <i class="fa-solid fa-star"></i>
+                    <span th:if="${opinion.stars == 3}">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </span>
-                <span th:if="${opinion.stars == 5}">
-                    <i class="fa-solid fa-star"></i>
+                    <span th:if="${opinion.stars == 4}">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                 </span>
-            </tr>
-        </table>
+                    <span th:if="${opinion.stars == 5}">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </span>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 
