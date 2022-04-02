@@ -1,7 +1,6 @@
 package com.copernic.cat.erp.sales_4_us.service;
 
 import com.copernic.cat.erp.sales_4_us.models.Opinion;
-import com.copernic.cat.erp.sales_4_us.models.Product;
 import com.copernic.cat.erp.sales_4_us.repository.OpinionRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

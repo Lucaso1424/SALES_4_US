@@ -73,6 +73,7 @@ FOREIGN KEY (user_id) REFERENCES user (id)
 CREATE TABLE opinion (
 id INT NOT NULL auto_increment PRIMARY KEY,
 user_id INT NOT NULL,
+email_user VARCHAR (45) NOT NULL,
 title VARCHAR (40) NOT NULL,
 description VARCHAR (400) NOT NULL,
 stars INT,
@@ -98,7 +99,7 @@ INSERT INTO product (id, name, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
-INSERT INTO opinion (id, user_id, title, description, stars, product_id) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4, 1);
+INSERT INTO opinion (id, user_id, email_user, title, description, stars, product_id) VALUES (1, 1, "jose@jose.local", "Good sneakers", "Good shoes for every feet and very comfortable :)", 4, 1);
 
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);

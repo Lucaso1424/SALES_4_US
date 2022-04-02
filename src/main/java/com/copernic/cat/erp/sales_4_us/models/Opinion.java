@@ -21,6 +21,12 @@ public class Opinion implements Serializable {
     @Column(nullable = false, length = 400)
     private String description;
 
+    @Column(nullable = false, length = 45)
+    private String email_user;
+
+    @Column(nullable = false)
+    private int stars;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRODUCT_ID")
     private Product product;
