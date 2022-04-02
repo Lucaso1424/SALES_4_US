@@ -38,9 +38,16 @@ name VARCHAR(20) NOT NULL,
 description VARCHAR(500)
 );
 
+CREATE TABLE opinion (
+id INT NOT NULL auto_increment PRIMARY KEY,
+user_id INT NOT NULL,
+title VARCHAR (40) NOT NULL,
+description VARCHAR (400) NOT NULL,
+stars INT
+);
 
 CREATE TABLE product(
-id INT NOT NULL auto_increment PRIMARY KEY,
+id INT NOT NULL PRIMARY KEY,
 name VARCHAR (20) NOT NULL,
 prize INTEGER NOT NULL,
 description VARCHAR (500) NOT NULL,
@@ -52,6 +59,13 @@ product_id INT NOT NULL,
 category_id INT NOT NULL,
 FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (category_id) REFERENCES category (id)
+);
+
+CREATE TABLE product_opinions (
+product_id INT NOT NULL,
+opinion_id INT NOT NULL,
+FOREIGN KEY (product_id) REFERENCES product (id),
+FOREIGN KEY (opinion_id) REFERENCES opinion (id)
 );
 
 CREATE TABLE product_provider (
@@ -70,19 +84,6 @@ FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
-CREATE TABLE opinion (
-id INT NOT NULL auto_increment PRIMARY KEY,
-user_id INT NOT NULL,
-email_user VARCHAR (45) NOT NULL,
-title VARCHAR (40) NOT NULL,
-description VARCHAR (400) NOT NULL,
-stars INT,
-product_id INT NOT NULL,
-FOREIGN KEY (product_id) REFERENCES product (id),
-FOREIGN KEY (user_id) REFERENCES user (id)
-);
-
-
 INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer", "admin", "default_profile.png");
 INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("lucas", "padilla", "12345678P", 633568742, "$2a$10$CLOcU1vc/5Oq384KjEooLOCSO2o5xMnc2w4uaCIiKgGqP8PNGWRQW", "lucas@lucas.local", "Arriba", "admin","default_profile.png");
 
@@ -99,7 +100,7 @@ INSERT INTO product (id, name, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
-INSERT INTO opinion (id, user_id, email_user, title, description, stars, product_id) VALUES (1, 1, "jose@jose.local", "Good sneakers", "Good shoes for every feet and very comfortable :)", 4, 1);
+INSERT INTO opinion (id, user_id, title, description, stars) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4);
 
 INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);

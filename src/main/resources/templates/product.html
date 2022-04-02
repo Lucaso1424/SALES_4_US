@@ -35,8 +35,14 @@
     <center>
         <div class="login-screen">
             <form th:action="@{/saveOpinion}" method="POST" th:object="${opinion}">
-                <input type="text" class="form-control" placeholder="Title"/>
-                <input type="text" class="form-control" placeholder="Description">
+
+                <select th:field="*{actualProduct}" class="invisibol">
+                    <option th:value="${product.id}" selected></option>
+                </select>
+
+                <input type="text" class="form-control" placeholder="Title" maxlength="40" th:field="*{title}"/>
+                <input type="text" class="form-control" placeholder="Description" maxlength="400" th:field="*{description}">
+                <input type="number" class="form-control" placeholder="Stars" maxlength="1" th:field="*{stars}">
 
                 <div class="actions clearfix mt-2">
                     <button type="submit" class="btn-update">Save</button>
@@ -48,7 +54,7 @@
     <div class="opinion" th:each="opinion : ${opinions}">
         <table>
             <tr>
-                User: <b><p th:text="${opinion.email_user}"></p></b>
+                <!--User: <b><p th:text="${user.email}"></p></b>-->
                 <h4 th:text="${opinion.title}"></h4>
                 <p th:text="${opinion.description}"></p>
                 <span th:if="${opinion.stars == 0}"></span>

@@ -25,10 +25,10 @@ public class OpinionService {
         return opinionRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
+    /*@Transactional(readOnly = true)
     public Opinion findOpinion(Opinion opinion) {
         return opinionRepository.findById(opinion.getId()).orElse(null);
-    }
+    }*/
 
     public void addOpinion(Opinion opinion) {
         opinionRepository.save(opinion);

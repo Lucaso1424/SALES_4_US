@@ -199,6 +199,10 @@ hr {
     margin-bottom: 10px;
 }
 
+.invisibol {
+    display: none;
+}
+
 .user_opinion {
     width: 15%;
     height: 119px;

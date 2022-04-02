@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OpinionRepository extends JpaRepository<Opinion, Integer> {
-    Opinion findOpinionById(Integer id);
+    /*Opinion findOpinionById(Integer id);*/
 }
