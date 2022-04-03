@@ -11,16 +11,21 @@ import com.copernic.cat.erp.sales_4_us.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-/**
- *
- * @author lucas
- */
 @Controller
 public class CRUDClientController {
 
@@ -38,7 +43,7 @@ public class CRUDClientController {
     }
 
     @GetMapping("/delete/{userId}")
-    public String deleteClient(User user){
+    public String deleteClient(User user) {
         userService.deleteUser(user);
         return "redirect:/crud_client";
     }
@@ -50,11 +55,35 @@ public class CRUDClientController {
         return "formClient";
     }
 
-    @PostMapping("/saveClient") //action = saveClient
-    public String saveClient(User user, Errors errors) {
+    @GetMapping("/formEditClient")
+    public String editClientFrom(User user, Model model) {
+        User u = userService.searchUser(user);
+        model.addAttribute("user", u);
+        return "formEditClient";
+    }
+
+    @PostMapping("saveEditClient")
+    public String saveEditClient(
+            User user,
+            Errors errors,
+            @RequestParam("fileImage") MultipartFile multipartFile
+    ) throws IOException {
         if (errors.hasErrors()) {
             System.out.println(errors);
-            return "formClient";
+            return "/profile";
+        }
+        String fileName;
+        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            user.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/user-image/" + user.getEmail();
+            Path uploadPath = Paths.get(uploadDir);
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
         }
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
@@ -62,11 +91,59 @@ public class CRUDClientController {
         return "redirect:/crud_client";
     }
 
+    @PostMapping("/saveClient") //action = saveClient
+    public String saveClient(
+            @ModelAttribute(name="user") User user,
+            Errors errors,
+            @RequestParam("fileImage") MultipartFile multipartFile
+    ) throws IOException {
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "formClient";
+        }
+        String fileName;
+        User savedUser = userRepository.save(user);
+        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
+            fileName = "default_profile.png";
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./static/images/default_profile.png")) {
+                Path filePath = uploadPath.resolve(fileName);
+                assert inputStream != null;
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
+        } else {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
+        }
+        user.setImage(fileName);
+        Utilities u = new Utilities();
+        user.setPassword(u.encryptPass(user.getPassword()));
+        user.setRol("client");
+        userService.addUser(user);
+
+        return "redirect:/crud_client";
+    }
+
     @GetMapping("/edit/{userId}")
     public String editClient(User user, Model model) {
         User u = userService.searchUser(user);
         model.addAttribute("user", u);
-        return "formClient";
+        return "formEditClient";
     }
 
 }

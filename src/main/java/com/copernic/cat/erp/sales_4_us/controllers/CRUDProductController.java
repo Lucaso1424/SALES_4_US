@@ -73,24 +73,78 @@ public class CRUDProductController {
             return "formProduct";
         }
 
-        String fileName = null;
-        if (multipartFile.getOriginalFilename() == null) {
-            fileName = "default_product.png";
+        String fileName;
+        String uploadDir = "./src/main/resources/static/images/product-image/" + product.getName();
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()) {
+            fileName = "logo.png";
+            product.setImage(fileName);
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+            try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./static/images/logo.png")) {
+                Path filePath = uploadPath.resolve(fileName);
+                assert inputStream != null;
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
         } else {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            product.setImage(fileName);
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)) {
+                Files.createDirectories(uploadPath);
+            }
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
         }
-        product.setImage(fileName);
 
-        String uploadDir = "./src/main/resources/static/images/product-image/" + product.getName();
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
+        Provider providerToAdd;
+        Category categoryToAdd;
+        for (Provider provider : product.getProviders()) {
+            providerToAdd = providerService.findProvider(provider);
+            if (!product.getProviders().contains(providerToAdd)) {
+                product.getProviders().add(providerToAdd);
+            }
         }
-        try (InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ioException) {
-            throw new IOException("Could not save img " + fileName);
+        for (Category category : product.getCategories()) {
+            categoryToAdd = categoryService.findCategory(category);
+            if (!product.getCategories().contains(categoryToAdd)) {
+                product.getCategories().add(categoryToAdd);
+            }
+        }
+        productService.addProduct(product);
+        return "redirect:/crud_product";
+    }
+
+    @PostMapping("/saveEditProduct")
+    public String saveEditProduct(@ModelAttribute(name = "product") Product product,
+                              Errors errors,
+                              @RequestParam("fileImage") MultipartFile multipartFile
+    ) throws IOException {
+
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "formProduct";
+        }
+
+        String fileName = null;
+        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            product.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/product-image/" + product.getName();
+            Path uploadPath = Paths.get(uploadDir);
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
         }
 
         Provider providerToAdd;

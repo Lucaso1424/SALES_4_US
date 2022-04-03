@@ -4,7 +4,7 @@
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <div class="container">
-  <form th:action="@{/saveAdmin}" enctype="multipart/form-data" method="POST" th:object="${user}" >
+  <form th:action="@{/saveEditAdmin}" enctype="multipart/form-data" method="POST" th:object="${user}" >
     <div class="row justify-content-md-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="login-screen">
@@ -12,7 +12,7 @@
             <center>
               <div class="custom-file mb-4">
                 <label for="fileImage">
-                  <img id="thumbnail" th:src="@{/images/default_profile.png}" width="200" height="200">
+                  <img id="thumbnail" th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}" width="200" height="200">
                 </label>
                 <div class="custom-file">
                   <input id="fileImage" type="file" name="fileImage" accept="image/*" />
@@ -69,6 +69,17 @@
               <button type="submit" class="btn-update">Save</button>
               <button class="btn-cancel">Cancel</button>
             </div>
+            <script>
+                                $(function(){
+                                    $("#fileImage").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",100);
+                                        $("#thumbnail").attr("height",100);
+                                        console.log(event);
+                                    });
+                                })
+                            </script>
           </div>
         </div>
       </div>

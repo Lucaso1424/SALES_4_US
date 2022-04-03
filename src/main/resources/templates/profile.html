@@ -4,20 +4,24 @@
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <div class="container">
-    <form th:action="@{/updateProfile}" method="POST" th:object="${user}" >
+    <form th:action="@{/updateProfile}" enctype="multipart/form-data" method="POST" th:object="${user}" >
         <div class="row justify-content-md-center">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="login-screen">
                     <div class="login-box">
                         <center class="mb-3">
-                            <a class="rounded-circle">
-                                <img th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}" width="300" height="300">
-                            </a>
+                            <div class="rounded-circle custom-file">
+                                <label for="fileImage">
+                                    <img id="thumbnail" th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}" width="300" height="300">
+                                </label>
+                                <div class="custom-file">
+                                    <input id="fileImage" type="file" name="fileImage" accept="image/*" />
+                                </div>
+                            </div>
                         </center>
                         <div class="row gutters">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                                 <div class="form-group">
-                                    <input type="hidden" name="userId" th:field="*{image}"/>
                                     <input type="hidden" name="userId" th:field="*{userId}"/>
                                     <input type="text" class="form-control" placeholder="First Name" th:field="*{firstName}"/>
                                 </div>
@@ -63,6 +67,17 @@
                         <div class="actions clearfix mt-2">
                             <button type="submit" class="btn-update">Update</button>
                         </div>
+                        <script>
+                                $(function(){
+                                    $("#fileImage").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",300);
+                                        $("#thumbnail").attr("height",300);
+                                        console.log(event);
+                                    });
+                                })
+                        </script>
                     </div>
                 </div>
             </div>

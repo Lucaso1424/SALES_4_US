@@ -4,17 +4,23 @@
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <div class="container">
-  <form th:action="@{/saveProduct}" method="POST" th:object="${product}" >
+  <form th:action="@{/saveEditProduct}" enctype="multipart/form-data" method="POST" th:object="${product}" >
     <div class="row justify-content-md-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="login-screen">
           <div class="login-box">
-            <center>
-              <a class="login-logo">
-                <input type="hidden" name="userId" th:field="*{image}"/>
-                <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
-              </a>
-            </center>
+            <div>
+              <center>
+                <div class="custom-file mb-4">
+                  <label for="fileImage">
+                    <img id="thumbnail" th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}" width="120" height="100"/>
+                  </label>
+                  <div class="custom-file">
+                    <input id="fileImage" type="file" name="fileImage" accept="image/*" />
+                  </div>
+                </div>
+              </center>
+            </div>
             <div class="row gutters">
               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 mb-3">
                 <div class="form-group">
@@ -55,6 +61,17 @@
               <button type="submit" class="btn-update">Save</button>
               <button class="btn-cancel">Cancel</button>
             </div>
+            <script>
+                                $(function(){
+                                    $("#fileImage").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",100);
+                                        $("#thumbnail").attr("height",100);
+                                        console.log(event);
+                                    });
+                                })
+                            </script>
           </div>
         </div>
       </div>
