@@ -4,13 +4,13 @@
 <body>
 <header th:replace="layout/plantilla_navbar :: header"></header>
 <div class="container">
-  <form th:action="@{/saveEditAdmin}" method="POST" th:object="${user}" >
+  <form th:action="@{/saveEditAdmin}" enctype="multipart/form-data" method="POST" th:object="${user}" >
     <div class="row justify-content-md-center">
       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
         <div class="login-screen">
           <div class="login-box">
             <center>
-              <div class="custom-file">
+              <div class="custom-file mb-4">
                 <label for="fileImage">
                   <img id="thumbnail" th:src="@{${'/images/user-image/' + user.email + '/' + user.image}}" width="200" height="200">
                 </label>

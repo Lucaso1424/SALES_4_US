@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -27,9 +26,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
 
-/**
- * @author lucas
- */
 @Controller
 public class CRUDClientController {
 
@@ -76,7 +72,7 @@ public class CRUDClientController {
             System.out.println(errors);
             return "/profile";
         }
-        String fileName = null;
+        String fileName;
         if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
