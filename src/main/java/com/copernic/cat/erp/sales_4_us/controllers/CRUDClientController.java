@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -95,29 +96,38 @@ public class CRUDClientController {
     }
 
     @PostMapping("/saveClient") //action = saveClient
-    public String saveClient(User user, Errors errors, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+    public String saveClient(
+            @ModelAttribute(name="user") User user,
+            Errors errors,
+            @RequestParam("fileImage") MultipartFile multipartFile
+    ) throws IOException {
         if (errors.hasErrors()) {
             System.out.println(errors);
             return "formClient";
         }
-        String fileName;
-        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
-            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        } else {
+        String fileName = null;
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
             fileName = "default_profile.png";
+        } else {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         }
         user.setImage(fileName);
-        String uploadDir = "./src/main/resources/static/images/user-image/" + user.getEmail();
-        Path uploadPath = Paths.get(uploadDir);
-        try (InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ioException) {
-            throw new IOException("Could not save img " + fileName);
-        }
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
-        userService.addUser(user);
+        user.setRol("client");
+        User savedUser = userRepository.save(user);
+        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+        Path uploadPath = Paths.get(uploadDir);
+        if (!Files.exists(uploadPath)){
+            Files.createDirectories(uploadPath);
+        }
+        try(InputStream inputStream = multipartFile.getInputStream()) {
+            Path filePath = uploadPath.resolve(fileName);
+            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+        } catch (IOException ioException){
+            throw new IOException("Could not save img " + fileName);
+        }
+
         return "redirect:/crud_client";
     }
 

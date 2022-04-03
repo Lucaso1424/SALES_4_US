@@ -9,11 +9,11 @@
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                         <div class="login-screen">
                             <div class="login-box">
-                                <div th:if="${user != null}">
+                                <div>
                                     <center>
                                         <div class="custom-file">
                                             <label for="fileImage">
-                                                <img src="../static/images/default_profile.png" th:src="@{/images/default_profile.png}"/>
+                                                <img id="thumbnail" th:src="@{/images/default_profile.png}" width="120" height="100"/>
                                             </label>
                                             <div class="custom-file">
                                                 <input id="fileImage" type="file" name="fileImage" accept="image/*" />
@@ -78,15 +78,6 @@
                                       $("#thumbnail").attr("src",x);
                                       $("#thumbnail").attr("width",300);
                                       $("#thumbnail").attr("height",300);
-                                      console.log(event);
-                                  });
-                                },
-                                function(){
-                                  $("#fileImage_").change(function(event) {
-                                      var x = URL.createObjectURL(event.target.files[0]);
-                                      $("#thumbnail_").attr("src",x);
-                                      $("#thumbnail_").attr("width",300);
-                                      $("#thumbnail_").attr("height",300);
                                       console.log(event);
                                   });
                                 })
