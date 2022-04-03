@@ -56,14 +56,6 @@ public class RegisterController {
             return "error_test";
         }
 
-        String fileName = null;
-        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
-            fileName = "default_profile.png";
-        } else {
-            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        }
-        user.setImage(fileName);
-
         Utilities u = new Utilities();
         // Email no valido
         if (!u.checkDni(user.getDni())) {
@@ -75,23 +67,42 @@ public class RegisterController {
             msg.addFlashAttribute("error", u.message("profile.error.emailAlreadyTaken"));
             return "redirect:/register";
         }
-
-        // Ecrypt password
+        String fileName;
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("client");
         User savedUser = repo.save(user);
-        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        try(InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ioException){
-            throw new IOException("Could not save img " + fileName);
-        }
 
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
+            fileName = "default_profile.png";
+            user.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./static/images/default_profile.png")) {
+                Path filePath = uploadPath.resolve(fileName);
+                assert inputStream != null;
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
+        } else {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            user.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
+        }
+        userService.addUser(user);
         return "register_success";
     }
 

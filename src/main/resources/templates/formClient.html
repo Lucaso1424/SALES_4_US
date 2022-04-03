@@ -73,15 +73,15 @@
                             </div>
                             <script>
                                 $(function(){
-                                  $("#fileImage").change(function(event) {
-                                      var x = URL.createObjectURL(event.target.files[0]);
-                                      $("#thumbnail").attr("src",x);
-                                      $("#thumbnail").attr("width",300);
-                                      $("#thumbnail").attr("height",300);
-                                      console.log(event);
-                                  });
+                                    $("#fileImage").change(function(event) {
+                                        var x = URL.createObjectURL(event.target.files[0]);
+                                        $("#thumbnail").attr("src",x);
+                                        $("#thumbnail").attr("width",100);
+                                        $("#thumbnail").attr("height",100);
+                                        console.log(event);
+                                    });
                                 })
-                        </script>
+                            </script>
                         </div>
                     </div>
                 </div>

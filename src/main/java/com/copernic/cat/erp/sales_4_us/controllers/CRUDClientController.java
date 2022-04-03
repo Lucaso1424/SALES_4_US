@@ -105,28 +105,40 @@ public class CRUDClientController {
             System.out.println(errors);
             return "formClient";
         }
-        String fileName = null;
+        String fileName;
+        User savedUser = userRepository.save(user);
+        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
         if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
             fileName = "default_profile.png";
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./static/images/default_profile.png")) {
+                Path filePath = uploadPath.resolve(fileName);
+                assert inputStream != null;
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
         } else {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            try(InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
+                throw new IOException("Could not save img " + fileName);
+            }
         }
         user.setImage(fileName);
         Utilities u = new Utilities();
         user.setPassword(u.encryptPass(user.getPassword()));
         user.setRol("client");
-        User savedUser = userRepository.save(user);
-        String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
-        Path uploadPath = Paths.get(uploadDir);
-        if (!Files.exists(uploadPath)){
-            Files.createDirectories(uploadPath);
-        }
-        try(InputStream inputStream = multipartFile.getInputStream()) {
-            Path filePath = uploadPath.resolve(fileName);
-            Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException ioException){
-            throw new IOException("Could not save img " + fileName);
-        }
+        userService.addUser(user);
 
         return "redirect:/crud_client";
     }
@@ -135,7 +147,7 @@ public class CRUDClientController {
     public String editClient(User user, Model model) {
         User u = userService.searchUser(user);
         model.addAttribute("user", u);
-        return "formClient";
+        return "formEditClient";
     }
 
 }

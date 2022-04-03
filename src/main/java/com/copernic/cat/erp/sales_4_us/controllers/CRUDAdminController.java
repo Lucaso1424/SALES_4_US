@@ -7,10 +7,19 @@ import com.copernic.cat.erp.sales_4_us.utils.Utilities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Controller
@@ -55,11 +64,40 @@ public class CRUDAdminController {
         return "redirect:/crud_admin";
     }
 
+    @PostMapping("saveEditAdmin")
+    public String saveEditAdmin(
+            User user,
+            Errors errors,
+            @RequestParam("fileImage") MultipartFile multipartFile
+    ) throws IOException {
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "/crud_admin";
+        }
+        String fileName = null;
+        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+            fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            user.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/user-image/" + user.getEmail();
+            Path uploadPath = Paths.get(uploadDir);
+            try (InputStream inputStream = multipartFile.getInputStream()) {
+                Path filePath = uploadPath.resolve(fileName);
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
+        }
+        Utilities u = new Utilities();
+        user.setPassword(u.encryptPass(user.getPassword()));
+        userService.addUser(user);
+        return "redirect:/crud_admin";
+    }
+
     @GetMapping("/edit/admin/{userId}")
     public String editClient(User user, Model model) {
         User u = userService.searchUser(user);
         model.addAttribute("user", u);
-        return "formAdmin";
+        return "formEditAdmin";
     }
 
 }

@@ -46,7 +46,7 @@ public class ProfileController {
             System.out.println(errors);
             return "/profile";
         }
-        String fileName = null;
+        String fileName;
         if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);

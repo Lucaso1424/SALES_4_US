@@ -47,7 +47,7 @@ stars INT
 );
 
 CREATE TABLE product(
-id INT NOT NULL PRIMARY KEY,
+id INT auto_increment NOT NULL PRIMARY KEY,
 name VARCHAR (20) NOT NULL,
 prize INTEGER NOT NULL,
 description VARCHAR (500) NOT NULL,
@@ -92,16 +92,16 @@ INSERT INTO provider (id, name, direction,phone,website,email) VALUES (1, "provi
 INSERT INTO category (id, name, description) VALUES (2, "Shirts", "A few description for the category");
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "second_provider", "two direction", 698267535, "www.provider2.com", "provider2@provider2.local");
 
-INSERT INTO product (id, name, prize, description, image) VALUES (
-1,
+INSERT INTO product ( name, prize, description, image) VALUES (
+
 "Nike Aire Force",
 89.90,
 "Nike Aire Force One Black and Yellow for teenagers and adults.",
 "nike_air_force.jpg"
 );
 
-INSERT INTO product (id, name, prize, description, image) VALUES (
-2,
+INSERT INTO product ( name, prize, description, image) VALUES (
+
 "Bobo",
 89.90,
 "Nike Aire Force One Black and Yellow for teenagers and adults.",
