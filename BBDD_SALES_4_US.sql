@@ -1,6 +1,9 @@
 DROP DATABASE IF EXISTS SALES_4_US;
 CREATE DATABASE SALES_4_US;
+CREATE USER IF NOT EXISTS 'superuser'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON SALES_4_US.* TO 'superuser'@'%';
 USE SALES_4_US;
+
 
 CREATE TABLE user (
 id INT NOT NULL auto_increment PRIMARY KEY,
@@ -95,14 +98,6 @@ INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "secon
 INSERT INTO product ( name, prize, description, image) VALUES (
 
 "Nike Aire Force",
-89.90,
-"Nike Aire Force One Black and Yellow for teenagers and adults.",
-"nike_air_force.jpg"
-);
-
-INSERT INTO product ( name, prize, description, image) VALUES (
-
-"Bobo",
 89.90,
 "Nike Aire Force One Black and Yellow for teenagers and adults.",
 "nike_air_force.jpg"
