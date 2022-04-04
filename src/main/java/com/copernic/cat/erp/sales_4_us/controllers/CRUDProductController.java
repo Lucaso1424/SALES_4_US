@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -76,7 +75,7 @@ public class CRUDProductController {
         product.setPathImage(product.getName());
         String fileName;
         String uploadDir = "./src/main/resources/static/images/product-image/" + product.getPathImage();
-        if (multipartFile.getOriginalFilename() == null && multipartFile.isEmpty()) {
+        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()) {
             fileName = "logo.png";
             product.setImage(fileName);
             Path uploadPath = Paths.get(uploadDir);

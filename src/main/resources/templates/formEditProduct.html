@@ -13,7 +13,7 @@
               <center>
                 <div class="custom-file mb-4">
                   <label for="fileImage">
-                    <img id="thumbnail" th:src="@{${'/images/product-image/' + product.name + '/' + product.image}}" width="120" height="100"/>
+                    <img id="thumbnail" th:src="@{${'/images/product-image/' + product.pathImage + '/' + product.image}}" width="120" height="100"/>
                   </label>
                   <div class="custom-file">
                     <input id="fileImage" type="file" name="fileImage" accept="image/*" />

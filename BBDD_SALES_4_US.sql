@@ -50,7 +50,7 @@ stars INT
 CREATE TABLE product(
 id INT auto_increment NOT NULL PRIMARY KEY,
 name VARCHAR (20) NOT NULL,
-pathImage VARCHAR (20) NOT NULL,
+path_image VARCHAR (20) NOT NULL,
 prize INTEGER NOT NULL,
 description VARCHAR (500) NOT NULL,
 image VARCHAR (64) NOT NULL
@@ -94,7 +94,7 @@ INSERT INTO provider (id, name, direction,phone,website,email) VALUES (1, "provi
 INSERT INTO category (id, name, description) VALUES (2, "Shirts", "A few description for the category");
 INSERT INTO provider (id, name, direction,phone,website,email) VALUES (2, "second_provider", "two direction", 698267535, "www.provider2.com", "provider2@provider2.local");
 
-INSERT INTO product ( name, pathImage, prize, description, image) VALUES (
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
 "Nike Aire Force",
 "Nike Aire Force",
 89.90,
@@ -103,7 +103,7 @@ INSERT INTO product ( name, pathImage, prize, description, image) VALUES (
 );
 
 
-INSERT INTO product_categories(product_id, category_id) VALUE   S (1,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
 #INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,2);
 
