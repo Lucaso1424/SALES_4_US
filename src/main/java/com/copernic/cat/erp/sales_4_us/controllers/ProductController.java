@@ -79,7 +79,7 @@ public class ProductController {
         opinionService.addOpinion(opinion);
         p.getOpinions().add(opinion);
         productService.addProduct(p);
-        return "redirect:/dashboard";
+        return "redirect:/product/" + p.getId();
     }
 
 }
