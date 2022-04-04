@@ -17,7 +17,7 @@ public class ShoppingCartService {
     @Autowired
     private CartItemRepository cartItemRepository;
 
-
+    //Llista tots els items del cistell de l'usuari seleccionat
     public List<CartItem> listCartItems(User user) {
         List<CartItem> userCartItems = new ArrayList<>();
         for (CartItem c : cartItemRepository.findAll()){
@@ -28,14 +28,17 @@ public class ShoppingCartService {
         return userCartItems;
     }
 
+    //Guarda un cartItem a la BD
     public void addCartItem(CartItem cartItem){
         cartItemRepository.save(cartItem);
     }
 
+    //Busca un cartItem pel seu ID
     public CartItem searchCartItem(CartItem cartItem){
         return cartItemRepository.findById(cartItem.getId()).orElse(null);
     }
 
+    //Borra un cartItem
     public void deleteCart(CartItem cartItem){
         cartItemRepository.delete(cartItem);
     }
