@@ -102,9 +102,8 @@ INSERT INTO product ( name, pathImage, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
-INSERT INTO opinion (id, user_id, title, description, stars) VALUES (1, 1, "Good sneakers", "Good shoes for every feet and very comfortable :)", 4);
 
-INSERT INTO product_categories(product_id, category_id) VALUES (1,1);
+INSERT INTO product_categories(product_id, category_id) VALUE   S (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
 #INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,2);
 

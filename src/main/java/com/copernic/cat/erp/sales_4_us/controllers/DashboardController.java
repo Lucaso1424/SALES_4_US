@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DashboardController {
@@ -21,6 +22,19 @@ public class DashboardController {
 
         return "home";
     }
+
+    @RequestMapping(path = {"/","/search"})
+    public String iniciKeyword(Model model, String keyword) {
+        if (keyword != null) {
+            var products = productService.getByKeyword(keyword);
+            model.addAttribute("products", products);
+        } else {
+            var products = productService.listProduct();
+            model.addAttribute("products", products);}
+        return "home";
+    }
+
+
 
     @GetMapping("/dashboard")
     public String iniciGet(Model model) {

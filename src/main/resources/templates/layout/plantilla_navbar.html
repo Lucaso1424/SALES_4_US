@@ -15,8 +15,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbar-Collapse">
                     <ul class="navbar-nav ms-1">
-                        <form class="d-flex">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                        <form class="d-flex" th:action="@{/search}" method="get">
+                            <input class="form-control" type="search" name="keyword" th:value="${keyword}" size="50" placeholder="Search products..." aria-label="Search">
                             <button class="mySearchButton" type="submit">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
