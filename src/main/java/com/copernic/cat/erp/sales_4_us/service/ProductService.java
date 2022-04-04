@@ -29,6 +29,10 @@ public class ProductService  {
         return productRepository.findAll();
     }
 
+    public List<Product> getByKeyword(String keyword){
+        return productRepository.findByKeyword(keyword);
+    }
+
     public void addProduct(Product pro) {
         productRepository.save(pro);
     }
