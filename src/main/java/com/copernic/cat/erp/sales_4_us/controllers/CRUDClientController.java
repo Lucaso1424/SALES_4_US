@@ -73,7 +73,7 @@ public class CRUDClientController {
             return "/profile";
         }
         String fileName;
-        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+        if (multipartFile.getOriginalFilename() != null && !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
             String uploadDir = "./src/main/resources/static/images/user-image/" + user.getEmail();
@@ -104,7 +104,7 @@ public class CRUDClientController {
         String fileName;
         User savedUser = userRepository.save(user);
         String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
-        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()){
+        if (multipartFile.getOriginalFilename() == null && multipartFile.isEmpty()){
             fileName = "default_profile.png";
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)){

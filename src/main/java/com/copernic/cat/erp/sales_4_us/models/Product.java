@@ -23,6 +23,10 @@ public class Product implements Serializable {
     @Column(nullable = false, length = 20)
     private String name;
 
+    @NotEmpty
+    @Column(nullable = false, length = 20, name = "pathImage")
+    private String pathImage;
+
     @NotNull
     @Column(nullable = false)
     private double prize;

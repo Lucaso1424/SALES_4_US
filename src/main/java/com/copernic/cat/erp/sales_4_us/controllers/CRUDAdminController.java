@@ -113,8 +113,8 @@ public class CRUDAdminController {
             System.out.println(errors);
             return "/crud_admin";
         }
-        String fileName = null;
-        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+        String fileName;
+        if (multipartFile.getOriginalFilename() != null && !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
             String uploadDir = "./src/main/resources/static/images/user-image/" + user.getEmail();

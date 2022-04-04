@@ -73,9 +73,10 @@ public class CRUDProductController {
             return "formProduct";
         }
 
+        product.setPathImage(product.getName());
         String fileName;
-        String uploadDir = "./src/main/resources/static/images/product-image/" + product.getName();
-        if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()) {
+        String uploadDir = "./src/main/resources/static/images/product-image/" + product.getPathImage();
+        if (multipartFile.getOriginalFilename() == null && multipartFile.isEmpty()) {
             fileName = "logo.png";
             product.setImage(fileName);
             Path uploadPath = Paths.get(uploadDir);
@@ -132,12 +133,13 @@ public class CRUDProductController {
             System.out.println(errors);
             return "formProduct";
         }
-
-        String fileName = null;
-        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+        Product savedProduct = productService.findProduct(product);
+        String fileName;
+        if (multipartFile.getOriginalFilename() != null && !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             product.setImage(fileName);
-            String uploadDir = "./src/main/resources/static/images/product-image/" + product.getName();
+            product.setPathImage(savedProduct.getPathImage());
+            String uploadDir = "./src/main/resources/static/images/product-image/" + product.getPathImage();
             Path uploadPath = Paths.get(uploadDir);
             try (InputStream inputStream = multipartFile.getInputStream()) {
                 Path filePath = uploadPath.resolve(fileName);
@@ -145,6 +147,9 @@ public class CRUDProductController {
             } catch (IOException ioException) {
                 throw new IOException("Could not save img " + fileName);
             }
+        } else {
+            product.setPathImage(savedProduct.getPathImage());
+            product.setImage(savedProduct.getImage());
         }
 
         Provider providerToAdd;
