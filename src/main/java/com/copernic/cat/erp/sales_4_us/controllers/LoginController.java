@@ -10,14 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class LoginController {
 
+    // Mètode GetMapping que retorna la view del login
     @GetMapping("/login")
     public String login() {
         return "index";
     }
-
-    /*@GetMapping("/loginError")
-    public String loginError() {
-        return "redirect:login?error";
-    }*/
 
 }

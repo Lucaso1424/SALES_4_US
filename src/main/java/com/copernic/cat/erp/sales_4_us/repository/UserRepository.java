@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
+    // Repository d'usuaris amb mètodes de JpaRepository
+
+    // Mètode findUserById passant per paràmetre mail de l'usuari
     User findUserByEmail(String email);
 }

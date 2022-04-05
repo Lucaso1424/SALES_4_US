@@ -17,19 +17,18 @@ import java.util.List;
 @Slf4j
 public class OpinionService {
 
+    // Importació d'OpinionRepository
     @Autowired
     private OpinionRepository opinionRepository;
 
+    // Mètode @Transactional, que retorna una llista de totes les opinions
+    // d'un producte
     @Transactional(readOnly = true)
     public List<Opinion> listOpinion() {
         return opinionRepository.findAll();
     }
 
-    /*@Transactional(readOnly = true)
-    public Opinion findOpinion(Opinion opinion) {
-        return opinionRepository.findById(opinion.getId()).orElse(null);
-    }*/
-
+    // Mètode per afegir una opinió al OpinionRepository, realitzant un save()
     public void addOpinion(Opinion opinion) {
         opinionRepository.save(opinion);
     }

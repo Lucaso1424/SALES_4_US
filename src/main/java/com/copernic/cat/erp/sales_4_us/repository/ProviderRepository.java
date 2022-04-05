@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProviderRepository extends JpaRepository<Provider, Integer> {
+    // Repository de providers amb mètodes de JpaRepository
 }
