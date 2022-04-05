@@ -6,11 +6,16 @@ import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class Utilities {
 
+    // Mètode per generar una contrasenya encriptada, al crear
+    // un usuari, o modificant-lo
     public String encryptPass(String password) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.encode(password);
     }
 
+    // Mètode que retorna una boolean per comprovar que
+    // el DNI es vàlid, realitzant replace() i substring()
+    // per substituir caràcters
     public Boolean checkDni (String dni) {
         String dniChars="TRWAGMYFPDXBNJZSQVHLCKE";
         String intPartDNI = dni.trim().replaceAll(" ", "").substring(0, 7);

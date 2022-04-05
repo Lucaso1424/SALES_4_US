@@ -13,27 +13,33 @@ import java.util.List;
 @Table(name = "product")
 public class Product implements Serializable {
 
+    // Id producte (camp BBDD)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private int id;
 
+    // Nom del producte (camp BBDD)
     @NotEmpty
     @Column(nullable = false, length = 20)
     private String name;
 
+    // Ruta de l'imatge (camp BBDD)
     @NotEmpty
     @Column(nullable = false, length = 20, name = "pathImage")
     private String pathImage;
 
+    // Preu del producte (camp BBDD)
     @NotNull
     @Column(nullable = false)
     private double prize;
 
+    // Nom de la imatge (camp BBDD)
     @Column(nullable = false, length = 64)
     private String image;
 
+    // Relació amb nom de la categoria per al producte en un List<Category>
     @ManyToMany
     @JoinTable(
             name = "product_categories",
@@ -42,9 +48,11 @@ public class Product implements Serializable {
     )
     private List<Category> categories;
 
+    // Descripció producte (camp BBDD)
     @Column(nullable = false, length = 500)
     private String description;
 
+    // Relació amb id del provider
     @ManyToMany
     @JoinTable(
             name = "product_provider",
@@ -53,6 +61,7 @@ public class Product implements Serializable {
     )
     private List<Provider> providers;
 
+    // Relació amb les opinions d'un producte en format de List<Opinion>
     @ManyToMany
     @JoinTable(
             name = "product_opinions",
