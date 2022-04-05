@@ -35,6 +35,7 @@ public class CRUDClientController {
     @Autowired
     private UserRepository userRepository;
 
+    //Llistem tots els clients
     @GetMapping("/crud_client")
     public String generateClientList(Model model) {
         List<User> listUsers = userService.listClients();
@@ -42,6 +43,7 @@ public class CRUDClientController {
         return "crud_list_client";
     }
 
+    //Eliminem el client seleccionat
     @GetMapping("/delete/{userId}")
     public String deleteClient(User user) {
         userService.deleteUser(user);
@@ -49,12 +51,14 @@ public class CRUDClientController {
     }
 
 
+    //Formulari per crear un client
     @GetMapping("/formClient")
     public String createClientForm(Model model) {
         model.addAttribute("user", new User());
         return "formClient";
     }
 
+    //Formulari per editar un client ja existent
     @GetMapping("/formEditClient")
     public String editClientFrom(User user, Model model) {
         User u = userService.searchUser(user);
@@ -62,6 +66,7 @@ public class CRUDClientController {
         return "formEditClient";
     }
 
+    //Guardar els canvis d'un usuari ya creat
     @PostMapping("saveEditClient")
     public String saveEditClient(
             User user,
@@ -73,6 +78,7 @@ public class CRUDClientController {
             return "/profile";
         }
         String fileName;
+        //Si en el formulari han enviat una foto es guardara al servidor y la BD
         if (multipartFile.getOriginalFilename() != null && !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
@@ -91,7 +97,8 @@ public class CRUDClientController {
         return "redirect:/crud_client";
     }
 
-    @PostMapping("/saveClient") //action = saveClient
+    //Guardar un client a la BD quan es crea
+    @PostMapping("/saveClient")
     public String saveClient(
             @ModelAttribute(name="user") User user,
             Errors errors,
@@ -104,6 +111,7 @@ public class CRUDClientController {
         String fileName;
         User savedUser = userRepository.save(user);
         String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+        //Si no hi ha imatge en el formulari es guardara una per defecte
         if (multipartFile.getOriginalFilename() == null && multipartFile.isEmpty()){
             fileName = "default_profile.png";
             Path uploadPath = Paths.get(uploadDir);
@@ -118,6 +126,7 @@ public class CRUDClientController {
                 throw new IOException("Could not save img " + fileName);
             }
         } else {
+            //Si s'ha pujat una imatge es guardara la imatge y el nom en la BD
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             Path uploadPath = Paths.get(uploadDir);
             if (!Files.exists(uploadPath)){
@@ -139,6 +148,7 @@ public class CRUDClientController {
         return "redirect:/crud_client";
     }
 
+    //Li pasem l'usuari que volem editar amb el seu id
     @GetMapping("/edit/{userId}")
     public String editClient(User user, Model model) {
         User u = userService.searchUser(user);

@@ -26,16 +26,19 @@ public class UserService implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
+        //Retornem l'usuari buscat per email
         User usuari = userRepository.findUserByEmail(email);
-
         if (usuari == null) {
             throw new UsernameNotFoundException(email);
         }
+        //Creem el nou rol per a l'usuari
         var rols = new ArrayList<GrantedAuthority>();
+        //Li afegim el rol que li hem proporcionat al usuari
         rols.add(new SimpleGrantedAuthority(usuari.getRol()));
         return new org.springframework.security.core.userdetails.User(usuari.getEmail(), usuari.getPassword(), rols);
     }
 
+    //Llistem tots els usuaris de la BD
     @Transactional(readOnly = true)
     public List<User> listUsers() {
         List<User> users = new ArrayList<>();
@@ -43,6 +46,7 @@ public class UserService implements UserDetailsService {
         return users;
     }
 
+    //LListem tots els usuaris amb rol admin de la BD
     public List<User> listAdmins(){
         List<User> users = new ArrayList<>();
         users = userRepository.findAll();
@@ -55,6 +59,7 @@ public class UserService implements UserDetailsService {
         return admins;
     }
 
+    //LListem tots els usuaris amb rol client de la BD
     public List<User> listClients(){
         List<User> users = new ArrayList<>();
         users = userRepository.findAll();
@@ -67,21 +72,24 @@ public class UserService implements UserDetailsService {
         return client;
     }
 
+    //Borrem l'usuari
     @Transactional
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
-
+    //Guardem l'usuari a la base de dades
     @Transactional
     public void addUser(User user) {
         userRepository.save(user);
     }
 
+    //Busquem l'usuari per l'id
     @Transactional(readOnly = true)
     public User searchUser(User user) {
         return userRepository.findById(user.getUserId()).orElse(null);
     }
 
+    //busquem l'usuari per l'email
     @Transactional(readOnly = true)
     public User findUserByEmail(String email){
        return userRepository.findUserByEmail(email);

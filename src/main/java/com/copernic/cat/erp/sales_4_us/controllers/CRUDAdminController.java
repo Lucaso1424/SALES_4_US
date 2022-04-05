@@ -32,6 +32,7 @@ public class CRUDAdminController {
     @Autowired
     private UserRepository userRepository;
 
+    //Llistem els usuaris administradors
     @GetMapping("/crud_admin")
     public String inici(Model model) {
         List<User> listUsers = userService.listAdmins();
@@ -40,20 +41,22 @@ public class CRUDAdminController {
     }
 
 
+     //Eliminem l'usuari seleccionat amb l'id
     @GetMapping("/delete/admin/{userId}")
-    public String deleteClient(User user) {
+    public String deleteAdmin(User user) {
         userService.deleteUser(user);
         return "redirect:/crud_admin";
     }
 
-
+    //Formulari de creacio d'administrador
     @GetMapping("/formAdmin")
-    public String createClientForm(Model model) {
+    public String createAdminForm(Model model) {
         model.addAttribute("user", new User());
         return "formAdmin";
     }
 
-    @PostMapping("/saveAdmin") //action = saveClient
+    //Guardem l'administrador creat a la BD
+    @PostMapping("/saveAdmin")
     public String saveAdmin(
             @ModelAttribute(name = "user") User user,
             Errors errors,
@@ -66,6 +69,7 @@ public class CRUDAdminController {
         String fileName;
         User savedUser = userRepository.save(user);
         String uploadDir = "./src/main/resources/static/images/user-image/" + savedUser.getEmail();
+        //Si no s'ha pujat cap imatge al formulari es guardara una per defecte en l'administrador
         if (multipartFile.getOriginalFilename() == null || multipartFile.isEmpty()) {
             fileName = "default_profile.png";
             user.setImage(fileName);
@@ -81,6 +85,7 @@ public class CRUDAdminController {
                 throw new IOException("Could not save img " + fileName);
             }
         } else {
+            //Si s'ha pujat una imatge al formulari es guardara la imatge per al administrador creat
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
             Path uploadPath = Paths.get(uploadDir);
@@ -102,7 +107,7 @@ public class CRUDAdminController {
     }
 
 
-    //Fallara al intentar editar por la foto de perfil
+    //Guardem l'administrador creat a la BD
     @PostMapping("saveEditAdmin")
     public String saveEditAdmin(
             User user,
@@ -114,6 +119,7 @@ public class CRUDAdminController {
             return "/crud_admin";
         }
         String fileName;
+        //Si s'ha afegit una imatge al formulari es guardara en la base de dades
         if (multipartFile.getOriginalFilename() != null && !multipartFile.isEmpty()) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
@@ -132,8 +138,9 @@ public class CRUDAdminController {
         return "redirect:/crud_admin";
     }
 
+    //Editem l'usuari administador seleccionat amb l'id
     @GetMapping("/edit/admin/{userId}")
-    public String editClient(User user, Model model) {
+    public String editAdmin(User user, Model model) {
         User u = userService.searchUser(user);
         model.addAttribute("user", u);
         return "formEditAdmin";

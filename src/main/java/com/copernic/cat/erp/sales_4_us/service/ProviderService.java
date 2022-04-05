@@ -15,21 +15,25 @@ public class ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
+    //Llistem tots els proveidors
     @Transactional(readOnly = true)
     public List<Provider> listProviders(){
         return providerRepository.findAll();
     }
 
+    //Eliminem el proveidor seleccionat
     @Transactional
     public void deleteProvider(Provider provider) {
         providerRepository.delete(provider);
     }
 
+    //Guardem un proveidor a la base de dades
     @Transactional
     public void addProvider(Provider provider) {
         providerRepository.save(provider);
     }
 
+    //Busquem un proveidor per id
     @Transactional(readOnly = true)
     public Provider findProvider(Provider provider) {
         return providerRepository.findById(provider.getId()).orElse(null);

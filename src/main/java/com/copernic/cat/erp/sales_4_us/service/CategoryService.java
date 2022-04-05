@@ -16,21 +16,25 @@ public class CategoryService {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    //Llistem totes les categories
     @Transactional
     public List<Category> listCategories(){
         return categoryRepository.findAll();
     }
 
+    //Eliminem la categoria seleccionada
     @Transactional
     public void deleteCategory(Category category) {
         categoryRepository.delete(category);
     }
 
+    //Guardem la categoria
     @Transactional
     public void addCategory(Category category) {
         categoryRepository.save(category);
     }
 
+    //Busquem la categoria pel seu id
     @Transactional(readOnly = true)
     public Category findCategory(Category category) {
         return categoryRepository.findById(category.getId()).orElse(null);

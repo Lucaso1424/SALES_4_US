@@ -17,6 +17,7 @@ public class CRUDCategoryController {
     @Autowired
     CategoryService categoryService;
 
+    //Llistem totes les categories
     @GetMapping("/crud_category")
     public String inici(Model model){
         List<Category> listCategories = categoryService.listCategories();
@@ -25,20 +26,21 @@ public class CRUDCategoryController {
     }
 
 
-
+    //Eliminem la categoria seleccionada
     @GetMapping("/delete/category{id}")
     public String deleteCategory(Category category){
         categoryService.deleteCategory(category);
         return "redirect:/crud_category";
     }
 
-
+    //Formulari per crear la categoria
     @GetMapping("/formCategory")
     public String createCategoryForm(Model model) {
         model.addAttribute("category", new Category());
         return "formCategory";
     }
 
+    //Guardem la categoria creada a la base de dades
     @PostMapping("/saveCategory")
     public String saveCategory(Category category, Errors errors) {
         if (errors.hasErrors()) {
@@ -49,6 +51,7 @@ public class CRUDCategoryController {
         return "redirect:/crud_category";
     }
 
+    //Editem la categoria seleccionada
     @GetMapping("/edit/category{id}")
     public String editCategory(Category category, Model model) {
         Category c = categoryService.findCategory(category);
