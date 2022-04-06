@@ -26,12 +26,9 @@ public class Purchase {
     @Column(nullable = false)
     private int totalPrize;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
-    private User user;
 
-    /*@OneToMany
+    @ManyToMany
     @JoinColumn(name = "purchaseId", nullable = false)
-    private List<CartItem> cartItems;*/
+    private List<CartItem> cartItems;
 
 }

@@ -55,7 +55,9 @@
                             <div class="total-value final-value" id="basket-total" th:text="${totalPrize}"></div>
                         </div>
                         <div>
-                            <button class="mySearchButton">Purchase</button>
+                            <a th:href="@{/purchase_success}">
+                                <button class="mySearchButton">Purchase</button>
+                            </a>
                         </div>
                     </div>
                 </div>

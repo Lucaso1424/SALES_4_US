@@ -24,5 +24,8 @@ public class CartItem {
     private User user;
 
     @Column
+    private Boolean visible;
+
+    @Column
     private int quantity;
 }

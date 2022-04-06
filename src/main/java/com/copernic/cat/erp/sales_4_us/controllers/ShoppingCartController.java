@@ -89,6 +89,7 @@ public class ShoppingCartController {
         itemToAdd.setUser(u);
         //Per defecte, quan s'afegeix un producte al cistell sempre es fara amb la quantitat de 1
         itemToAdd.setQuantity(1);
+        itemToAdd.setVisible(true);
         //Busquem el producte que l'usuari ens ha pasat per parametre de l'url
         Product productToAdd = productService.findProduct(product);
         //Llistem tots els cartItems que te l'usari actualment

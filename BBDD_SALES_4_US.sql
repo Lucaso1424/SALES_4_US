@@ -20,8 +20,8 @@ CREATE TABLE purchase (
 id INT NOT NULL auto_increment PRIMARY KEY,
 DATE DATETIME NOT NULL,
 total_prize DECIMAL NOT NULL,
-user_id INT NOT NULL,
-FOREIGN KEY (user_id) REFERENCES user(id)
+cart_item INT NOT NULL,
+FOREIGN KEY (cart_item) REFERENCES cart_item(id)
 );
 
 CREATE TABLE provider (
@@ -82,6 +82,7 @@ id INT NOT NULL auto_increment PRIMARY KEY,
 product_id INT,
 user_id INT,
 quantity INT,
+visible BOOLEAN,
 FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (user_id) REFERENCES user (id)
 );

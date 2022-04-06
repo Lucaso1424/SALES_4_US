@@ -11,4 +11,9 @@ public class PurchaseController {
     public String inici() {
         return "purchase";
     }
+
+    @GetMapping("/purchase_success")
+    public String purchaseSuccess(){
+        return "purchase_success";
+    }
 }
