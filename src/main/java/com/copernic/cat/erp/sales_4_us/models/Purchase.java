@@ -3,7 +3,8 @@ package com.copernic.cat.erp.sales_4_us.models;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,16 +19,21 @@ public class Purchase {
     private int id;
 
 
-    @Column(nullable = false)
-    private String date;
+    @Temporal(TemporalType.DATE)
+    @Column
+    private Date date;
 
-    @NotEmpty
+    @NotNull
     @Column(nullable = false)
-    private int totalPrize;
+    private double totalPrize;
 
 
     @ManyToMany
-    @JoinColumn(name = "purchaseId", nullable = false)
+    @JoinTable(
+            name = "purchase_cart",
+            joinColumns = @JoinColumn(name = "purchase_id"),
+            inverseJoinColumns = @JoinColumn(name = "cart_item")
+    )
     private List<CartItem> cartItems;
 
 }

@@ -81,10 +81,15 @@ FOREIGN KEY (user_id) REFERENCES user (id)
 
 CREATE TABLE purchase (
 id INT NOT NULL auto_increment PRIMARY KEY,
-DATE DATETIME NOT NULL,
-total_prize DECIMAL NOT NULL,
+DATE DATETIME,
+total_prize DECIMAL NOT NULL
+);
+
+CREATE TABLE purchase_cart (
+purchase_id INT NOT NULL,
 cart_item INT NOT NULL,
-FOREIGN KEY (cart_item) REFERENCES cart_item(id)
+FOREIGN KEY (purchase_id) REFERENCES purchase (id),
+FOREIGN KEY (cart_item) REFERENCES cart_item (id)
 );
 
 
@@ -114,3 +119,5 @@ SELECT * FROM product;
 SELECT * FROM opinion;
 SELECT * FROM product_categories;
 SELECT * FROM cart_item;
+SELECT * FROM purchase;
+SELECT * FROM purchase_cart;
