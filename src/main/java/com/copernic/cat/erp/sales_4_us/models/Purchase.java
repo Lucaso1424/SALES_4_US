@@ -4,7 +4,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -20,7 +19,7 @@ public class Purchase {
 
 
     @Column(nullable = false)
-    private Date date;
+    private String date;
 
     @NotEmpty
     @Column(nullable = false)

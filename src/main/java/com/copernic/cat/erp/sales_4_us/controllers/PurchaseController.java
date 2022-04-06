@@ -12,8 +12,4 @@ public class PurchaseController {
         return "purchase";
     }
 
-    @GetMapping("/purchase_success")
-    public String purchaseSuccess(){
-        return "purchase_success";
-    }
 }

@@ -2,6 +2,7 @@ package com.copernic.cat.erp.sales_4_us.controllers;
 
 import com.copernic.cat.erp.sales_4_us.models.CartItem;
 import com.copernic.cat.erp.sales_4_us.models.Product;
+import com.copernic.cat.erp.sales_4_us.models.Purchase;
 import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.service.ProductService;
 import com.copernic.cat.erp.sales_4_us.service.ShoppingCartService;
@@ -106,6 +107,24 @@ public class ShoppingCartController {
             shoppingCartService.addCartItem(itemToAdd);
         }
         return "redirect:/cart";
+    }
+
+    @GetMapping("/purchase_success")
+    public String finishPurchase(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User u = userService.findUserByEmail(authentication.getName());
+        List<CartItem> items = shoppingCartService.listCartItems(u);
+        List<CartItem> activeItems = new ArrayList<>();
+        for (CartItem c : items) {
+            if (c.getVisible()){
+                activeItems.add(c);
+                //Falta poner la visibilidad del cartItem en false al pasarlo en purchase
+            }
+        }
+        Purchase purchaseToAdd = new Purchase();
+        purchaseToAdd.setCartItems(activeItems);
+
+        return "purchase_success";
     }
 
 }
