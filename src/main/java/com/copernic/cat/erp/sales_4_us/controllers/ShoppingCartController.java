@@ -118,7 +118,8 @@ public class ShoppingCartController {
         for (CartItem c : items) {
             if (c.getVisible()){
                 activeItems.add(c);
-                //Falta poner la visibilidad del cartItem en false al pasarlo en purchase
+                c.setVisible(false);
+                ShoppingCartService.addCartItem(c);
             }
         }
         Purchase purchaseToAdd = new Purchase();
