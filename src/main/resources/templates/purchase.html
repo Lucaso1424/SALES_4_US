@@ -22,15 +22,17 @@
         </div>
     </body>
     <script>
-        $("button").click(function() {
-             if ($(this.id).text() === 'show') {
-                $(this.id).text('hide');
+        $("button").click(function(event) {
+        var hola = event.target.id;
+             if ($('#'+ hola).text() === 'show') {
+                $('#'+ hola).text('hide');
             }
             else {
-                $(this.id).text('show');
+                $('#'+ hola).text('show');
             }
-            $('#first-row-' + $(this).attr('id')).toggle();
-            $('#second-row-' + $(this).attr('id')).toggle();
+            $('#first-row-1').toggle();
+            var row =
+            $('#second-row-1').toggle();
         });
     </script>
 </html>
