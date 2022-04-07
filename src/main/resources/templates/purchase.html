@@ -4,5 +4,33 @@
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
         <h1 align="center">Purchase</h1>
+        <div class="container mt-4" th:each="purchase: ${listPurchases}">
+            <div th:each="cartItem: ${purchase.cartItems}">
+                <div class="row" id="#dfs">
+                    <div class="col showLeft"><span><strong th:text="${cartItem.user.email}"></strong></span></div>
+                    <div class="col showRight"><span th:text="${purchase.date}"></span></div>
+                    <div class="col showRight"><button th:id="@{|${purchase.id}|}" class="addButton">show</button></div> <!-- <i class="fas fa-angle-down"></i> -->
+                </div>
+                <div class="row hide-text" th:id="@{|#first-row-${purchase.id}|}">
+                    <div class="col" th:text="${cartItem.product.name}"></div>
+                    <div class="col" th:text="${cartItem.quantity}"></div>
+                </div>
+                <div class="row hide-text" th:id="@{|#sec-row-${purchase.id}|}">
+                    <div class="col"><span>Total Quantity</span> <span><strong th:text="${purchase.totalPrize}"></strong></span></div>
+                </div>
+            </div>
+        </div>
     </body>
+    <script>
+        $("button").click(function() {
+             if ($(this.id).text() === 'show') {
+                $(this.id).text('hide');
+            }
+            else {
+                $(this.id).text('show');
+            }
+            $('#first-row-' + $(this).attr('id')).toggle();
+            $('#second-row-' + $(this).attr('id')).toggle();
+        });
+    </script>
 </html>
