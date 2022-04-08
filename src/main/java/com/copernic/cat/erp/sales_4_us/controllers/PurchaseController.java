@@ -30,8 +30,13 @@ public class PurchaseController {
         User authenticatedUser = userService.findUserByEmail(authentication.getName());
         List<Purchase> purchases = purchaseService.listPurchases(authenticatedUser);
         model.addAttribute("listPurchases", purchases);
-        model.addAttribute("user", authenticatedUser);
         return "purchase";
     }
 
+    @GetMapping("/purchaseAdmin")
+    public String listAllPurchases(Model model){
+        List<Purchase> purchases = purchaseService.listAllPurchases();
+        model.addAttribute("listPurchases", purchases);
+        return "purchase";
+    }
 }

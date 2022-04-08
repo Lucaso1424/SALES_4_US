@@ -40,4 +40,8 @@ public class PurchaseService {
         }
         return purchaseToList;
     }
+
+    public List<Purchase> listAllPurchases(){
+        return purchaseRepository.findAll();
+    }
 }
