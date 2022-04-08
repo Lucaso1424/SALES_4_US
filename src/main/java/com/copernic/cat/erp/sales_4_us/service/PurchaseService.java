@@ -31,7 +31,10 @@ public class PurchaseService {
         for (Purchase p : allPurchases) {
             for (CartItem c : p.getCartItems()){
                if (c.getUser().getUserId() == user.getUserId()){
-                   purchaseToList.add(p);
+                   //Comprovem que la purchase no esta afegida ja
+                   if (!purchaseToList.contains(p)) {
+                       purchaseToList.add(p);
+                   }
                }
             }
         }
