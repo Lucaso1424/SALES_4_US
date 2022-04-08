@@ -36,7 +36,6 @@ public class User implements Serializable {
     @Column(nullable = false, length = 45, unique = true)
     private String email;
 
-
     @NotNull
     @Column(nullable = false, length = 9)
     private int phone;
@@ -55,6 +54,9 @@ public class User implements Serializable {
 
     @Column(length = 64)
     private String image;
+
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
 
     @Override
     public String toString(){

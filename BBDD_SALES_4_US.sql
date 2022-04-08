@@ -13,7 +13,8 @@ phone INT NOT NULL,
 password VARCHAR (200) NOT NULL,
 address VARCHAR (60) NOT NULL,
 rol VARCHAR (10) NOT NULL,
-image VARCHAR (64)
+image VARCHAR (64),
+reset_password_token VARCHAR (30)
 );
 
 CREATE TABLE purchase (

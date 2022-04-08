@@ -10,4 +10,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // Mètode findUserById passant per paràmetre mail de l'usuari
     User findUserByEmail(String email);
+
+    public User findByResetPasswordToken(String token);
+
 }

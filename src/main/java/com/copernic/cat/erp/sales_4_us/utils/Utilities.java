@@ -2,6 +2,8 @@ package com.copernic.cat.erp.sales_4_us.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static org.apache.commons.lang3.StringUtils.isNumeric;
 
 public class Utilities {
@@ -27,5 +29,11 @@ public class Utilities {
     public String message (String msg) {
         return msg;
     }
+
+    public static String getSiteURL(HttpServletRequest request) {
+        String siteURL = request.getRequestURL().toString();
+        return siteURL.replace(request.getServletPath(), "");
+    }
+
 
 }

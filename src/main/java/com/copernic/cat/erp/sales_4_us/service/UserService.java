@@ -4,13 +4,16 @@ import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.webjars.NotFoundException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,5 +98,29 @@ public class UserService implements UserDetailsService {
        return userRepository.findUserByEmail(email);
     }
 
+    /*Forgot password methods*/
+
+    public void updateResetPasswordToken(String token, String email) throws NotFoundException {
+        User user = userRepository.findUserByEmail(email);
+        if (user != null) {
+            user.setResetPasswordToken(token);
+            userRepository.save(user);
+        } else {
+            throw new UsernameNotFoundException("Could not find any customer with the email " + email);
+        }
+    }
+
+    public User getByResetPasswordToken(String token) {
+        return userRepository.findByResetPasswordToken(token);
+    }
+    
+    public void updatePassword(User user, String newPassword) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String encodedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encodedPassword);
+
+        user.setResetPasswordToken(null);
+        userRepository.save(user);
+    }
 
 }

@@ -4,27 +4,28 @@
  */
 package com.copernic.cat.erp.sales_4_us.controllers;
 
-import com.copernic.cat.erp.sales_4_us.models.PasswordResetToken;
-import com.copernic.cat.erp.sales_4_us.models.Product;
 import com.copernic.cat.erp.sales_4_us.models.User;
-import com.copernic.cat.erp.sales_4_us.repository.PasswordResetTokenRepository;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
+import com.copernic.cat.erp.sales_4_us.utils.Utilities;
+import com.zaxxer.hikari.util.UtilityElf;
+import lombok.experimental.UtilityClass;
+import net.bytebuddy.utility.RandomString;
+import org.aspectj.weaver.bcel.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.data.repository.query.Param;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.webjars.NotFoundException;
 
-import java.io.IOException;
-import java.security.Principal;
-import java.util.Locale;
-import java.util.UUID;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 
 @Controller
@@ -33,43 +34,89 @@ public class ForgetPasswordController {
     @Autowired
     private UserService userService;
     @Autowired
-    private MailSender mailSender;
-    @Autowired
-    private PasswordResetTokenRepository tokenRepository;
+    private JavaMailSender mailSender;
 
     @GetMapping("/forgot")
     public String inici() {
         return ("forgot");
     }
 
-    @PostMapping("/forgot")
-    public String inici_Post(
-            @ModelAttribute(name = "user") User userEmail,
-            Errors errors,
-            RedirectAttributes msg,
-            @RequestParam("fileImage") MultipartFile multipartFile
-    ) throws IOException {
-        User user = new User();
-        var users = userService.listUsers();
-        for (var u : users) {
-            if (u.getEmail().equals(userEmail.getEmail())) {
-                user = u;
-            }
+    public void sendEmail(String recipientEmail, String link)
+            throws MessagingException, UnsupportedEncodingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setFrom("contact@shopme.com", "Shopme Support");
+        helper.setTo(recipientEmail);
+
+        String subject = "Here's the link to reset your password";
+
+        String content = "<p>Hello,</p>"
+                + "<p>You have requested to reset your password.</p>"
+                + "<p>Click the link below to change your password:</p>"
+                + "<p><a href=\"" + link + "\">Change my password</a></p>"
+                + "<br>"
+                + "<p>Ignore this email if you do remember your password, "
+                + "or you have not made the request.</p>";
+
+        helper.setSubject(subject);
+
+        helper.setText(content, true);
+
+        mailSender.send(message);
+    }
+
+    @PostMapping("/forgot_password")
+    public String processForgotPassword(HttpServletRequest request, Model model) {
+        String email = request.getParameter("email");
+        String token = RandomString.make(30);
+
+        try {
+            userService.updateResetPasswordToken(token, email);
+            String resetPasswordLink = Utilities.getSiteURL(request) + "/reset_password?token=" + token;
+            sendEmail(email, resetPasswordLink);
+            model.addAttribute("message", "We have sent a reset password link to your email. Please check.");
+
+        } catch (NotFoundException ex) {
+            model.addAttribute("error", ex.getMessage());
+        } catch (UnsupportedEncodingException | MessagingException e) {
+            model.addAttribute("error", "Error while sending email");
         }
 
-        PasswordResetToken token = new PasswordResetToken();
-        token.setToken(UUID.randomUUID().toString());
-        token.setUser(user);
-        token.setExpiryDate(30);
-        tokenRepository.save(token);
-
-        SimpleMailMessage email = new SimpleMailMessage();
-        email.setSubject("Reset Password");
-        email.setText("/forgot?token=" + token);
-        email.setTo(user.getEmail());
-        email.setFrom("");
-        mailSender.send(email);
         return "forgot";
+    }
+
+    @GetMapping("/reset_password")
+    public String showResetPasswordForm(@Param(value = "token") String token, Model model) {
+        User user = userService.getByResetPasswordToken(token);
+        model.addAttribute("token", token);
+
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+            return "message";
+        }
+
+        return "reset";
+    }
+
+    @PostMapping("/reset_password")
+    public String processResetPassword(HttpServletRequest request, Model model) {
+        String token = request.getParameter("token");
+        String password = request.getParameter("password");
+
+        User user = userService.getByResetPasswordToken(token);
+        model.addAttribute("title", "Reset your password");
+
+        if (user == null) {
+            model.addAttribute("message", "Invalid Token");
+            return "message";
+        } else {
+            userService.updatePassword(user, password);
+
+            model.addAttribute("message", "You have successfully changed your password.");
+        }
+
+        return "message";
     }
 
 }
