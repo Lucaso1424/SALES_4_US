@@ -45,18 +45,23 @@
                 </div>
                 <div class="col-4">
                     <div class="summary" >
-                        <div class="summary-total-items"><span class="total-items" th:text="${totalQuantity}"></span> Items in your Bag</div>
-                        <div class="summary-subtotal">
-                            <div class="subtotal-title">Subtotal</div>
-                            <div class="subtotal-value final-value" id="basket-subtotal" th:text="${totalPrize}"></div>
-                        </div>
-                        <div class="summary-total">
-                            <div class="total-title">Total</div>
-                            <div class="total-value final-value" id="basket-total" th:text="${totalPrize}"></div>
-                        </div>
-                        <div>
-                            <button class="mySearchButton">Purchase</button>
-                        </div>
+                        <form th:action="@{/purchase_success}" method="POST" th:object="${purchase}">
+                            <div class="summary-total-items"><span class="total-items" th:text="${totalQuantity}"></span> Items in your Bag</div>
+                            <div class="summary-subtotal">
+                                <div class="subtotal-title">Subtotal</div>
+                                <div class="subtotal-value final-value" id="basket-subtotal" th:text="${totalPrize}"></div>
+                            </div>
+                            <div class="summary-total">
+                                <div class="total-title">Total</div>
+                                <select th:field="*{totalPrize}" class="invisibol">
+                                    <option th:value="${totalPrize}" selected></option>
+                                </select>
+                                <div class="total-value final-value" id="basket-total" th:text="${totalPrize}"></div>
+                            </div>
+                            <div>
+                                    <button type="submit" class="mySearchButton">Purchase</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -17,14 +17,6 @@ image VARCHAR (64),
 reset_password_token VARCHAR (30)
 );
 
-CREATE TABLE purchase (
-id INT NOT NULL auto_increment PRIMARY KEY,
-DATE DATETIME NOT NULL,
-total_prize DECIMAL NOT NULL,
-user_id INT NOT NULL,
-FOREIGN KEY (user_id) REFERENCES user(id)
-);
-
 CREATE TABLE provider (
 id INT NOT NULL auto_increment PRIMARY KEY,
 NAME VARCHAR (40) NOT NULL,
@@ -83,9 +75,24 @@ id INT NOT NULL auto_increment PRIMARY KEY,
 product_id INT,
 user_id INT,
 quantity INT,
+visible BOOLEAN,
 FOREIGN KEY (product_id) REFERENCES product (id),
 FOREIGN KEY (user_id) REFERENCES user (id)
 );
+
+CREATE TABLE purchase (
+id INT NOT NULL auto_increment PRIMARY KEY,
+DATE DATETIME,
+total_prize DECIMAL NOT NULL
+);
+
+CREATE TABLE purchase_cart (
+purchase_id INT NOT NULL,
+cart_item INT NOT NULL,
+FOREIGN KEY (purchase_id) REFERENCES purchase (id),
+FOREIGN KEY (cart_item) REFERENCES cart_item (id)
+);
+
 
 INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("jose", "miranda", "12345678Z", 608262020, "$2a$10$N2Gyo4ryYoCZNS3im0Q/uO1N2FpXDiTsYaF72e/T1RUmnNwbG08hW", "jose@jose.local", "Al carrer", "admin", "default_profile.png");
 INSERT INTO user (first_name, last_name, dni, phone, password, email,address,rol,image) VALUES ("lucas", "padilla", "12345678P", 633568742, "$2a$10$CLOcU1vc/5Oq384KjEooLOCSO2o5xMnc2w4uaCIiKgGqP8PNGWRQW", "lucas@lucas.local", "Arriba", "client","default_profile.png");
@@ -113,3 +120,5 @@ SELECT * FROM product;
 SELECT * FROM opinion;
 SELECT * FROM product_categories;
 SELECT * FROM cart_item;
+SELECT * FROM purchase;
+SELECT * FROM purchase_cart;

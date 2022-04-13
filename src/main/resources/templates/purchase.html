@@ -3,6 +3,55 @@
     <head th:replace="layout/plantilla_bootstrap :: head"></head>
     <body>
         <header th:replace="layout/plantilla_navbar :: header"></header>
-        <h1 align="center">Purchase</h1>
+        <h1 align="center">Purchases</h1>
+        <hr>
+        <center>
+            <a th:href="@{/purchaseAdmin}">
+                    <button class="myButton" sec:authorize="hasAuthority('admin')" >
+                        <h3><span class="white-letter">View All Purchases</span></h3>
+                    </button>
+            </a>
+        </center>
+        <div class="container mt-4" >
+            <div th:each="purchase: ${listPurchases}">
+                <div class="row mb-1" >
+                    <div class="col showLeft">
+                        <span><strong th:text="${purchase.cartItems[0].user.firstName}"></strong></span>
+                    </div>
+                    <div class="col showRight">
+                        <span th:text="${purchase.date}"></span>
+                    </div>
+                    <div class="col showRight" >
+                        <button th:id="@{|${purchase.id}|}" class="addButton">Show</button>
+                    </div> <!-- <i class="fas fa-angle-down"></i> -->
+                </div>
+                <div class="row hide-text" th:id="@{|first-row-${purchase.id}|}">
+                    <div class="col" th:each="cartItem: ${purchase.cartItems}" >
+                        <span th:text="${cartItem.product.name}"></span>
+                        <span> Quantity: </span>
+                        <span th:text="${cartItem.quantity}"> </span>
+                    </div>
+                </div>
+                <div class="row hide-text" th:id="@{|sec-row-${purchase.id}|}">
+                    <div class="col">
+                        <span>Total Quantity</span>
+                        <span><strong th:text="${purchase.totalPrize}"></strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
+    <script>
+        $("button").click(function(event) {
+        var autoId = event.target.id;
+             if ($('#'+ autoId).text() === 'Show') {
+                $('#'+ autoId).text('Hide');
+            }
+            else {
+                $('#'+ autoId).text('Show');
+            }
+            $('#first-row-' + autoId).toggle();
+            $('#sec-row-' + autoId).toggle();
+        });
+    </script>
 </html>

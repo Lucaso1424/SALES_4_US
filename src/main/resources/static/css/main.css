@@ -303,3 +303,24 @@ hr {
 	margin: auto;
 	margin-top: 15px;
 }
+
+.show-between {
+display: flex;
+justify-content: space-between;
+}
+
+.showRight {
+display: flex;
+justify-content: right;
+align-items: center;
+}
+
+.showLeft {
+display: flex;
+justify-content: left;
+align-items: center;
+}
+
+.hide-text {
+display: none;
+}
