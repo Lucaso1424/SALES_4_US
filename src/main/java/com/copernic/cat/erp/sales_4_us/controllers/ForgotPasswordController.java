@@ -7,12 +7,8 @@ package com.copernic.cat.erp.sales_4_us.controllers;
 import com.copernic.cat.erp.sales_4_us.models.User;
 import com.copernic.cat.erp.sales_4_us.service.UserService;
 import com.copernic.cat.erp.sales_4_us.utils.Utilities;
-import com.zaxxer.hikari.util.UtilityElf;
-import lombok.experimental.UtilityClass;
 import net.bytebuddy.utility.RandomString;
-import org.aspectj.weaver.bcel.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -29,7 +25,7 @@ import java.io.UnsupportedEncodingException;
 
 
 @Controller
-public class ForgetPasswordController {
+public class ForgotPasswordController {
 
     @Autowired
     private UserService userService;
@@ -116,7 +112,7 @@ public class ForgetPasswordController {
             model.addAttribute("message", "You have successfully changed your password.");
         }
 
-        return "message";
+        return "index";
     }
 
 }
