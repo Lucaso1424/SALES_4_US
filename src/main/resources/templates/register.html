@@ -93,6 +93,13 @@
                                 </div>
                             </center>
                             <script>
+                                window.onload = function () {
+                                    let phone = document.getElementById("phone");
+                                    phone.placeholder = "Phone";
+
+                                    phone.value = "";
+                                }
+
                                 $(function(){
                                     $("#fileImage").change(function(event) {
                                         var x = URL.createObjectURL(event.target.files[0]);
