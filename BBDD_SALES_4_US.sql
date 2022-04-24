@@ -110,6 +110,48 @@ INSERT INTO product ( name, path_image, prize, description, image) VALUES (
 "nike_air_force.jpg"
 );
 
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+"Nike Air Max 97",
+"Nike Air Max 97",
+240,
+"Nike Air Max 97 for teenagers and adults.",
+"nike_air_max_97.png"
+);
+
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+'Nike Air Max 90',
+'Nike Air Max 90',
+'120',
+'Nike Air Max 90 for teenagers and adults.',
+'nike_air_max_90.png');
+
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+'Jordan Retro 4',
+'Jordan Retro 4',
+'350',
+'Jordan Retro 4 for teenagers and adults.',
+'71HqxX1ENCL._AC_UY395_.jpg');
+
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+'Adidas Stan Smith',
+'Adidas Stan Smith',
+'90',
+'Adidas Stan Smith for teenagers and adults.',
+'stan_smith.png');
+
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+'Adidas Magmur Runner',
+'Adidas Magmur Runner',
+'240',
+'Adidas Magmur Runner for teenagers and adults.',
+'adidas_magmur_runner.png');
+
+INSERT INTO product ( name, path_image, prize, description, image) VALUES (
+'Adidas Samba Og',
+'Adidas Samba Og',
+'100',
+'Adidas Samba Og for teenagers and adults.',
+'adidas_samba_og.png');
 
 INSERT INTO product_categories(product_id, category_id) VALUE  (1,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
