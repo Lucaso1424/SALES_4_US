@@ -103,7 +103,7 @@ public class RegisterController {
             }
         }
         userService.addUser(user);
-        return "register_success";
+        return "index";
     }
 
     // Checks if email exists in DB
