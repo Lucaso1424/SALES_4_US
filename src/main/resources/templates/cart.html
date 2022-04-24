@@ -24,20 +24,28 @@
                             </th>
                             <td><center th:each="product: ${item.product}" th:text="${product.name}"></center></td>
                             <td><center th:each="product: ${item.product}" th:text="${product.prize}"></center></td>
-                            <td><center th:text="${item.quantity}"></center></td>
+                            <td><center th:id="@{|quantity-${item.id}|}" th:text="${item.quantity}"></center></td>
                             <td>
                                 <center>
                                     <a th:href="@{/updateCart/{id}/{quantity} (id=${item.id}, quantity=${item.quantity} + 1)}">
                                         <button class="addButton">+</button>
                                     </a>
                                     <a th:href="@{/updateCart/{id}/{quantity} (id=${item.id}, quantity=${item.quantity - 1})}">
-                                        <button class="removeButton">-</button>
+                                        <button th:id="@{|del-${item.id}|}" class="removeButton">-</button>
                                     </a>
                                     <a th:href="@{/delete/cartItem/{id} (id=${item.id})}">
                                         <button class="deleteCRUDButton" onclick="removeItem(this)"><i class="fa-solid fa-trash"></i></button>
                                     </a>
                                 </center>
                             </td>
+                            <script th:inline="javascript">
+                                    var tdElem = document.getElementById ( "quantity-[[${item.id}]]" );
+                                    var tdText = tdElem.innerText | tdElem.textContent;
+                                    var delButton = document.getElementById ( "del-[[${item.id}]]" );
+                                    if(tdText <= 1){
+                                       delButton.disabled = true
+                                    }
+                            </script>
                             <td><center th:each="product: ${item.product}" th:text="${product.prize * item.quantity}"></center></td>
                         </tr>
                         </tbody>

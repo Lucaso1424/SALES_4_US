@@ -138,13 +138,16 @@ public class ShoppingCartController {
             }
         }
 
-        Purchase purchaseToAdd = new Purchase();
-        purchaseToAdd.setCartItems(activeItems);
-        purchaseToAdd.setTotalPrize(purchase.getTotalPrize());
-        purchaseToAdd.setDate(new Date(System.currentTimeMillis()));
-        purchaseService.addPurchase(purchaseToAdd);
-
-        return "purchase_success";
+        if (activeItems.isEmpty()){
+            return "redirect:/cart";
+        } else {
+            Purchase purchaseToAdd = new Purchase();
+            purchaseToAdd.setCartItems(activeItems);
+            purchaseToAdd.setTotalPrize(purchase.getTotalPrize());
+            purchaseToAdd.setDate(new Date(System.currentTimeMillis()));
+            purchaseService.addPurchase(purchaseToAdd);
+        }
+        return "redirect:/purchase";
     }
 
 }
