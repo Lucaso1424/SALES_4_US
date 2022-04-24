@@ -21,7 +21,7 @@
                                         </div>
                                     </div>
                                     <center>
-                                        <button type="submit" class="myLoginButton container">
+                                        <button type="submit" onclick="submitForm()" class="myLoginButton container">
                                             Send Link
                                         </button>
                                     </center>
@@ -40,5 +40,12 @@
                 </div>
             </div>
         </section>
+
+    <script type="text/javascript">
+          function submitForm() {
+            alert("S'ha enviat el correu correctament al compte: " + document.getElementById('email').value + "!");
+          }
+    </script>
+
     </body>
 </html>

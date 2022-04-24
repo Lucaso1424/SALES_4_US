@@ -79,7 +79,7 @@ public class ForgotPasswordController {
             model.addAttribute("error", "Error while sending email");
         }
 
-        return "forgot";
+        return "index";
     }
 
     @GetMapping("/reset_password")
