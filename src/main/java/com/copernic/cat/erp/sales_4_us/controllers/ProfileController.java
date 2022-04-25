@@ -54,7 +54,7 @@ public class ProfileController {
         // Codificació per guardar la foto de perfil de l'usuari al
         // directori del projecte del ERP i guardar la ruta a la BBDD
         String fileName;
-        if (multipartFile.getOriginalFilename() != null || !multipartFile.isEmpty()) {
+        if ( !multipartFile.isEmpty() && multipartFile.getOriginalFilename() != null ) {
             fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             user.setImage(fileName);
             // String per guardar la fotografia en base al mail de l'usuari
@@ -64,6 +64,24 @@ public class ProfileController {
                 Path filePath = uploadPath.resolve(fileName);
                 Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
             } catch (IOException ioException) {
+                throw new IOException("Could not save img " + fileName);
+            }
+        } else {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            User userImage = userService.findUserByEmail(authentication.getName());
+            fileName = userImage.getImage();
+            user.setImage(fileName);
+            String uploadDir = "./src/main/resources/static/images/user-image/" + authentication.getName();
+            Path uploadPath = Paths.get(uploadDir);
+            if (!Files.exists(uploadPath)){
+                Files.createDirectories(uploadPath);
+            }
+            System.out.println("./static/images/" + authentication.getName() + "/" + userImage.getImage());
+            try(InputStream inputStream = getClass().getClassLoader().getResourceAsStream("./static/images/user-image/" + authentication.getName() + "/" + userImage.getImage())) {
+                Path filePath = uploadPath.resolve(fileName);
+                assert inputStream != null;
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException ioException){
                 throw new IOException("Could not save img " + fileName);
             }
         }
