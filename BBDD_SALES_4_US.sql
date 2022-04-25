@@ -154,7 +154,19 @@ INSERT INTO product ( name, path_image, prize, description, image) VALUES (
 'adidas_samba_og.png');
 
 INSERT INTO product_categories(product_id, category_id) VALUE  (1,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (2,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (3,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (4,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (5,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (6,1);
+INSERT INTO product_categories(product_id, category_id) VALUE  (7,1);
 INSERT INTO product_provider(product_id, provider_id) VALUES (1,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (2,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (3,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (4,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (5,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (6,1);
+INSERT INTO product_provider(product_id, provider_id) VALUES (7,1);
 #INSERT INTO cart_item (id,product_id,user_id, quantity ) VALUES (1,1,1,2);
 
 SELECT * FROM user;

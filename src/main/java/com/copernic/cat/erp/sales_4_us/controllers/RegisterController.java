@@ -57,7 +57,7 @@ public class RegisterController {
         }
 
         Utilities u = new Utilities();
-        // Email no valido
+        // Dni no valido
         if (!u.checkDni(user.getDni())) {
             msg.addFlashAttribute("error", u.message("profile.error.dni"));
             return "redirect:/register";
